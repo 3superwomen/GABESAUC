@@ -67,8 +67,6 @@ public class Admin implements Serializable {
   }
   
   /**
-   ***************************************COMPLETE ME***************************************
-   *********************USE YOUR ORACLE USERNAME AND PASSWORD instead of XXXX***************
    * This method and creates and returns a Connection object to the database. 
    * All other methods that need database access should call this method.
    * @return a Connection object to Oracle
@@ -106,16 +104,16 @@ public class Admin implements Serializable {
    * stored in class fields username and password exist in Table ADMINS
    */
   public boolean login() {
-    String lastN;
+    String usern;
     try{
      con = openDBConnection();
     stmt = con.createStatement();
-    String queryString = "SELECT username "+ "FROM ADMINS "+"WHERE username="+username+"and password= '" + this.password+"'";
+    String queryString = "SELECT username "+ "FROM ADMINS "+"WHERE username= '"+this.username+"' and password= '"+ this.password+ "'";
     result = stmt.executeQuery(queryString);
     while(result.next()){
-
-       username= result.getString("username");
-       if(username.equals(this.username)){
+       usern= result.getString("username");
+       if(usern.equals(this.username)){
+    	   loggedIn = true;
       }
     }
     result.close(); 
@@ -126,6 +124,24 @@ public class Admin implements Serializable {
     
      return loggedIn;
  
+  }
+  
+  public ResultSet getCustomers()  throws IllegalStateException{
+	   
+      if(!isLoggedIn())
+      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
+       try{
+    	   stmt = con.createStatement();
+          String queryString = "Select id, username,fname,lname,emailad,password FROM CUSTOMER";
+          result = stmt.executeQuery(queryString);
+         
+  }       
+       
+       
+    catch (Exception E) {
+      E.printStackTrace();
+    }
+      return  result;
   }
   
    /**
