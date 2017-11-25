@@ -15,7 +15,7 @@ value="User Management" type="Submit"><br>
 style="font-family: Arial Black; color: black;" name="View Reports"
 value="View Reports" type="Submit"><br>
 </form>
-<form method="post" action="Exit.jsp"> <input
+<form method="post" action="ExitAdmin.jsp"> <input
 style="font-family: Arial Black; color: black;" name="Exit"
 value="Exit" type="Submit"><br>
 </form>
