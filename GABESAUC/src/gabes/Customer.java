@@ -74,7 +74,7 @@ public class Customer implements Serializable {
 	   
 	
 	   try{
-	          
+		      con = openDBConnection();
 	          stmt = con.createStatement(); 
 	         String queryString = "insert into CUSTOMER (id, username, fname, lname, emailad, password, adminusername) values('" + this.id+ "'," + "'" + this.username+ "'," + "'"+ this.fname + "'," + "'" + this.lname + "'," + "'"
 	        + this.emailad + "'," +  "'" + this.password + "'," +"'" + this.adminUsername + "')";
