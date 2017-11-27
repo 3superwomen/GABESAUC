@@ -30,7 +30,9 @@ public class Rates implements Serializable{
 		  
 	}
 	
-
+	public void setDelivery(int delivery) {
+		this.delivery = delivery;
+	}
 	/**
 	   * This method and creates and returns a Connection object to the database. 
 	   * All other methods that need database access should call this method.
