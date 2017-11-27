@@ -1,8 +1,7 @@
 <%@ page language="java" import="java.sql.*"%>
 <jsp:useBean id="admin" class= "gabes.Admin" scope="session"/> 
 <jsp:useBean id="customer" class= "gabes.Customer" scope="session"/> 
-<jsp:setProperty name="customer" property="username"/> 
-<jsp:setProperty name="customer" property="password"/> 
+<jsp:setProperty name="customer" property="*"/> 
 <jsp:setProperty name="admin" property="*"/> 
 
 <%if (admin.login())
