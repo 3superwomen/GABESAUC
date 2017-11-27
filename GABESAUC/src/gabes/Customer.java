@@ -100,7 +100,7 @@ public class Customer implements Serializable {
   public boolean login() {
 	     String usern;
 	     try{
-	      con = openDBConnection();
+	     con = openDBConnection();
 	     stmt = con.createStatement();
 	     String queryString = "SELECT username "+ "FROM CUSTOMER "+"WHERE username= '"+this.username+"' and password= '"+ this.password+ "'";
 	     result = stmt.executeQuery(queryString);
