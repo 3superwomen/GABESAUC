@@ -30,9 +30,55 @@ public class Rates implements Serializable{
 		  
 	}
 	
+	
 	public void setDelivery(int delivery) {
 		this.delivery = delivery;
 	}
+	
+	public int getDelivery() {
+		return this.delivery;
+	}
+	
+	public void setRating(int delivery) {
+		this.delivery = delivery;
+	}
+	
+	public int getRating() {
+		return this.delivery;
+	}
+	
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+	
+	public String getComments() {
+		return this.comments;
+	}
+	
+	public void setQuality(int quality) {
+		this.quality = quality;
+	}
+	
+	public int getQuality() {
+		return this.quality;
+	}
+	
+	public void setItemNo(int itemNo) {
+		this.itemNo = itemNo;
+	}
+	
+	public int getItemNo() {
+		return this.itemNo;
+	}
+	
+	public void setBidderNo(int bidderNo) {
+		this.bidderNo = bidderNo;
+	}
+	
+	public int getBidderNo() {
+		return this.bidderNo;
+	}
+	
 	/**
 	   * This method and creates and returns a Connection object to the database. 
 	   * All other methods that need database access should call this method.
@@ -43,16 +89,36 @@ public class Rates implements Serializable{
 	      // Load driver and link to driver manager
 	      Class.forName("oracle.jdbc.OracleDriver");
 	      // Create a connection to the specified database
-	      Connection myConnection = DriverManager.getConnection("jdbc:oracle:thin:@//cscioraclesrv.ad.csbsju.edu:1521/" +
+	      con = DriverManager.getConnection("jdbc:oracle:thin:@//cscioraclesrv.ad.csbsju.edu:1521/" +
 	                                                            "csci.cscioraclesrv.ad.csbsju.edu","TEAM5", "mnz");
-	      return myConnection;
+	      return con;
 	    } catch (Exception E) {
 	      E.printStackTrace();
 	    }
 	    return null;
 	  }
 	  
-	  
+	  /** 
+	   * When this method rateSeller() is called, the customer can rate a seller and this info will be inserted in Rates. 
+	   */ 
+	  public void rateSeller(int delivery, int rating, String comments, int quality, int itemNo, int bidderNo) throws SQLException {
+		  	try { 
+		  		con = openDBConnection();
+		  		String qryStr = "insert into rates values(?,?,?,?,?,?)";
+		  		pstmt = con.prepareStatement(qryStr);
+		  		pstmt.clearParameters();
+		  		pstmt.setInt(1,delivery);
+		  		pstmt.setInt(2,rating);
+		  		pstmt.setString(3,comments);
+		  		pstmt.setInt(4,quality);
+		  		pstmt.setInt(5,itemNo);
+		  		pstmt.setInt(6,bidderNo);
+		  		int returns = pstmt.executeUpdate();
+		  		pstmt.close(); 
+		  	} 
+		  	catch (Exception e) { 
+		  		e.printStackTrace(); } 
+	  }
 	  
 	  
 	  
