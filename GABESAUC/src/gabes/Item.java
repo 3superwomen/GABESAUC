@@ -114,22 +114,22 @@ public class Item implements Serializable{
 	  * List items bought by seller- actually won
 	  * @return set of rows of items and its information
 	  */
-	  public ResultSet getListOfItemsBought() throws IllegalStateException {
-		try {
-			con = openDBConnection();
-			stmt = con.createStatement();
-			String queryString = "SELECT inumber, iname, auc_start, auc_end_date, startbid, b.maximumbidlimit AS SoldPrice,"
-					+ "c.username AS SellerUsername, c.emailad AS SellerEmail"
-					+ "FROM ITEM it, BIDS b, Customer c"
-					+ "WHERE b.itemid=" + this.inumber + "AND c.id =" + this.sellerNo + "AND BIDDERID =" + this.sellerNo + 
-					"AND b.MAXIMUMBIDLIMIT > = ANY(SELECT MAX(MAXIMUMBIDLIMIT)" + 
-					"FROM BIDS" + "where itemid = b.itemid" + "GROUP BY itemid)";
-			result = stmt.executeQuery(queryString);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result; 
-	  }
+//	  public ResultSet getListOfItemsBought() throws IllegalStateException {
+//		try {
+//			con = openDBConnection();
+//			stmt = con.createStatement();
+//			String queryString = "SELECT inumber, iname, auc_start, auc_end_date, startbid, b.maximumbidlimit AS SoldPrice,"
+//					+ "c.username AS SellerUsername, c.emailad AS SellerEmail"
+//					+ "FROM ITEM it, BIDS b, Customer c"
+//					+ "WHERE b.itemid=" + this.inumber + "AND c.id =" + this.sellerNo + "AND BIDDERID =" + this.sellerNo + 
+//					"AND b.MAXIMUMBIDLIMIT > = ANY(SELECT MAX(MAXIMUMBIDLIMIT)" + 
+//					"FROM BIDS" + "where itemid = b.itemid" + "GROUP BY itemid)";
+//			result = stmt.executeQuery(queryString);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return result; 
+//	  }
 	  
 	  /**
 	   * Sales summary report returns category, item id, item name, final selling price, and commission

@@ -83,6 +83,7 @@ public class Rates implements Serializable{
 	   * This method and creates and returns a Connection object to the database. 
 	   * All other methods that need database access should call this method.
 	   * @return a Connection object to Oracle
+	   * 
 	   */
 	  public Connection openDBConnection() {
 	    try {
@@ -97,6 +98,8 @@ public class Rates implements Serializable{
 	    }
 	    return null;
 	  }
+	  
+	  
 	  
 	  /** 
 	   * When this method rateSeller() is called, the customer can rate a seller and this info will be inserted in Rates. 
@@ -119,7 +122,6 @@ public class Rates implements Serializable{
 		  	catch (Exception e) { 
 		  		e.printStackTrace(); } 
 	  }
-	  
-	  
+	 
 	  
 }
