@@ -70,6 +70,23 @@ public class Customer implements Serializable {
     return this.loggedIn;
   }
   
+  public void addCustomer()  throws IllegalStateException{
+	   
+	
+	   try{
+		      con = openDBConnection();
+	          stmt = con.createStatement(); 
+	         String queryString = "insert into CUSTOMER (id, username, fname, lname, emailad, password, adminusername) values('" + this.id+ "'," + "'" + this.username+ "'," + "'"+ this.fname + "'," + "'" + this.lname + "'," + "'"
+	        + this.emailad + "'," +  "'" + this.password + "'," +"'" + this.adminUsername + "')";
+	         stmt.executeUpdate(queryString);
+	         stmt.close();
+	   } catch (Exception E) {
+	    E.printStackTrace();
+	   }
+	    }
+  
+ 
+  
   /**
    * When called, this method uses a Statement object to query table CUSTOMER
    * for the customer whose id is stored in class instance

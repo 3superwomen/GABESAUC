@@ -65,26 +65,26 @@ action="AddUser_Action.jsp" name="AddForm">
 <div style="text-align: left;"><big>User
 Id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <small><small><small><small>&nbsp;</small></small></small></small>
-<input name="userid" value=""> <br>
+<input name="id" value= <%=admin.seqcustId()%> readonly> <br>
 Username&nbsp;&nbsp; &nbsp; &nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input name="username" value=""> <br>
 First
 name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input name="firstname" value=""> <br>
+<input name="fname" value=""> <br>
 Last name&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-name="lastname" value=""> <br>
+name="lname" value=""> <br>
 Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-name="email" value=""> <br>
+name="emailad" value=""> <br>
 Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
 &nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
 name="password" value=""> <br>
 Retype Password&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</big>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input name="zipCode" value=""><br>
+<input name="password2" value=""><br>
 </div>
 <input style="color: black;" name="Add" value="Add" type="submit"><input
 style="color: black;" name="Clear" value="Clear" type="reset"> </form>

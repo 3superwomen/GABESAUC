@@ -125,25 +125,27 @@ public class Admin implements Serializable {
      return loggedIn;
  
   }
-  
-  public void addUser(String userid, String usern,String fname, String lname, String emailad, String password )  throws IllegalStateException{
+  public int seqcustId()  throws IllegalStateException{
+	  int nextId =0;
 	   
 	  if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
 	       try{
-	    	   stmt = con.createStatement();
-	    	   String queryString = "insert into CUSTOMER values(" + "'" + userid + "'," + "'"
-						+ usern+ "'," + fname + " '," + "'" + lname + "'," + "'"
-								+ emailad + "'," +  "'" + password + "')";
-	    	   stmt.executeUpdate(queryString);
-	    		stmt.close();
+	    	   String custId = "select CUST_ID.NEXTVAL from DUAL";
+	    	   pstmt = con.prepareStatement(custId);
+	    	   result= pstmt.executeQuery();
+	    	   while(result.next()) {
+	    	       nextId = result.getInt(1); 
+	    	   }
+	    	  
 			} catch (Exception E) {
 				E.printStackTrace();
 			}
+	       return nextId;
 	   }
-
-	         
-	  
+  
+  
+	           
   
   public ResultSet getCustomers()  throws IllegalStateException{
 	   
