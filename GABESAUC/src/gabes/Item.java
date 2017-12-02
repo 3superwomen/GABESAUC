@@ -21,6 +21,7 @@ public class Item implements Serializable{
 	private int startBid;
 	private String status;
 	private int currentBid;
+	private int winner;
 	private PreparedStatement pstmt;
 	private Statement stmt;
 	private ResultSet result;
@@ -69,6 +70,14 @@ public class Item implements Serializable{
 	public int getSellerNo() {
 		return sellerNo;
 	}
+	
+	public void setWinner(int winId)
+	{
+		this.winner = winId;
+	}
+	public int getWinner() {
+		return winner;
+	}
 	public void setSellerNo(int sellerNo) {
 		this.sellerNo = sellerNo;
 	}
@@ -114,22 +123,17 @@ public class Item implements Serializable{
 	  * List items bought by seller- actually won
 	  * @return set of rows of items and its information
 	  */
-//	  public ResultSet getListOfItemsBought() throws IllegalStateException {
-//		try {
-//			con = openDBConnection();
-//			stmt = con.createStatement();
-//			String queryString = "SELECT inumber, iname, auc_start, auc_end_date, startbid, b.maximumbidlimit AS SoldPrice,"
-//					+ "c.username AS SellerUsername, c.emailad AS SellerEmail"
-//					+ "FROM ITEM it, BIDS b, Customer c"
-//					+ "WHERE b.itemid=" + this.inumber + "AND c.id =" + this.sellerNo + "AND BIDDERID =" + this.sellerNo + 
-//					"AND b.MAXIMUMBIDLIMIT > = ANY(SELECT MAX(MAXIMUMBIDLIMIT)" + 
-//					"FROM BIDS" + "where itemid = b.itemid" + "GROUP BY itemid)";
-//			result = stmt.executeQuery(queryString);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return result; 
-//	  }
+	  public ResultSet getListOfItemsBought() throws IllegalStateException {
+		try {
+		con = openDBConnection();
+			stmt = con.createStatement();
+			String queryString = "SELECT  INUMBER, INAME, CATEG, AUC_START, AUC_END_DATE,STARTBID, CURRENTBID,USERNAME, EMAILAD" + " FROM ITEM, CUSTOMER" + " where '" + this.winner + "' = winner and winner = id " ;
+			result = stmt.executeQuery(queryString);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result; 
+	  }
 	  
 	  /**
 	   * Sales summary report returns category, item id, item name, final selling price, and commission
