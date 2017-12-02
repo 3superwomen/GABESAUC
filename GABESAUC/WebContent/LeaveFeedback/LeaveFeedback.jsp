@@ -25,9 +25,10 @@ List of Items Bought</h1>
     			style="font-family: Arial Black;">Item Name</span><br>
     			</td>
     			<td style="vertical-align: top;"><span
-    			style="font-family: Arial Black;">Category </span><br
-    			style="font-family: Arial Black;">
-    			<span style="font-family: Arial Black;">Auction Start Date</span><br>
+    			style="font-family: Arial Black;">Category</span><br>
+    			</td>
+    			<td style="vertical-align: top;"><span
+    			style="font-family: Arial Black;">Auction Start Date</span><br>
     			</td>
     			<td style="vertical-align: top;"><span
     			style="font-family: Arial Black;">Auction End time</span><br>
@@ -36,17 +37,19 @@ List of Items Bought</h1>
     			style="font-family: Arial Black;">Start Price</span> </td>
     			<td style="vertical-align: top;"><span
     			style="font-family: Arial Black;">Sold Price</span> </td>
-    			 <td style="vertical-align: top;"><span
+    			<td style="vertical-align: top;"><span
     			style="font-family: Arial Black;">Seller Username</span> </td>
     			<td style="vertical-align: top;"><span
     			style="font-family: Arial Black;">Seller Email</span> </td>
     			</tr>
+    			
+    			
     			  	
 	<%try{ 
-		item.setWinner(customer.getId());
+		  item.setWinner(customer.getId());
           ResultSet rs = item.getListOfItemsBought();
           
-         while (rs.next()) { %>
+         while (rs.next()) { item.setSellerNo(rs.getInt("sellerno")); %>
   		     <tr>
     				 <td style="vertical-align: top; text-align: center;"><%=rs.getInt("inumber")%><br>
     				</td>
@@ -60,17 +63,38 @@ List of Items Bought</h1>
     				</td>
     				<td style="vertical-align: top; text-align: center;"><%=rs.getDouble("startbid")%><br>
     				</td>
-    				<td style="vertical-align: top; text-align: center;"><%=rs.getDouble("currentbbid")%><br>
+    				<td style="vertical-align: top; text-align: center;"><%=rs.getDouble("currentbid")%><br>
     				</td>
-    				<td style="vertical-align: top; text-align: center;"><%=rs.getString("username")%><br>
+    				
+       
+                
+  <%}%>
+  
+  
+              
+
+<% rs.close();}
+
+    catch(IllegalStateException ise){
+        out.println(ise.getMessage());
+    }
+
+%>
+<%try{ 
+          ResultSet rs = item.getSellerInfo();         
+         while (rs.next()) { %>
+    				 <td style="vertical-align: top; text-align: center;"><%=rs.getString("username")%><br>
     				</td>
     				<td style="vertical-align: top; text-align: center;"><%=rs.getString("emailad")%><br>
     				</td>
+    				
               </tr>
               </tbody>
   	</table>
                 
   <%}%>
+  
+  
               
 
 <% rs.close();}

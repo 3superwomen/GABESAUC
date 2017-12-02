@@ -98,27 +98,23 @@ public class Customer implements Serializable {
    * stored in class fields last and customerNumber exist in Table Customer
    */
   public boolean login() {
-	     String usern;
-	     try{
+	     boolean ans = false;
 	     con = openDBConnection();
-	     stmt = con.createStatement();
-	     String queryString = "SELECT username "+ "FROM CUSTOMER "+"WHERE username= '"+this.username+"' and password= '"+ this.password+ "'";
-	     result = stmt.executeQuery(queryString);
-	     while(result.next()){
-	        usern= result.getString("username");
-	        if(usern.equals(this.username)){
-	         loggedIn = true;
-	       }
+	     try{
+	     String queryString = "SELECT id "+ "FROM CUSTOMER "+"WHERE username= '"+this.username+"' and password= '"+ this.password+ "'";
+         stmt = con.createStatement();
+	     result= stmt.executeQuery(queryString);
+	     if(result.next()) {
+	    	   this.setId(result.getInt("id"));
+	    	   ans = true;  
+	    	 } 
+	     return ans;
 	     }
-	     result.close(); 
-	    
-	      } catch (Exception E) {
-	       E.printStackTrace();
-	     }
-	     
-	      return loggedIn;
-	  
-	   }    
+	     catch (Exception E) {
+	            E.printStackTrace();
+	            return false;
+	        }
+	    }  
   
   /**
    * sets loggedIn class field to false

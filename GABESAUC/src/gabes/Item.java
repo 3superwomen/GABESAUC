@@ -127,13 +127,26 @@ public class Item implements Serializable{
 		try {
 		con = openDBConnection();
 			stmt = con.createStatement();
-			String queryString = "SELECT  INUMBER, INAME, CATEG, AUC_START, AUC_END_DATE,STARTBID, CURRENTBID,USERNAME, EMAILAD" + " FROM ITEM, CUSTOMER" + " where '" + this.winner + "' = winner and winner = id " ;
+			String queryString = "SELECT  INUMBER, INAME, CATEG, AUC_START, AUC_END_DATE,STARTBID, CURRENTBID,USERNAME, Sellerno" + " FROM ITEM, CUSTOMER" + " where '" + this.winner + "' = winner and winner = id " ;
 			result = stmt.executeQuery(queryString);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return result; 
 	  }
+	  
+	  public ResultSet getSellerInfo() {
+		  try {
+				con = openDBConnection();
+					stmt = con.createStatement();
+					String queryString = "SELECT  USERNAME, EMAILAD" + " FROM CUSTOMER" + " where id = '" + this.getSellerNo() +"'" ;
+					result = stmt.executeQuery(queryString);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return result; 
+			  }
+	  
 	  
 	  /**
 	   * Sales summary report returns category, item id, item name, final selling price, and commission
