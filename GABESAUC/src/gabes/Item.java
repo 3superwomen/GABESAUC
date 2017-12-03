@@ -137,7 +137,7 @@ public class Item implements Serializable{
 	  
 	  public ResultSet getSellerInfo() {
 		  try {
-				con = openDBConnection();
+				   con = openDBConnection();
 					stmt = con.createStatement();
 					String queryString = "SELECT  USERNAME, EMAILAD" + " FROM CUSTOMER" + " where id = '" + this.getSellerNo() +"'" ;
 					result = stmt.executeQuery(queryString);

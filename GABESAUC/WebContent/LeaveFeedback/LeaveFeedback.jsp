@@ -41,7 +41,9 @@ List of Items Bought</h1>
     			style="font-family: Arial Black;">Seller Username</span> </td>
     			<td style="vertical-align: top;"><span
     			style="font-family: Arial Black;">Seller Email</span> </td>
+                
     			</tr>
+    			
     			
     			
     			  	
@@ -49,7 +51,8 @@ List of Items Bought</h1>
 		  item.setWinner(customer.getId());
           ResultSet rs = item.getListOfItemsBought();
           
-         while (rs.next()) { item.setSellerNo(rs.getInt("sellerno")); %>
+         while (rs.next()) { 
+        	  item.setSellerNo(rs.getInt("sellerno")); %>
   		     <tr>
     				 <td style="vertical-align: top; text-align: center;"><%=rs.getInt("inumber")%><br>
     				</td>
@@ -66,6 +69,36 @@ List of Items Bought</h1>
     				<td style="vertical-align: top; text-align: center;"><%=rs.getDouble("currentbid")%><br>
     				</td>
     				
+    				
+    				<%try{ 
+	    
+                         ResultSet rs1 = item.getSellerInfo();         
+                         while (rs1.next()) { %>
+    				   <td style="vertical-align: top; text-align: center;"><%=rs1.getString("username")%><br>
+    				   </td>
+    				   <td style="vertical-align: top; text-align: center;"><%=rs1.getString("emailad")%><br>
+    				   </td>
+    				   <td style="vertical-align: top;"><span
+    			style="font-family: Arial Black;"> <a href="LeaveFeedBack_Action.jsp">
+                   rate seller </a><br></span> </td>
+    				
+              </tr>
+              </tbody>
+  	</table>
+                
+  <%}%>
+  
+  
+              
+
+<% rs1.close();}
+
+    catch(IllegalStateException ise){
+        out.println(ise.getMessage());
+    }
+
+%>
+    				
        
                 
   <%}%>
@@ -80,30 +113,7 @@ List of Items Bought</h1>
     }
 
 %>
-<%try{ 
-          ResultSet rs = item.getSellerInfo();         
-         while (rs.next()) { %>
-    				 <td style="vertical-align: top; text-align: center;"><%=rs.getString("username")%><br>
-    				</td>
-    				<td style="vertical-align: top; text-align: center;"><%=rs.getString("emailad")%><br>
-    				</td>
-    				
-              </tr>
-              </tbody>
-  	</table>
-                
-  <%}%>
-  
-  
-              
 
-<% rs.close();}
-
-    catch(IllegalStateException ise){
-        out.println(ise.getMessage());
-    }
-
-%>
 </body>
 </html>
 
