@@ -153,17 +153,18 @@ public class Customer implements Serializable {
   }
   
 
-  public void editCustomerInfo()  throws IllegalStateException{
+  public void updateCustomerInfo() throws IllegalStateException{
  
 	  if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
 	       try{
           Statement stmt = con.createStatement();
           String queryString = "update customer set " 
-                  + " username='" + this.getUsername() + "',"
+        		  + " username='" + this.getUsername() + "',"
                   + " fname='" + this.getFname() + "',"
                   + " lname='" + this.getLname() + "',"
                   + " email='" + this.getEmailad() + "',"
+                  + " phoneno='" + this.getPhoneno() + "',"
                   + " password='" + this.getPassword() + "',"
                   + " where id='" + this.getId()+ "'";
 
@@ -174,6 +175,20 @@ public class Customer implements Serializable {
       }       
   }
   
+  public ResultSet viewFeedback() throws IllegalStateException{
+	  if(!isLoggedIn())
+	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
+	    try{
+	    	stmt = con.createStatement();
+	        //String queryString = "SELECT *" + "FROM CUSTOMER,RATES,ITEM" + " WHERE sellerno ='" + this.id+ "',"
+	        	//+ "and itemno=inumber and sellerno='"
+	        //result = stmt.executeQuery(queryString);
+	    }
+	    catch (Exception E) {
+	        E.printStackTrace();
+	    }
+	    return result; 
+  }
   
   public int getPhoneno() {
 	return phoneno;
