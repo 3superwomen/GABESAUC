@@ -167,7 +167,6 @@ public class Customer implements Serializable {
                   + " phoneno='" + this.getPhoneno() + "',"
                   + " password='" + this.getPassword() + "',"
                   + " where id='" + this.getId()+ "'";
-
           stmt.executeUpdate(queryString);
           stmt.close();         
       } catch (Exception E) {
@@ -180,9 +179,11 @@ public class Customer implements Serializable {
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
 	    try{
 	    	stmt = con.createStatement();
-	        //String queryString = "SELECT *" + "FROM CUSTOMER,RATES,ITEM" + " WHERE sellerno ='" + this.id+ "',"
-	        	//+ "and itemno=inumber and sellerno='"
-	        //result = stmt.executeQuery(queryString);
+	        String queryString = "SELECT b.USERNAME, r.ITEMNO, (SUM(r.RATING)/COUNT(r.itemno)) AS OverallRating, r.QUALITY, r.delivery, r.COMMENTS\n" + 
+	        		"FROM Customer b, Customer s, Rates  r, ITEM i\n" + 
+	        		"WHERE b.ID = r.bidderno and i.sellerno = s.id and r.itemno = i.INUMBER and s.id = '" + this.id + "\n" + 
+	        		"GROUP BY b.USERNAME, r.ITEMNO, r.QUALITY, r.delivery, r.COMMENTS";
+	        result = stmt.executeQuery(queryString);
 	    }
 	    catch (Exception E) {
 	        E.printStackTrace();

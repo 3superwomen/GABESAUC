@@ -156,14 +156,15 @@ public class Item implements Serializable{
 	 public ResultSet getSalesSummaryReport() {
 		 try {
 			 con = openDBConnection();
-			String queryString = "SELECT i.categ, i.INUMBER, i.INAME, b.maximumbidlimit AS FINALSELLINGPRICE,((currentBid+1)*0.05) AS Commission, SUM(maximumbidlimit) AS Subtotal" +
-	        "FROM ITEM i, BIDS b" +
-	        "WHERE b.itemid=" + this.inumber +  "AND " + this.status + "= 'SOLD' AND "
-	        		+ "b.maximumbidlimit >= ANY (select max(maximumbidlimit)" +
-	         "from BIDS" +
-	         "where itemid = b.itemid" + 
-	         "Group by i.categ, i.INUMBER, i.INAME, b.maximumbidlimit, ((currentBid+1)*0.05)" +
-	         "ORDER BY i.categ desc, i.inumber";
+			String queryString = "CREATE OR REPLACE VIEW SALES_SUMMARY_REPORT_View AS\n" + 
+					"        SELECT i.categ, i.INUMBER, i.INAME, b.maximumbidlimit AS FINALSELLINGPRICE, ((currentBid+1)*0.05) AS Commission, SUM(maximumbidlimit) AS Subtotal\n" + 
+					"        FROM ITEM i, BIDS b\n" + 
+					"        WHERE i.inumber = b.itemid and i.status = 'SOLD' AND b.maximumbidlimit >= ANY (select max(maximumbidlimit)\n" + 
+					"                                                                                from BIDS\n" + 
+					"                                                                                where itemid = b.itemid\n" + 
+					"                                                                                group by b.itemid) \n" + 
+					"        Group by i.categ, i.INUMBER, i.INAME, b.maximumbidlimit, ((currentBid+1)*0.05)\n" + 
+					"        ORDER BY i.categ desc, i.inumber;";
 	        stmt = con.createStatement();
 	        result = stmt.executeQuery(queryString);
 		 } catch (Exception e) {
@@ -180,14 +181,15 @@ public class Item implements Serializable{
 	 public ResultSet getOverallComissionReport() {
 		 try {
 			 con = openDBConnection();
-		 String queryString = "SELECT c.ID, c.username, c.fname, c.lname, c.emailad, AVG(r.rating) AS sellerrating, ((currentBid+1)*0.05) AS Commissions"
-	        + "FROM Customer c, RATES r, BIDS b, Item i"
-	        + "WHERE c.isseller = 'Y' AND" + this.sellerNo + "= c.id  AND " + this.auctionEndDate + " <= Current_date AND b.bidderid = r.bidderno AND" + this.status + "='SOLD'"
-	        + "AND b.itemid =" + this.inumber + "AND r.itemno =" + this.inumber + "AND maximumbidlimit = (SELECT max(maximumbidlimit)" +
-	                                                                        "FROM BIDS b2" + 
-	                                                                        "WHERE b.bidderid = b2.bidderid and b.itemid = b2.itemid)"+
-	        "group by c.ID, c.username, c.fname, c.lname, c.emailad, ((currentBid+1)*0.05)"+
-	        "ORDER BY c.ID";
+		 String queryString = "CREATE OR REPLACE VIEW OVERALL_COMMISSION_REPORT_View AS\n" + 
+		 		"        SELECT c.ID, c.username, c.fname, c.lname, c.emailad, AVG(r.rating) AS sellerrating, ((currentBid+1)*0.05) AS Commissions\n" + 
+		 		"        FROM Customer c, RATES r, BIDS b, Item i\n" + 
+		 		"        WHERE c.isseller = 'Y' AND i.sellerno = c.id  AND i.AUC_END_DATE <= Current_date AND b.bidderid = r.bidderno AND i.status='SOLD'\n" + 
+		 		"        AND b.itemid = i.inumber AND r.itemno = i.inumber AND maximumbidlimit = (SELECT max(maximumbidlimit)\n" + 
+		 		"                                                                        FROM BIDS b2\n" + 
+		 		"                                                                        WHERE b.bidderid = b2.bidderid and b.itemid = b2.itemid)\n" + 
+		 		"        group by c.ID, c.username, c.fname, c.lname, c.emailad, ((currentBid+1)*0.05)\n" + 
+		 		"        ORDER BY c.ID;";
 		 stmt = con.createStatement();
 		 result = stmt.executeQuery(queryString);
 		 } catch (Exception e) {
