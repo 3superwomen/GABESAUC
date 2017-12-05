@@ -98,7 +98,6 @@ public class Customer implements Serializable {
    * stored in class fields last and customerNumber exist in Table Customer
    */
   public boolean login() {
-	     boolean ans = false;
 	     con = openDBConnection();
 	     try{
 	     String queryString = "SELECT id "+ "FROM CUSTOMER "+"WHERE username= '"+this.username+"' and password= '"+ this.password+ "'";
@@ -106,9 +105,9 @@ public class Customer implements Serializable {
 	     result= stmt.executeQuery(queryString);
 	     if(result.next()) {
 	    	   this.setId(result.getInt("id"));
-	    	   ans = true;  
+	    	   loggedIn = true;  
 	    	 } 
-	     return ans;
+	     return loggedIn;
 	     }
 	     catch (Exception E) {
 	            E.printStackTrace();
