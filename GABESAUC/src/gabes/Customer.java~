@@ -98,7 +98,7 @@ public class Customer implements Serializable {
    * stored in class fields last and customerNumber exist in Table Customer
    */
   public boolean login() {
-	   //  boolean ans = false;
+	     boolean ans = false;
 	     con = openDBConnection();
 	     try{
 	     String queryString = "SELECT id "+ "FROM CUSTOMER "+"WHERE username= '"+this.username+"' and password= '"+ this.password+ "'";
@@ -106,9 +106,9 @@ public class Customer implements Serializable {
 	     result= stmt.executeQuery(queryString);
 	     if(result.next()) {
 	    	   this.setId(result.getInt("id"));
-	    	   this.loggedIn = true;  
+	    	   ans = true;  
 	    	 } 
-	     return this.loggedIn;
+	     return ans;
 	     }
 	     catch (Exception E) {
 	            E.printStackTrace();
@@ -187,10 +187,13 @@ public ResultSet getItemList()  throws IllegalStateException{
 //	    	   WHERE i.auc_end_date > CURRENT_DATE AND i.SELLERNO = '104'
 //	    	   Group by i.INUMBER, i.INAME, i.CATEG, i.au
 //	    	   c_start, i.auc_end_date,i.status;
-	    	   stmt = con.createStatement();
-          String queryString = "SELECT INUMBER , INAME , CATEG, auc_start, auc_end_date , startbid , currentbid,status " 
-          		+ "FROM ITEM "
-                + " WHERE auc_end_date > CURRENT_DATE AND SELLERNO = '" + this.id +"' ";
+          Statement stmt = con.createStatement();
+          String queryString = "SELECT i.INUMBER AS itemID, i.INAME AS itemName, i.CATEG AS category, "
+          		+ "i.auc_start AS auctionStartDate, i.auc_end_date AS auctionEndDate, i.startbid AS startB, i.currentbid AS curB, "
+          		+ "i.status AS status" 
+          		+ "FROM ITEM i"
+                + " WHERE i.auc_end_date > CURRENT_DATE AND i.SELLERNO = " + this.getId() +" "
+          		+"Group by i.INUMBER, i.INAME, i.CATEG, i.auc_start, i.auc_end_date,i.status";
 
           result = stmt.executeQuery(queryString);
           

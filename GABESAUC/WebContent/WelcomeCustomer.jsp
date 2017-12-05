@@ -11,7 +11,7 @@
 style="font-family: Arial Black; color: black;" name="UpdateProfile"
 value="Update Profile" type="Submit"><br>
 </form>
-<form method="post" action="SellingManagement.jsp"> <input
+<form method="post" action="SellingManagement/sellingMg.jsp"> <input
 style="font-family: Arial Black; color: black;" name=SellingManagement"
 value="Selling Management" type="Submit"><br>
 </form>
