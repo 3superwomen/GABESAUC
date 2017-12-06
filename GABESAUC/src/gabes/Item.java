@@ -156,16 +156,8 @@ public class Item implements Serializable{
 	 public ResultSet getSalesSummaryReport() {
 		 try {
 			 con = openDBConnection();
-			String queryString = "CREATE OR REPLACE VIEW SALES_SUMMARY_REPORT_View AS\n" + 
-					"        SELECT i.categ, i.INUMBER, i.INAME, b.maximumbidlimit AS FINALSELLINGPRICE, ((currentBid+1)*0.05) AS Commission, SUM(maximumbidlimit) AS Subtotal\n" + 
-					"        FROM ITEM i, BIDS b\n" + 
-					"        WHERE i.inumber = b.itemid and i.status = 'SOLD' AND b.maximumbidlimit >= ANY (select max(maximumbidlimit)\n" + 
-					"                                                                                from BIDS\n" + 
-					"                                                                                where itemid = b.itemid\n" + 
-					"                                                                                group by b.itemid) \n" + 
-					"        Group by i.categ, i.INUMBER, i.INAME, b.maximumbidlimit, ((currentBid+1)*0.05)\n" + 
-					"        ORDER BY i.categ desc, i.inumber;";
-	        stmt = con.createStatement();
+			 stmt = con.createStatement();
+			 String queryString = "select INAME, INUMBER from item,bids";
 	        result = stmt.executeQuery(queryString);
 		 } catch (Exception e) {
 			 e.printStackTrace();
