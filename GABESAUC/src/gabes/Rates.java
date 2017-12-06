@@ -18,7 +18,6 @@ public class Rates implements Serializable{
 	private int quality;
 	private int itemNo;
 	private int bidderNo;
-	private PreparedStatement pstmt;
 	private Statement stmt;
 	private ResultSet result;
 	private Connection con;
@@ -105,23 +104,24 @@ public class Rates implements Serializable{
 	   * When this method rateSeller() is called, the customer can rate a seller and this info will be inserted in Rates. 
 	   */ 
 	  public void rateSeller(int delivery, int rating, String comments, int quality, int itemNo, int bidderNo) throws SQLException {
-		  	try { 
-		  		con = openDBConnection();
-		  		String qryStr = "insert into rates values(?,?,?,?,?,?)";
-		  		pstmt = con.prepareStatement(qryStr);
-		  		pstmt.clearParameters();
-		  		pstmt.setInt(1,delivery);
-		  		pstmt.setInt(2,rating);
-		  		pstmt.setString(3,comments);
-		  		pstmt.setInt(4,quality);
-		  		pstmt.setInt(5,itemNo);
-		  		pstmt.setInt(6,bidderNo);
-		  		int returns = pstmt.executeUpdate();
-		  		pstmt.close(); 
-		  	} 
-		  	catch (Exception e) { 
-		  		e.printStackTrace(); } 
-	  }
-	 
+				try {
+					con = openDBConnection();
+					 stmt = con.createStatement();
+					String queryString = "insert into RATES values(" + "'" + this.getDelivery() + "'," + "'"
+							+ this.getRating() + "'," + "'" + this.getComments() + "'," + "'" + this.getQuality() + "'," +"'" + this.getItemNo() 
+							+ "'," + "'" + this.getBidderNo()+ "' )";
+					stmt.executeUpdate(queryString);
+					stmt.close();
+				} catch(SQLException e){
+				    if(e instanceof SQLIntegrityConstraintViolationException)
+				    { 
+				    	
+					   throw new SQLException("YOU HAVE ALREADY RATED THIS ITEM");
+				}
+
+			}
+
+	
 	  
+}
 }

@@ -104,27 +104,26 @@ public class Admin implements Serializable {
    * stored in class fields username and password exist in Table ADMINS
    */
   public boolean login() {
-    String usern;
     try{
      con = openDBConnection();
     stmt = con.createStatement();
     String queryString = "SELECT username "+ "FROM ADMINS "+"WHERE username= '"+this.username+"' and password= '"+ this.password+ "'";
-    result = stmt.executeQuery(queryString);
-    while(result.next()){
-       usern= result.getString("username");
-       if(usern.equals(this.username)){
-    	   loggedIn = true;
-      }
+    result= stmt.executeQuery(queryString);
+    if(result.next()) {
+   	   this.loggedIn = true;  
     }
-    result.close(); 
-   
-     } catch (Exception E) {
-      E.printStackTrace();
+     return this.loggedIn;
     }
+    catch (Exception E) {
+           E.printStackTrace();
+           return false;
+       }
+   }
     
-     return loggedIn;
- 
-  }
+    
+    
+    
+    
   public int seqcustId()  throws IllegalStateException{
 	  int nextId =0;
 	   
