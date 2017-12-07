@@ -152,7 +152,7 @@ public class Customer implements Serializable {
   public void updateProfile() throws IllegalStateException{
 	     try{
           Statement stmt = con.createStatement();
-          String queryString = "update CUSTOMER set " 
+          String queryString = "update customer set " 
         		  + " username='" + this.getUsername() + "',"
                   + " fname='" + this.getFname() + "',"
                   + " lname='" + this.getLname() + "',"
@@ -195,23 +195,23 @@ public ResultSet getItemList()  throws IllegalStateException{
 	     }
   
 
-  public ResultSet viewFeedback() throws IllegalStateException{
+	public ResultSet viewFeedback() throws IllegalStateException{
 	  if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
 	    try{
 	    	stmt = con.createStatement();
-	        String queryString = "SELECT b.USERNAME, r.ITEMNO, (SUM(r.RATING)/COUNT(r.itemno)) AS OverallRating, r.QUALITY, r.delivery, r.COMMENTS" + 
-	        		" FROM Customer b, Customer s, Rates r, ITEM i" + 
-	        		" WHERE b.ID = r.bidderno and i.sellerno = s.id and r.itemno = i.INUMBER and s.id = '" + this.id + "'";
+	        String queryString = "select bidderno, itemno, rating, quality, delivery, comments" + 
+	        		" from Rates, Item" + 
+	        		" where sellerno = '" + this.getId() + "' and itemno = inumber";
 	        result = stmt.executeQuery(queryString);
 	    }
 	    catch (Exception E) {
 	        E.printStackTrace();
 	    }
 	    return result; 
-  }
-  
-  public int getPhoneno() {
+	}
+
+public int getPhoneno() {
 	return phoneno;
 }
 public void setPhoneno(int phoneno) {
