@@ -19,21 +19,21 @@
     <td style="vertical-align: top; text-align: center;">Final Selling Price</td>
     <td style="vertical-align: top; text-align: center;">Commission</td>
 	</tr>
-				<%
-                String itemID = Integer.toString(item.getInumber());
-                try{
-                	ResultSet rs= item.getSalesSummaryReport();
-                	while(rs.next()){
-                %>
-                <tr>
-                	<td style="vertical-align: top; text-align: center;"><%=rs.getInt("INAME")%></td>
-                	<td style="vertical-align: top; text-align: center;"><%=rs.getString("INUMBER")%></td>
+<%-- 				<% --%>
+<%-- //                 String itemID = Integer.toString(item.getInumber());
+//                 try{
+//                 	ResultSet rs= item.getSalesSummaryReport();
+//                 	while(rs.next()){--%>
+<%--                 %> --%>
+<!--                 <tr> -->
+<%--                 	<td style="vertical-align: top; text-align: center;"><%=rs.getInt("INAME")%></td> --%>
+<%--                 	<td style="vertical-align: top; text-align: center;"><%=rs.getString("INUMBER")%></td> --%>
                 	
-                </tr>
-        <%}%>       		
-        <%} catch(IllegalStateException ise){
-        out.println(ise.getMessage());
-        }%>
+<!--                 </tr> -->
+<%--         <%}%>       		 --%>
+<%--         <%} catch(IllegalStateException ise){ --%>
+<%--         out.println(ise.getMessage());--%>
+<%--         }%> --%>
 </tbody>
 </table>
 <h3>Overall Commission Report </h3>
