@@ -149,17 +149,25 @@ public class Customer implements Serializable {
 	  if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
 	       try{
-          Statement stmt = con.createStatement();
-          String queryString = "update customer set" 
-        		  + " username='" + this.username + "',"
-                  + " fname='" + this.fname + "',"
-                  + " lname='" + this.lname + "',"
-                  + " email='" + this.emailad + "',"
-                  + " phoneno='" + this.phoneno + "',"
-                  + " password='" + this.password + "',"
-                  + " where username='" + this.username+ "'";
-          stmt.executeUpdate(queryString);
-          stmt.close();         
+          PreparedStatement pstmt = con.prepareStatement("update customer set" 
+        		  + " username = ?,"
+                  + " fname = ?,"
+                  + " lname = ?,"
+                  + " emailad = ?,"
+                  + " phoneno = ?,"
+                  + " password = ?,"
+                  + " where username = ?");
+          pstmt.setString(1,this.username);
+          pstmt.setString(2,this.fname);
+          pstmt.setString(3,this.lname);
+          pstmt.setString(4,this.emailad);
+          pstmt.setInt(5,this.phoneno);
+          pstmt.setString(6,this.password);
+          pstmt.setString(7,this.username);
+          
+          pstmt.executeUpdate();
+          pstmt.close();     
+          
       } catch (Exception E) {
           E.printStackTrace();
       }       
