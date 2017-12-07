@@ -7,10 +7,15 @@ http-equiv="content-type">
 <body>
 <%@ page language="java" import="java.sql.*" %>
 <jsp:useBean id="admin" class="gabes.Admin" scope="session"/>
+
+<%  String value = request.getParameter("value");
+if(value!=null)
+   out.println("PASSWORD DOES NOT MATCH RETYPE PASSWORD");%>
 <table style="text-align: left; width: 653px; height: 100px;" border="1"
     			cellpadding="2" cellspacing="2">
     			
     <br>
+
 <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 User List</h1>			
 	<tbody>

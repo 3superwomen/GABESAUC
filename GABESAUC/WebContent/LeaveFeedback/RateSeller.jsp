@@ -17,8 +17,18 @@ http-equiv="content-type">
        %>
        <% 
 String anyErrors = request.getParameter("Error");
+ String value = request.getParameter("value");
 if(anyErrors!=null)
    out.println(anyErrors);
+if(value!=null)
+{
+	if(value.equals("1"))
+	    out.println("YOU DID NOT CHECK A VALUE FOR QUALITY");
+	else if(value.equals("2"))
+	   out.println("YOU DID NOT CHECK A VALUE FOR DELIVERY");	
+	else if(value.equals("3"))
+	   out.println("YOU DID NOT ENTER A COMMENT");	
+}
 %>
 <div style="text-align: left;"> </div>
 <big style="font-family: Times New Roman,Times,serif;"><big><big>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
