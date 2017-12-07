@@ -14,7 +14,7 @@
 </head>
 <h2>Update Profile</h2>
 <body>
-<form style="font-family: Arial Black;" method="post" action="UpdateProfile_Action.jsp" name="UpdateForm">
+<form style="font-family: Arial Black;" method="post" action="UpdateProfile_Action.jsp">
 <%try{ 
           ResultSet rs = customer.getCustomerInfo();
          while (rs.next()) { %>
@@ -51,7 +51,7 @@ New Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n
 Retype New Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input name="renewpw" value=""> <br>
 
-<input style="color: black;" name="Update" value="Update" type="submit">
+<input style="color: black;" name="Update" value="Update" type="submit">&nbsp;
 <input style="color: black;" name="Cancel" value="Cancel" type="reset">
 <%}%>
 <% rs.close();}

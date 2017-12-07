@@ -26,12 +26,12 @@
                 	while(rs.next()){
                 %>
                 <tr>
-                	<td style="vertical-align: top; text-align: center;"><%=rs.getString("USERNAME")%></td>
-                	<td style="vertical-align: top; text-align: center;"><%=rs.getInt("ITEMNO")%></td>
-                	<td style="vertical-align: top; text-align: center;"><%=rs.getInt("OVERALLRATING")%></td>
-                	<td style="vertical-align: top; text-align: center;"><%=rs.getInt("QUALITY")%></td>
+                	<td style="vertical-align: top; text-align: center;"><%=rs.getString("bidderno")%></td>
+                	<td style="vertical-align: top; text-align: center;"><%=rs.getInt("itemno")%></td>
+                	<td style="vertical-align: top; text-align: center;"><%=rs.getInt("rating")%></td>
+                	<td style="vertical-align: top; text-align: center;"><%=rs.getInt("quality")%></td>
                 	<td style="vertical-align: top; text-align: center;"><%=rs.getInt("delivery")%></td>
-                	<td style="vertical-align: top; text-align: center;"><%=rs.getString("COMMENTS")%></td>
+                	<td style="vertical-align: top; text-align: center;"><%=rs.getString("comments")%></td>
                 </tr>
         <%}%>       		
         <%} catch(IllegalStateException ise){
