@@ -6,7 +6,7 @@
 <%
 try{
 	  customer.updateProfile();
-   
+
  }catch(IllegalStateException ise){
     out.println(ise.getMessage());
 }

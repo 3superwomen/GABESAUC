@@ -146,7 +146,6 @@ public class Customer implements Serializable {
   
 
   public void updateProfile() throws IllegalStateException{
- 
 	  if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
 	       try{

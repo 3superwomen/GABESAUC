@@ -38,6 +38,7 @@ Phone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb
 Seller Rating&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input name="rating" value="<%=rs.getString("sumofratings")%>" readonly> <br>
 
+
 Number of Seller Ratings&nbsp;&nbsp;&nbsp;
 <input name="norating" value="<%=rs.getString("noofratings")%>" readonly> <br>
 
