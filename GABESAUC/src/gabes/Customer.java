@@ -148,7 +148,8 @@ public class Customer implements Serializable {
   public void updateProfile() throws IllegalStateException{
 	  if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
-	       try{
+	      
+	  try{
           PreparedStatement pstmt = con.prepareStatement("update customer set" 
         		  + " username = ?,"
                   + " fname = ?,"
