@@ -135,7 +135,7 @@ public class Customer implements Serializable {
        try{
     	   stmt = con.createStatement();
           String queryString = "Select username,fname,lname,emailad,phoneno,sumofratings,noofratings,password FROM CUSTOMER where"
-          		+ " username='" + this.username +"'";
+          		+ " id= '" + this.id +"'";
           result = stmt.executeQuery(queryString);
        }       
        catch (Exception E) {
