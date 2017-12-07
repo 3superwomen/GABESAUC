@@ -13,13 +13,20 @@ try{
 	 int delivery=  Integer.parseInt(request.getParameter("delivery"));
 	 int rating = Integer.parseInt(request.getParameter("rating"));
 	 int quality = Integer.parseInt(request.getParameter("quality"));
+	 rates.setDelivery(delivery);
+	 rates.setRating(rating);
+	 rates.setQuality(quality);
 	 rates.rateSeller(rates.getDelivery(), rates.getRating(),rates.getComments(), rates.getQuality(), rates.getItemNo(), rates.getBidderNo());
-   
+	 response.sendRedirect("RateSeller.jsp");
+  
   }
-catch(SQLException e){  
-	String error = e.getMessage();
-	response.sendRedirect("RateSeller.jsp?Error="+ error);
+ 
+	catch(SQLException e){
+
+	          String error = e.getMessage();
+	         response.sendRedirect("RateSeller.jsp?Error="+ error);
   }
+	
 
 
 %>

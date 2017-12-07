@@ -112,16 +112,14 @@ public class Rates implements Serializable{
 							+ "'," + "'" + this.getBidderNo()+ "' )";
 					stmt.executeUpdate(queryString);
 					stmt.close();
-				} catch(SQLException e){
-				    if(e instanceof SQLIntegrityConstraintViolationException)
-				    { 
-				    	
-					   throw new SQLException("YOU HAVE ALREADY RATED THIS ITEM");
+			 } catch (SQLException E) {
+					    if(E.getErrorCode() == 1)
+					    { 
+					    	
+						   throw new SQLException("YOU HAVE ALREADY RATED THIS ITEM");
+					}
 				}
-
-			}
-
-	
-	  
 }
 }
+
+
