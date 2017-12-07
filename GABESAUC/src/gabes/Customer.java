@@ -170,18 +170,10 @@ public ResultSet getItemList()  throws IllegalStateException{
 	  if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
 	       try{
-//	    	   SELECT i.INUMBER AS ItemID, i.INAME AS ItemName, i.CATEG AS
-//	    	   Category, i.auc_start AS 
-//	    	   AuctionStartDate, i.auc_end_date AS AuctionEndDate,
-//	    	   MAX(b.MAXIMUMBIDLIMIT) AS CURRENTBID, i.status AS Status
-//	    	   FROM ITEM i, BIDS b
-//	    	   WHERE i.auc_end_date > CURRENT_DATE AND i.SELLERNO = '104'
-//	    	   Group by i.INUMBER, i.INAME, i.CATEG, i.au
-//	    	   c_start, i.auc_end_date,i.status;
 	    	   stmt = con.createStatement();
           String queryString = "SELECT INUMBER , INAME , CATEG, auc_start, auc_end_date , startbid , currentbid,status " 
           		+ "FROM ITEM "
-                + " WHERE auc_end_date > CURRENT_DATE AND SELLERNO = '" + this.id +"' ";
+                + " WHERE SELLERNO = '" + this.id +"' ";
 
           result = stmt.executeQuery(queryString);
           
@@ -191,7 +183,41 @@ public ResultSet getItemList()  throws IllegalStateException{
 	       }
 	        return result; 
 	     }
-  
+public ResultSet getItemInfo(int ino) throws IllegalStateException{
+	  if(!isLoggedIn())
+	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
+	 try {
+		 con = openDBConnection();
+	 String queryString = "SELECT * " 
+       		+ "FROM ITEM "
+			 + " where INUMBER = '"+ino+"'";
+	 stmt = con.createStatement();
+	 result = stmt.executeQuery(queryString);
+	 } catch (Exception e) {
+		 e.printStackTrace();
+	 }
+	 return result;
+}
+
+//SELECT   biddate as BiddingTime, username, maximumbidlimit
+//FROM BIDS, CUSTOMER
+//WHERE id = bidderid and isbidder = 'Y' and itemid = 124
+//;
+public ResultSet getBidderList(int ino) throws IllegalStateException{
+	  if(!isLoggedIn())
+	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
+	 try {
+		 con = openDBConnection();
+	 String queryString = "SELECT biddate , username , maximumbidlimit " 
+     		+ "FROM BIDS, CUSTOMER "
+			 + " where id = bidderid and isbidder = 'Y' and itemid = '"+ino+"'";
+	 stmt = con.createStatement();
+	 result = stmt.executeQuery(queryString);
+	 } catch (Exception e) {
+		 e.printStackTrace();
+	 }
+	 return result;
+}
 
   public ResultSet viewFeedback() throws IllegalStateException{
 	  if(!isLoggedIn())

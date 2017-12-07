@@ -46,7 +46,7 @@
                 	<td style="vertical-align: top; text-align: center;"><%=rs.getInt("currentbid")%></td>
                 	<td style="vertical-align: top; text-align: center;"><%=rs.getString("status")%></td>	
                 	<td ><form method="post" action="itemInfo.jsp">
-                            <input name="itemNum"type="hidden" value ="<%=rs.getString("INUMBER")%>">
+                            <input name="itemNum"type="hidden" value ="<%=rs.getInt("INUMBER")%>">
                             <button class="button" type = "submit" value = "itemDetail">Details</button>
                         </form>
                         </td>
@@ -58,7 +58,7 @@
                         </tr>  	
                 		<%}%></tbody></table>
                 		<form method="post" action="sellingMg.jsp">
-                            <input name="transnumber" type="hidden" value ="<%=customerId%>">
+                            <input name="cusnumber" type="hidden" value ="<%=customerId%>">
                             <button class="button" type = "submit" value = "return">Return Back to Main Page</button>
                         </form>
               <%} catch(IllegalStateException ise){
