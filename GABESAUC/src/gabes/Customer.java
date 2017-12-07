@@ -127,46 +127,37 @@ public class Customer implements Serializable {
     this.loggedIn = false;
   }
   
-  /**
-   * This method uses a Statement object to query the Customer tab;e
-   * for the customer whose id is stored in class field id
-   * 
-   * @return a ResultSet object containing the record for the matching customer from 
-   * the Customer table
-   * 
-   * @throws IllegalStateException if then method is called when loggedIn = false
-   */
-  public ResultSet getCustomerInfo() throws IllegalStateException{
-    
-    if(!isLoggedIn())
+  
+  public ResultSet getCustomerInfo()  throws IllegalStateException{
+	   
+      if(!isLoggedIn())
       throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
-    try{
-    stmt = con.createStatement();
-    String queryString = "SELECT *" + "FROM CUSTOMER" + " WHERE id = " + this.id +" ";
-    result = stmt.executeQuery(queryString);
-   
-    }
-    catch (Exception E) {
-      E.printStackTrace();
-    }
-     return result; 
-  }
+       try{
+    	   stmt = con.createStatement();
+          String queryString = "Select username,fname,lname,emailad,phoneno,sumofratings,noofratings,password FROM CUSTOMER where"
+          		+ " username='" + this.username +"'";
+          result = stmt.executeQuery(queryString);
+       }       
+       catch (Exception E) {
+    	   E.printStackTrace();
+       }
+       return  result;
+  	}
   
 
   public void updateProfile() throws IllegalStateException{
- 
 	  if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
 	       try{
           Statement stmt = con.createStatement();
-          String queryString = "update customer set " 
-        		  + " username='" + this.getUsername() + "',"
-                  + " fname='" + this.getFname() + "',"
-                  + " lname='" + this.getLname() + "',"
-                  + " email='" + this.getEmailad() + "',"
-                  + " phoneno='" + this.getPhoneno() + "',"
-                  + " password='" + this.getPassword() + "',"
-                  + " where id='" + this.getId()+ "'";
+          String queryString = "update customer set" 
+        		  + " username='" + this.username + "',"
+                  + " fname='" + this.fname + "',"
+                  + " lname='" + this.lname + "',"
+                  + " email='" + this.emailad + "',"
+                  + " phoneno='" + this.phoneno + "',"
+                  + " password='" + this.password + "',"
+                  + " where username='" + this.username+ "'";
           stmt.executeUpdate(queryString);
           stmt.close();         
       } catch (Exception E) {
@@ -207,10 +198,9 @@ public ResultSet getItemList()  throws IllegalStateException{
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
 	    try{
 	    	stmt = con.createStatement();
-	        String queryString = "SELECT b.USERNAME, r.ITEMNO, (SUM(r.RATING)/COUNT(r.itemno)) AS OverallRating, r.QUALITY, r.delivery, r.COMMENTS\n" + 
-	        		"FROM Customer b, Customer s, Rates  r, ITEM i\n" + 
-	        		"WHERE b.ID = r.bidderno and i.sellerno = s.id and r.itemno = i.INUMBER and s.id = '" + this.id + "\n" + 
-	        		"GROUP BY b.USERNAME, r.ITEMNO, r.QUALITY, r.delivery, r.COMMENTS";
+	        String queryString = "SELECT b.USERNAME, r.ITEMNO, (SUM(r.RATING)/COUNT(r.itemno)) AS OverallRating, r.QUALITY, r.delivery, r.COMMENTS" + 
+	        		" FROM Customer b, Customer s, Rates r, ITEM i" + 
+	        		" WHERE b.ID = r.bidderno and i.sellerno = s.id and r.itemno = i.INUMBER and s.id = '" + this.id + "'";
 	        result = stmt.executeQuery(queryString);
 	    }
 	    catch (Exception E) {
@@ -291,7 +281,7 @@ public int getSumratings() {
 public void setSumratings(int sumratings) {
 	this.sumratings = sumratings;
 }
-public int getNoofratings() {
+public int getNoOfratings() {
 	return noofratings;
 }
 public void setNoofratings(int noofratings) {

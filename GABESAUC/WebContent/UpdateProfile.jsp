@@ -15,31 +15,35 @@
 <h2>Update Profile</h2>
 <body>
 <form style="font-family: Arial Black;" method="post" action="UpdateProfile_Action.jsp" name="UpdateForm">
+<%try{ 
+          ResultSet rs = customer.getCustomerInfo();
+         while (rs.next()) { %>
 
 Username&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input name="username" value=""> <br>
+<input name="username" value="<%=rs.getString("username")%>"> <br>
 
 First Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input name="fname" value=""> <br>
+<input name="fname" value="<%=rs.getString("fname")%>"> <br>
 
 Last Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input name="lname" value=""> <br>
+<input name="lname" value="<%=rs.getString("lname")%>"> <br>
 
 Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="email" value=""> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="email" value="<%=rs.getString("emailad")%>"> <br>
 
 Phone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input name="phone" value=""> <br>
+<input name="phone" value="<%=rs.getString("phoneno")%>"> <br>
 
 Seller Rating&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input name="rating" value="TODO****" readonly> <br>
+<input name="rating" value="<%=rs.getString("sumofratings")%>" readonly> <br>
+
 
 Number of Seller Ratings&nbsp;&nbsp;&nbsp;
-<input name="norating" value="TODO****" readonly> <br>
+<input name="norating" value="<%=rs.getString("noofratings")%>" readonly> <br>
 
 Old Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input name="oldpw" value=""> <br>
+<input name="oldpw" type="password" value="<%=rs.getString("password")%>"> <br>
 
 New Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input name="newpw" value=""> <br>
@@ -49,6 +53,13 @@ Retype New Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 <input style="color: black;" name="Update" value="Update" type="submit">
 <input style="color: black;" name="Cancel" value="Cancel" type="reset">
+<%}%>
+<% rs.close();}
+
+    catch(IllegalStateException ise){
+        out.println(ise.getMessage());
+    }
+%>
 </form>
 </body>
 </html>
