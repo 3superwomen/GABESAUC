@@ -39,22 +39,18 @@ try{
                 		%>
                 		<tr>
                 	 <td style="vertical-align: top; text-align: center;"><%=rs.getTimestamp("BIDDATE")%></td>
-                	  <td style="vertical-align: top; text-align: center;"><%=rs.getString("BIDDATE")%></td>
+                	  <td style="vertical-align: top; text-align: center;"><%=rs.getString("username")%></td>
                 	   <td style="vertical-align: top; text-align: center;"><%=rs.getInt("maximumbidlimit")%></td>
                 	   <tr>
                 	   
-                	   <%}%></tbody></table>
+                	   <%}%>
                 		
               <%} catch(IllegalStateException ise){
         out.println(ise.getMessage());
     }
     
     %>
-    <form method="post" action="listItems.jsp">
-                            <input name="itemnumber" type="hidden" value ="<%=itemno%>">
-                            <button class="button" type = "submit" value = "return">Return Back to Item List</button>
-                        </form>
-</table>
+
 <% int num = 0;
 int curbid =0;
 try{
@@ -68,6 +64,7 @@ try{
         out.println(ise.getMessage());
     } 
 customer.setId(num);
+out.println(num);
 try{
 	
 	ResultSet rs= customer.getCustomerInfo();
@@ -77,10 +74,15 @@ try{
 	<td style="vertical-align: top; text-align: center;">Winner</td>
 		<td style="vertical-align: top; text-align: center;"><%=rs.getString("USERNAME")%></td>
 		
+		
 	<%}} catch(IllegalStateException ise){
         out.println(ise.getMessage());
     }%>  
       <td style="vertical-align: top; text-align: center;"><%=curbid%></td>
-
+  </tbody></table>
+<!-- <form method="post" action="listItems.jsp"> -->
+               
+<!--                             <button class="button" type = "submit" value = "return">Return Back to Item List</button> -->
+<!--                         </form> -->
 </body>
 </html>
