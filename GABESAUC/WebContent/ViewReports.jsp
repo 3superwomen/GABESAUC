@@ -15,9 +15,9 @@
 	<td style="vertical-align: top; text-align: center;">Category</td>
     <td style="vertical-align: top; text-align: center;">Item ID</td>
     <td style="vertical-align: top; text-align: center;">Item Name</td>
-     <td style="vertical-align: top; text-align: center;">Current Bid</td>
-<!--     <td style="vertical-align: top; text-align: center;">Final Selling Price</td> -->
+    <td style="vertical-align: top; text-align: center;">Current Bid</td>
 <!--     <td style="vertical-align: top; text-align: center;">Commission</td> -->
+<!--     <td style="vertical-align: top; text-align: center;">Sub Total</td>  -->
 	</tr>
 	<% 
                  try{ 
@@ -25,12 +25,12 @@
                	while(rs.next()){
                		%>
              <tr> 
-    			<td style="vertical-align: top; text-align: center;"><%=rs.getString("categ")%></td>
-               	<td style="vertical-align: top; text-align: center;"><%=rs.getInt("inumber")%></td>
-               	<td style="vertical-align: top; text-align: center;"><%=rs.getString("iname")%></td>
-               	<td style="vertical-align: top; text-align: center;"><%=rs.getInt("currentbid")%></td>
-<%--                	<td style="vertical-align: top; text-align: center;"><%=rs.getInt("commission")%></td> --%>
-<%--                	<td style="vertical-align: top; text-align: center;"><%=rs.getInt("subtotal")%></td> --%>
+    			<td style="vertical-align: top; text-align: center;"><%=rs.getString(1)%></td>
+               	<td style="vertical-align: top; text-align: center;"><%=rs.getInt(2)%></td>
+               	<td style="vertical-align: top; text-align: center;"><%=rs.getString(3)%></td>
+               	<td style="vertical-align: top; text-align: center;"><%=rs.getInt(4)%></td>
+<%--                 <td style="vertical-align: top; text-align: center;"><%=rs.getDouble(5)%></td>  --%>
+<%--                 <td style="vertical-align: top; text-align: center;"><%=rs.getInt(5)%></td> --%>
              </tr>
        
    <%}%>

@@ -276,9 +276,9 @@ public void addItem(String name, String desc, String cate, Date aucS, Date aucE,
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
 	    try{
 	    	stmt = con.createStatement();
-	        String queryString = "SELECT b.USERNAME, r.ITEMNO, (SUM(r.RATING)/COUNT(r.itemno)) AS OverallRating, r.QUALITY, r.delivery, r.COMMENTS" + 
-	        		" FROM Customer b, Customer s, Rates r, ITEM i" + 
-	        		" WHERE b.ID = r.bidderno and i.sellerno = s.id and r.itemno = i.INUMBER and s.id = '" + this.id + "'";
+	        String queryString = "SELECT bidderno,itemno,rating,quality,delivery,comments" + 
+	        		" FROM Rates, Item" + 
+	        		" WHERE sellerno = '" + this.getId()+ "' and itemno = INUMBER";
 	        result = stmt.executeQuery(queryString);
 	    }
 	    catch (Exception E) {
