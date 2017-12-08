@@ -10,7 +10,7 @@ import oracle.jdbc.*;
  * script also creates an SQL function.
  */
 public class Item implements Serializable{
-	private static final long serialVersionUID = 1L;
+
 	private int inumber;
 	private String iname;
 	private String idescription;

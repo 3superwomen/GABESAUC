@@ -1,6 +1,5 @@
 
 <%@ page language="java" import="java.sql.*"%>
-<jsp:useBean id="admin" class="gabes.Admin" scope="session"/> 
 <!DOCTYPE html>
 <html>
 <head>

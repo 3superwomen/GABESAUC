@@ -1,4 +1,3 @@
-
 <%@page import="gabes.Admin"%>
 <%@ page language="java" import="java.sql.*" %>
 <jsp:useBean id="rates" class="gabes.Rates" scope="session"/> 
@@ -6,47 +5,51 @@
 <jsp:setProperty name="rates" property="itemNo"/>
 <% 
 int value = 0;
-
-if((request.getParameter("quality"))== null)
+String rating  = request.getParameter("rating");
+String quality = request.getParameter("quality");
+String delivery = request.getParameter("delivery");
+String comments = request.getParameter("comments");
+if((quality == null))
 {   
 	value = 1;
 	 
 }
- if( (request.getParameter("delivery"))== null)
+ if((delivery == null))
 {  
- value = 2;}
+ value = 2;
 
-if((request.getParameter("comments")).equals(""))
+ }
+if((comments.equals("")))
 {
-	value =3;}
-
+	value =3;
+}
  
  if(value!=0)
  {
-	 response.sendRedirect("RateSeller.jsp?value="+ value);}
- else{
+	 response.sendRedirect("RateSeller.jsp?value="+ value);
+ }
+ else
+ {
 	 
-
     try{
-     if(value!=0)
-	 rates.setBidderNo(customer.getId());
-	 int rating = Integer.parseInt(request.getParameter("rating"));
-	 int quality = Integer.parseInt(request.getParameter("quality"));
-	 int delivery = Integer.parseInt(request.getParameter("delivery"));
-	 rates.setDelivery(delivery);
-	 rates.setRating(rating);
-	 rates.setQuality(quality);
-	 rates.rateSeller(rates.getDelivery(), rates.getRating(),rates.getComments(), rates.getQuality(), rates.getItemNo(), rates.getBidderNo());
-	 response.sendRedirect("RateSeller.jsp");
-  
-  }
+	             	int r = Integer.parseInt(rating);
+	                int q= Integer.parseInt(quality);
+	                int d = Integer.parseInt(delivery);
+	             	rates.setDelivery(d);
+	            	rates.setRating(r);
+	      			rates.setBidderNo(customer.getId());
+				    rates.setQuality(q);
+	                rates.setComments(comments);
+	                rates.rateSeller();
+	                response.sendRedirect("RateSeller.jsp");
+     }
+ 
  
 	catch(SQLException e){
-
 	          String error = e.getMessage();
 	         response.sendRedirect("RateSeller.jsp?Error="+ error);
   }
+    
 	
  }
-
 %>

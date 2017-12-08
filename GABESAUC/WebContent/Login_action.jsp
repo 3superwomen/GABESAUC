@@ -4,12 +4,14 @@
 <jsp:setProperty name="customer" property="*"/> 
 <jsp:setProperty name="admin" property="*"/> 
 
-<%if (admin.login())
+<%if (admin.login()){
     response.sendRedirect("WelcomeAdmin.jsp");
-else if(customer.login())
+      customer = null;}
+else if(customer.login()){
 	 response.sendRedirect("WelcomeCustomer.jsp");
+     admin = null;}
  else
-	 response.sendRedirect("Login.jsp");
+ { response.sendRedirect("Login.jsp");}
 %> 
 
 

@@ -103,13 +103,13 @@ public class Rates implements Serializable{
 	  /** 
 	   * When this method rateSeller() is called, the customer can rate a seller and this info will be inserted in Rates. 
 	   */ 
-	  public void rateSeller(int delivery, int rating, String comments, int quality, int itemNo, int bidderNo) throws SQLException {
+	  public void rateSeller() throws SQLException {
 				try {
 					con = openDBConnection();
 					 stmt = con.createStatement();
 					String queryString = "insert into RATES values(" + "'" + this.getDelivery() + "'," + "'"
 							+ this.getRating() + "'," + "'" + this.getComments() + "'," + "'" + this.getQuality() + "'," +"'" + this.getItemNo() 
-							+ "'," + "'" + this.getBidderNo()+ "' )";
+							+ "'," + "'" + this.getBidderNo() + "' )";
 					stmt.executeUpdate(queryString);
 					stmt.close();
 			 } catch (SQLException E) {
