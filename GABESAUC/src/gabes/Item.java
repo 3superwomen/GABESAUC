@@ -169,6 +169,7 @@ public class Item implements Serializable{
 		 }
 		 return result;
 	 }
+	 
 	  
 //	 SELECT i.categ, i.INUMBER, i.INAME, b.maximumbidlimit AS FINALSELLINGPRICE, ((currentBid+1)*0.05) AS Commission, SUM(maximumbidlimit) AS Subtotal
 //     FROM ITEM i, BIDS b
