@@ -258,13 +258,13 @@ public void addItem(String name, String desc, String cate, Date aucS, Date aucE,
 	 
 	callStmt = con.prepareCall(" {call team5.item_add_Proc(?,?,?,?,?,?,?)}");
     callStmt.setInt(1,phoneno);
-   callStmt.setString(2,email);
+   //callStmt.setString(2,email);
     callStmt.setString(3,fname);
     callStmt.setString(4,lname);
     callStmt.setString(5,"Y");
     callStmt.setString(6,"Y");
     callStmt.setString(7,username);
-    callStmt.setString(8,newpw);
+    //callStmt.setString(8,newpw);
     callStmt.setInt(9,this.id);
     callStmt.execute();
     
