@@ -157,7 +157,12 @@ public class Item implements Serializable{
 		 try {
 			 con = openDBConnection();
 			 stmt = con.createStatement();
-			 String queryString = "select INAME, INUMBER from item,bids";
+//			 String queryString = "SELECT CATEG,INUMBER, INAME,CURRENTBID,((currentBid+1)*0.05) AS commission, sum(currentbid) AS subtotal" +
+//					 " FROM ITEM, BIDS" + 
+//					 " where status = '" + this.getStatus()+ "' and itemid = " + this.getInumber()+ "'";
+			 String queryString = "SELECT CATEG,INUMBER,INAME,CURRENTBID" +
+					 " FROM ITEM, BIDS" + 
+					 " where status = 'SOLD'";
 	        result = stmt.executeQuery(queryString);
 		 } catch (Exception e) {
 			 e.printStackTrace();
@@ -165,6 +170,15 @@ public class Item implements Serializable{
 		 return result;
 	 }
 	  
+//	 SELECT i.categ, i.INUMBER, i.INAME, b.maximumbidlimit AS FINALSELLINGPRICE, ((currentBid+1)*0.05) AS Commission, SUM(maximumbidlimit) AS Subtotal
+//     FROM ITEM i, BIDS b
+//     WHERE i.inumber = b.itemid and i.status = 'SOLD' AND b.maximumbidlimit >= ANY (select max(maximumbidlimit)
+//                                                                             from BIDS
+//                                                                             where itemid = b.itemid
+//                                                                             group by b.itemid) 
+//     Group by i.categ, i.INUMBER, i.INAME, b.maximumbidlimit, ((currentBid+1)*0.05)
+//     ORDER BY i.categ desc, i.inumber;
+     
 	 /**
 	  * Overall Commission Report returns the user id, username, first name, last name, 
 	  * email, seller rating, commissions, and total income.
