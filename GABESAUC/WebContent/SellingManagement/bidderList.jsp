@@ -12,6 +12,7 @@
 <h1>List of Bidders</h1>
 <%
                int itemno =Integer.parseInt(request.getParameter("itemNum"));
+
 try{
 	
 	ResultSet rs= customer.getItemInfo(itemno);
@@ -19,7 +20,7 @@ try{
 	while(rs.next()){%>
 		<h2>Item ID: <%=rs.getInt("INUMBER") %></h2>
 		<h3>(<%=rs.getDate("auc_start") %> --- <%=rs.getDate("auc_end_date")%>)</h3>
-	<%}} catch(IllegalStateException ise){
+	<%}rs.close();} catch(IllegalStateException ise){
         out.println(ise.getMessage());
     }%>    
 
@@ -39,22 +40,18 @@ try{
                 		%>
                 		<tr>
                 	 <td style="vertical-align: top; text-align: center;"><%=rs.getTimestamp("BIDDATE")%></td>
-                	  <td style="vertical-align: top; text-align: center;"><%=rs.getString("BIDDATE")%></td>
+                	  <td style="vertical-align: top; text-align: center;"><%=rs.getString("username")%></td>
                 	   <td style="vertical-align: top; text-align: center;"><%=rs.getInt("maximumbidlimit")%></td>
                 	   <tr>
                 	   
-                	   <%}%></tbody></table>
+                	   <%}%>
                 		
-              <%} catch(IllegalStateException ise){
+              <%rs.close();} catch(IllegalStateException ise){
         out.println(ise.getMessage());
     }
     
     %>
-    <form method="post" action="listItems.jsp">
-                            <input name="itemnumber" type="hidden" value ="<%=itemno%>">
-                            <button class="button" type = "submit" value = "return">Return Back to Item List</button>
-                        </form>
-</table>
+
 <% int num = 0;
 int curbid =0;
 try{
@@ -67,20 +64,25 @@ try{
 	}} catch(IllegalStateException ise){
         out.println(ise.getMessage());
     } 
-customer.setId(num);
+
 try{
 	
-	ResultSet rs= customer.getCustomerInfo();
+	ResultSet rs= customer.getCustomerInfo(num);
 	
 	while(rs.next()){
 	%>
 	<td style="vertical-align: top; text-align: center;">Winner</td>
 		<td style="vertical-align: top; text-align: center;"><%=rs.getString("USERNAME")%></td>
+		<td style="vertical-align: top; text-align: center;"><%=curbid%></td>
 		
-	<%}} catch(IllegalStateException ise){
+	<%}%></tbody></table>
+            <form method="post" action="listItems.jsp">
+                            <input name="itemnumber" type="hidden" value ="<%=itemno%>">
+                            <button class="button" type = "submit" value = "return">Return Back to Item List</button>
+                        </form>
+
+	<%rs.close();} catch(IllegalStateException ise){
         out.println(ise.getMessage());
     }%>  
-      <td style="vertical-align: top; text-align: center;"><%=curbid%></td>
-
 </body>
 </html>

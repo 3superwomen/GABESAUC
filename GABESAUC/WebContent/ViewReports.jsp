@@ -15,24 +15,27 @@
 	<td style="vertical-align: top; text-align: center;">Category</td>
     <td style="vertical-align: top; text-align: center;">Item ID</td>
     <td style="vertical-align: top; text-align: center;">Item Name</td>
-    <td style="vertical-align: top; text-align: center;">Final Selling Price</td>
-    <td style="vertical-align: top; text-align: center;">Commission</td>
+     <td style="vertical-align: top; text-align: center;">Current Bid</td>
+<!--     <td style="vertical-align: top; text-align: center;">Final Selling Price</td> -->
+<!--     <td style="vertical-align: top; text-align: center;">Commission</td> -->
 	</tr>
-<%-- 				<% --%>
-<%-- //                 String itemID = Integer.toString(item.getInumber());
-//                 try{
-//                 	ResultSet rs= item.getSalesSummaryReport();
-//                 	while(rs.next()){--%>
-<%--                 %> --%>
-<!--                 <tr> -->
-<%--                 	<td style="vertical-align: top; text-align: center;"><%=rs.getInt("INAME")%></td> --%>
-<%--                 	<td style="vertical-align: top; text-align: center;"><%=rs.getString("INUMBER")%></td> --%>
-                	
-<!--                 </tr> -->
-<%--         <%}%>       		 --%>
-<%--         <%} catch(IllegalStateException ise){ --%>
-<%--         out.println(ise.getMessage());--%>
-<%--         }%> --%>
+	<% 
+                 try{ 
+                 	ResultSet rs= item.getSalesSummaryReport(); 
+               	while(rs.next()){
+               		%>
+             <tr> 
+    			<td style="vertical-align: top; text-align: center;"><%=rs.getString("categ")%></td>
+               	<td style="vertical-align: top; text-align: center;"><%=rs.getInt("inumber")%></td>
+               	<td style="vertical-align: top; text-align: center;"><%=rs.getString("iname")%></td>
+               	<td style="vertical-align: top; text-align: center;"><%=rs.getInt("currentbid")%></td>
+<%--                	<td style="vertical-align: top; text-align: center;"><%=rs.getInt("commission")%></td> --%>
+<%--                	<td style="vertical-align: top; text-align: center;"><%=rs.getInt("subtotal")%></td> --%>
+             </tr>
+       
+   <%}%>
+   <%}catch(IllegalStateException ise){
+         out.println(ise.getMessage());} %>
 </tbody>
 </table>
 <h3>Overall Commission Report </h3>

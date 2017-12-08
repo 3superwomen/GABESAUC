@@ -2,6 +2,8 @@ package gabes;
 
 import java.io.*;
 import java.sql.*;
+import java.util.Date;
+
 import oracle.jdbc.*;
 
 
@@ -31,6 +33,7 @@ public class Customer implements Serializable {
   private Statement stmt;
   private ResultSet result;
   private Connection con;
+  private CallableStatement callStmt;
   /**
    * The following stores whether or not the customer has successfully logged
    * to the System
@@ -164,24 +167,36 @@ public class Customer implements Serializable {
           E.printStackTrace();
       }       
   }
+
+  public void editProfile(String username, String fname, String lname, String email, String phoneno, String newpw) throws SQLException{
+	  if(!isLoggedIn())
+	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");  
+	    callStmt = con.prepareCall(" {call team5.customer_updateProfile_Proc(?,?,?,?,?,?,?,?,?)}");
+	    callStmt.setString(1,phoneno);
+	    callStmt.setString(2,email);
+	    callStmt.setString(3,fname);
+	    callStmt.setString(4,lname);
+	    callStmt.setString(5,"Y");
+	    callStmt.setString(6,"Y");
+	    callStmt.setString(7,username);
+	    callStmt.setString(8,newpw);
+	    callStmt.setInt(9,this.id);
+	    callStmt.execute();
+	    
+	    callStmt.close();
+	  }  
+  
+
   
 public ResultSet getItemList()  throws IllegalStateException{
 	  
 	  if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
 	       try{
-//	    	   SELECT i.INUMBER AS ItemID, i.INAME AS ItemName, i.CATEG AS
-//	    	   Category, i.auc_start AS 
-//	    	   AuctionStartDate, i.auc_end_date AS AuctionEndDate,
-//	    	   MAX(b.MAXIMUMBIDLIMIT) AS CURRENTBID, i.status AS Status
-//	    	   FROM ITEM i, BIDS b
-//	    	   WHERE i.auc_end_date > CURRENT_DATE AND i.SELLERNO = '104'
-//	    	   Group by i.INUMBER, i.INAME, i.CATEG, i.au
-//	    	   c_start, i.auc_end_date,i.status;
 	    	   stmt = con.createStatement();
           String queryString = "SELECT INUMBER , INAME , CATEG, auc_start, auc_end_date , startbid , currentbid,status " 
           		+ "FROM ITEM "
-                + " WHERE auc_end_date > CURRENT_DATE AND SELLERNO = '" + this.id +"' ";
+                + " WHERE SELLERNO = '" + this.id +"' ";
 
           result = stmt.executeQuery(queryString);
           
@@ -191,7 +206,70 @@ public ResultSet getItemList()  throws IllegalStateException{
 	       }
 	        return result; 
 	     }
+public ResultSet getItemInfo(int ino) throws IllegalStateException{
+	  if(!isLoggedIn())
+	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
+	 try {
+		 con = openDBConnection();
+	 String queryString = "SELECT * " 
+       		+ "FROM ITEM "
+			 + " where INUMBER = '"+ino+"'";
+	 stmt = con.createStatement();
+	 result = stmt.executeQuery(queryString);
+	 } catch (Exception e) {
+		 e.printStackTrace();
+	 }
+	 return result;
+}
+public ResultSet getCustomerInfo(int cid)  throws IllegalStateException{
+	   
+    if(!isLoggedIn())
+    throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
+     try{
+  	   stmt = con.createStatement();
+        String queryString = "Select * FROM CUSTOMER where"
+        		+ " id= '" + cid +"'";
+        result = stmt.executeQuery(queryString);
+     }       
+     catch (Exception E) {
+  	   E.printStackTrace();
+     }
+     return  result;
+	}
+public ResultSet getBidderList(int ino) throws IllegalStateException{
+	  if(!isLoggedIn())
+	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
+	 try {
+		 con = openDBConnection();
+	 String queryString = "SELECT biddate , username , maximumbidlimit " 
+     		+ "FROM BIDS, CUSTOMER "
+			 + " where id = bidderid and isbidder = 'Y' and itemid = '"+ino+"'";
+	 stmt = con.createStatement();
+	 result = stmt.executeQuery(queryString);
+	 } catch (Exception e) {
+		 e.printStackTrace();
+	 }
+	 return result;
+}
   
+public void addItem(String name, String desc, String cate, Date aucS, Date aucE,String priceS) throws SQLException{
+	 if(!isLoggedIn())
+	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
+	 
+	callStmt = con.prepareCall(" {call team5.item_add_Proc(?,?,?,?,?,?,?)}");
+    callStmt.setInt(1,phoneno);
+   callStmt.setString(2,email);
+    callStmt.setString(3,fname);
+    callStmt.setString(4,lname);
+    callStmt.setString(5,"Y");
+    callStmt.setString(6,"Y");
+    callStmt.setString(7,username);
+    callStmt.setString(8,newpw);
+    callStmt.setInt(9,this.id);
+    callStmt.execute();
+    
+    callStmt.close();
+  }  
 
   public ResultSet viewFeedback() throws IllegalStateException{
 	  if(!isLoggedIn())

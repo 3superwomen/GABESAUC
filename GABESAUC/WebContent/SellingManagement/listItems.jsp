@@ -51,7 +51,7 @@
                         </form>
                         </td>
                     <td ><form method="post" action="bidderList.jsp">
-                    <input name="itemNum"type="hidden" value ="<%=rs.getString(1)%>">
+                    <input name="itemNum"type="hidden" value ="<%=rs.getInt("INUMBER")%>">
                            <button class="button" type = "submit" value = "bidderL">Bidder List</button>
                         </form>
                         </td> 

@@ -29,11 +29,11 @@ Last Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
 <input name="lname" value="<%=rs.getString("lname")%>"> <br>
 
 Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="email" value="<%=rs.getString("emailad")%>"> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="emailad" value="<%=rs.getString("emailad")%>"> <br>
 
 Phone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input name="phone" value="<%=rs.getString("phoneno")%>"> <br>
+<input name="phoneno" value="<%=rs.getString("phoneno")%>"> <br>
 
 Seller Rating&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input name="rating" value="<%=rs.getString("sumofratings")%>" readonly> <br>
@@ -43,13 +43,13 @@ Number of Seller Ratings&nbsp;&nbsp;&nbsp;
 <input name="norating" value="<%=rs.getString("noofratings")%>" readonly> <br>
 
 Old Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input name="oldpw" type="password" value="<%=rs.getString("password")%>"> <br>
+<input name="oldpw" value="<%=rs.getString("password")%>"> <br>
 
 New Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input name="newpw" value=""> <br>
 
 Retype New Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input name="renewpw" value=""> <br>
+<input name="redonewpw" value=""> <br>
 
 <input style="color: black;" name="Update" value="Update" type="submit">&nbsp;
 <input style="color: black;" name="Cancel" value="Cancel" type="reset">
