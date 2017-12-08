@@ -130,6 +130,7 @@ public class Customer implements Serializable {
       throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
     
     this.loggedIn = false;
+<<<<<<< HEAD
   }
   
   
@@ -165,6 +166,27 @@ public class Customer implements Serializable {
 	    callStmt.close();
 	  }  
   
+=======
+  }  
+
+  public void updateProfile() throws IllegalStateException{
+	     try{
+          Statement stmt = con.createStatement();
+          String queryString = "update customer set " 
+        		  + " username='" + this.getUsername() + "',"
+                  + " fname='" + this.getFname() + "',"
+                  + " lname='" + this.getLname() + "',"
+                  + " emailad='" + this.getEmailad() + "',"
+                  + " phoneno=" + this.getPhoneno() + ","
+                  + " password=" + this.getPassword()
+                  + " where username='" + this.getUsername()+ "'";
+          stmt.executeUpdate(queryString);
+          stmt.close();         
+      } catch (Exception E) {
+          E.printStackTrace();
+      }       
+  }
+>>>>>>> branch 'master' of https://github.com/3superwomen/GABESAUC.git
   
 public ResultSet getItemList()  throws IllegalStateException{
 	  
@@ -199,11 +221,21 @@ public ResultSet getItemInfo(int ino) throws IllegalStateException{
 	 }
 	 return result;
 }
-
-//SELECT   biddate as BiddingTime, username, maximumbidlimit
-//FROM BIDS, CUSTOMER
-//WHERE id = bidderid and isbidder = 'Y' and itemid = 124
-//;
+public ResultSet getCustomerInfo(int cid)  throws IllegalStateException{
+	   
+    if(!isLoggedIn())
+    throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
+     try{
+  	   stmt = con.createStatement();
+        String queryString = "Select * FROM CUSTOMER where"
+        		+ " id= '" + cid +"'";
+        result = stmt.executeQuery(queryString);
+     }       
+     catch (Exception E) {
+  	   E.printStackTrace();
+     }
+     return  result;
+	}
 public ResultSet getBidderList(int ino) throws IllegalStateException{
 	  if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
