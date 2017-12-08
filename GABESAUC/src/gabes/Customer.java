@@ -130,7 +130,6 @@ public class Customer implements Serializable {
       throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
     
     this.loggedIn = false;
-<<<<<<< HEAD
   }
   
   
@@ -166,8 +165,7 @@ public class Customer implements Serializable {
 	    callStmt.close();
 	  }  
   
-=======
-  }  
+  
 
   public void updateProfile() throws IllegalStateException{
 	     try{
@@ -186,7 +184,6 @@ public class Customer implements Serializable {
           E.printStackTrace();
       }       
   }
->>>>>>> branch 'master' of https://github.com/3superwomen/GABESAUC.git
   
 public ResultSet getItemList()  throws IllegalStateException{
 	  
