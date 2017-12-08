@@ -2,6 +2,8 @@ package gabes;
 
 import java.io.*;
 import java.sql.*;
+import java.util.Date;
+
 import oracle.jdbc.*;
 
 
@@ -150,6 +152,8 @@ public class Customer implements Serializable {
   	}
   
   public void editProfile(String username, String fname, String lname, String email, String phoneno, String newpw) throws SQLException{
+	  if(!isLoggedIn())
+	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");  
 	    callStmt = con.prepareCall(" {call team5.customer_updateProfile_Proc(?,?,?,?,?,?,?,?,?)}");
 	    callStmt.setString(1,phoneno);
 	    callStmt.setString(2,email);
@@ -165,25 +169,6 @@ public class Customer implements Serializable {
 	    callStmt.close();
 	  }  
   
-  
-
-  public void updateProfile() throws IllegalStateException{
-	     try{
-          Statement stmt = con.createStatement();
-          String queryString = "update customer set " 
-        		  + " username='" + this.getUsername() + "',"
-                  + " fname='" + this.getFname() + "',"
-                  + " lname='" + this.getLname() + "',"
-                  + " emailad='" + this.getEmailad() + "',"
-                  + " phoneno=" + this.getPhoneno() + ","
-                  + " password=" + this.getPassword()
-                  + " where username='" + this.getUsername()+ "'";
-          stmt.executeUpdate(queryString);
-          stmt.close();         
-      } catch (Exception E) {
-          E.printStackTrace();
-      }       
-  }
   
 public ResultSet getItemList()  throws IllegalStateException{
 	  
@@ -249,6 +234,24 @@ public ResultSet getBidderList(int ino) throws IllegalStateException{
 	 return result;
 }
   
+public void addItem(String name, String desc, String cate, Date aucS, Date aucE,String priceS) throws SQLException{
+	 if(!isLoggedIn())
+	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
+	 
+	callStmt = con.prepareCall(" {call team5.item_add_Proc(?,?,?,?,?,?,?)}");
+    callStmt.setString(1,phoneno);
+    callStmt.setString(2,email);
+    callStmt.setString(3,fname);
+    callStmt.setString(4,lname);
+    callStmt.setString(5,"Y");
+    callStmt.setString(6,"Y");
+    callStmt.setString(7,username);
+    callStmt.setString(8,newpw);
+    callStmt.setInt(9,this.id);
+    callStmt.execute();
+    
+    callStmt.close();
+  }  
 
 	public ResultSet viewFeedback() throws IllegalStateException{
 	  if(!isLoggedIn())
