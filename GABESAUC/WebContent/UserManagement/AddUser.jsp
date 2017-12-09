@@ -87,9 +87,9 @@ name="emailad" value=""> <br>
 Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
 &nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-name="password" value=""> <br>
+name="password" type="password" value=""> <br>
 Retype Password&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</big>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input name="password2" value=""><br>
+<input name="password2" type="password" value=""><br>
 </div>
 <input style="color: black;" name="Add" value="Add" type="submit"><input
 style="color: black;" name="Clear" value="Clear" type="reset"> </form>

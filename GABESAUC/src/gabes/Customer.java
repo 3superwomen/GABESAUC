@@ -279,6 +279,7 @@ public void addItem(String name, String desc, String cate, Date aucE,String pric
     callStmt.close();
   }  
 
+<<<<<<< HEAD
 public ResultSet getRelevantProducts(String cat, String inm) throws IllegalStateException{
 	  if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
@@ -296,20 +297,23 @@ public ResultSet getRelevantProducts(String cat, String inm) throws IllegalState
 }
 
   public ResultSet viewFeedback() throws IllegalStateException{
+=======
+public ResultSet viewFeedback() throws IllegalStateException{
+>>>>>>> branch 'master' of https://github.com/3superwomen/GABESAUC.git
 	  if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
 	    try{
 	    	stmt = con.createStatement();
-	        String queryString = "SELECT b.USERNAME, r.ITEMNO, (SUM(r.RATING)/COUNT(r.itemno)) AS OverallRating, r.QUALITY, r.delivery, r.COMMENTS" + 
-	        		" FROM Customer b, Customer s, Rates r, ITEM i" + 
-	        		" WHERE b.ID = r.bidderno and i.sellerno = s.id and r.itemno = i.INUMBER and s.id = '" + this.id + "'";
+	        String queryString = "SELECT bidderno,itemno,rating,quality,delivery,comments" + 
+	        		" FROM Rates, Item" + 
+	        		" WHERE sellerno = '" + this.getId()+ "' and itemno = INUMBER";
 	        result = stmt.executeQuery(queryString);
 	    }
 	    catch (Exception E) {
 	        E.printStackTrace();
 	    }
 	    return result; 
-  }
+}
   
   public int getPhoneno() {
 	return phoneno;
