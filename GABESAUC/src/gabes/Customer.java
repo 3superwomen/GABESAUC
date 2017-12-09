@@ -279,14 +279,31 @@ public void addItem(String name, String desc, String cate, Date aucE,String pric
     callStmt.close();
   }  
 
+      	
 public ResultSet getRelevantProducts(String cat, String inm) throws IllegalStateException{
 	  if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
 	 try {
 		 con = openDBConnection();
+		 String sc = cat.substring(0, 1);
+		 String si = inm.substring(0, 1);
 	 String queryString = "SELECT * " 
    		+ "FROM ITEM "
-			 + "WHERE UPPER(CATEG||' '||INAME) LIKE '%'||UPPER("+cat+"||' '||"+inm+")";
+			 + "WHERE  UPPER(CATEG)" + 
+			 " LIKE '%' || UPPER('"+sc+"') || '%' and UPPER(INAME) LIKE '%' || UPPER('"+si+"') || '%'"
+			 +" ORDER BY CASE"
+			 +" WHEN UPPER(CATEG) = UPPER('"+cat+"') and UPPER(INAME) = UPPER ('"+inm+"')    THEN 10" + 
+			 "  WHEN UPPER(CATEG) = UPPER('"+cat+"') and SOUNDEX(INAME) = SOUNDEX('"+inm+"') THEN 9" + 
+			 "  WHEN UPPER(CATEG) LIKE UPPER('"+cat+"') || '%'  and SOUNDEX(INAME) = SOUNDEX('"+inm+"')    THEN 8" + 
+			 "  WHEN UPPER(CATEG) LIKE '%'|| UPPER('"+cat+"') ||'%' and SOUNDEX(INAME) = SOUNDEX('"+inm+"')  THEN 7" + 
+			 "  ELSE 0" + 
+			 "  END DESC " + 
+			 "  , CASE WHEN UPPER(CATEG) = UPPER('"+cat+"')       THEN 5 " + 
+			 "		   WHEN SOUNDEX(CATEG) = SOUNDEX('"+cat+"')  THEN 4 "+
+			 "         WHEN UPPER(CATEG) LIKE UPPER('"+cat+"') || '%' THEN 3" + 
+			 " 		   WHEN UPPER(CATEG) LIKE '%'|| UPPER('"+cat+"') ||'%' THEN 2 "+
+			 "         ELSE 0" + 
+			 "      END DESC ";
 	 stmt = con.createStatement();
 	 result = stmt.executeQuery(queryString);
 	 } catch (Exception e) {

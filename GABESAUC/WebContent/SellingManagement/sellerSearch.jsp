@@ -6,18 +6,18 @@
 <jsp:useBean id="customer" class="gabes.Customer" scope="session"/>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Add Item</title>
+<title>Marketing Price</title>
 <style type="text/css">
 .button{
 	background-color: #003300;
 }</style>
 </head>
 <body>
-<form  method="post" action="addItem_action.jsp">
+<form  method="post" action="relevantProducts.jsp">
 <table style="text-align: left; width: 100%;" border="1" cellpadding="2"
                cellspacing="2">
            
-                        <h1>Add Item</h1>
+                        <h1>Find Marketing Price</h1>
                     <tbody>
                         <tr>
                             <td style="vertical-align: top;text-align: center;">Item Name<br>
@@ -29,25 +29,9 @@
                 <td style="vertical-align: top; text-align: center;">Category</td>
                 <td style="vertical-align: top; text-align: center;"><input name="itemCat" value="" required> </td>
                 <tr>
-                <td style="vertical-align: top; text-align: center;">Start Price</td>
-                <td style="vertical-align: top; text-align: center;"><input name="itemSPrice" value="" required> 
-                </td>
-				<tr>		
-                <td style="vertical-align: top; text-align: center;">Auction Start Time</td>
-				<td style="vertical-align: top; text-align: center;"><p id="demo"></p> </td>
-				<script>var d = new Date();
-				document.getElementById("demo").innerHTML = d.toDateString();</script>
-                <tr>
-                <td style="vertical-align: top; text-align: center;">Auction End Time (YYYY-MM-DD)</td>
-                <td style="vertical-align: top; text-align: center;"><input name="itemAucEY" value="" required>-
-                <input name="itemAucEM" value="" required >-
-                <input name="itemAucED" value="" required></td>
-                <tr>
-                <td style="vertical-align: top; text-align: center;">Description</td>
-                <td style="vertical-align: top; text-align: center;"><textarea rows="4" cols="50" name="itemDesc" required>Enter description here...</textarea></td>
-                    </tbody>
+                </tbody>
                 </table><br>
-                <button class="button" type = "submit" value = "add">Add</button>
+                <button class="button" type = "submit" value = "add">Search</button>
                 <button class="button" type = "reset" value = "return">Reset</button>
                 
                
