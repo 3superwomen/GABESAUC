@@ -19,14 +19,14 @@
                             <td style="vertical-align: top;text-align: center;">Item Name<br>
                             </td>
                             <td style="vertical-align: top;text-align: center;">
-                                <input name="itemName" value=""> </td>
+                                <input name="itemName" value="" required> </td>
                         </tr>
                         <tr>
                 <td style="vertical-align: top; text-align: center;">Category</td>
-                <td style="vertical-align: top; text-align: center;"><input name="itemCat" value=""> </td>
+                <td style="vertical-align: top; text-align: center;"><input name="itemCat" value="" required> </td>
                 <tr>
                 <td style="vertical-align: top; text-align: center;">Start Price</td>
-                <td style="vertical-align: top; text-align: center;"><input name="itemSPrice" value=""> </td>
+                <td style="vertical-align: top; text-align: center;"><input name="itemSPrice" value="" required> </td>
                 <tr>
                 <td style="vertical-align: top; text-align: center;">Auction Start Time</td>
 				<td style="vertical-align: top; text-align: center;"><p id="demo"></p> </td>
@@ -34,17 +34,17 @@
 				document.getElementById("demo").innerHTML = d.toDateString();</script>
                 <tr>
                 <td style="vertical-align: top; text-align: center;">Auction End Time (YYYY-MM-DD)</td>
-                <td style="vertical-align: top; text-align: center;"><input name="itemAucEY" value=""></td>
+                <td style="vertical-align: top; text-align: center;"><input name="itemAucEY" value="" required></td>
                 <td style="vertical-align: top; text-align: center;">-</td>
-                <td style="vertical-align: top; text-align: center;"><input name="itemAucEM" value=""></td>
+                <td style="vertical-align: top; text-align: center;"><input name="itemAucEM" value="" required ></td>
                 <td style="vertical-align: top; text-align: center;">-</td>
-                <td style="vertical-align: top; text-align: center;"><input name="itemAucED" value=""></td>
+                <td style="vertical-align: top; text-align: center;"><input name="itemAucED" value="" required></td>
                 <tr>
                 <td style="vertical-align: top; text-align: center;">Description</td>
-                <td style="vertical-align: top; text-align: center;"><textarea rows="4" cols="50" name="itemDesc">Enter description here...</textarea></td>
+                <td style="vertical-align: top; text-align: center;"><textarea rows="4" cols="50" name="itemDesc" required>Enter description here...</textarea></td>
                     </tbody>
                 </table><br>
-                <input value="Add" type="submit">&nbsp; 
+                <input name="Add" value="Add" type="submit">
                 <input value="Reset" type="reset">
                 
                

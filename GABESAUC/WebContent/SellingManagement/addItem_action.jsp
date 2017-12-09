@@ -1,26 +1,49 @@
-<%@ page language="java" import="java.sql.*,java.util.*" %>
+<%@ page language="java" import="java.sql.*" %>
 <%@page import="gabes.Customer"%>
 <%@page errorPage="AddItemErrorPage.jsp" %>
 <html>
 <head><title>Add User Error Page</title>
+<style>
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+</style>
 </head>
 <body>
 <font face="verdana">
 <jsp:useBean id="customer" class="gabes.Customer" scope="session"/> 
 <%
+String name = request.getParameter("itemName");
+String cat = request.getParameter("itemCat");
+String sprice = request.getParameter("itemSPrice");
+String aucEM = request.getParameter("itemAucEM");
+out.println(aucEM);
+String aucED = request.getParameter("itemAucED");
+String aucEY = request.getParameter("itemAucEY");
+Date aucE =new Date (Integer.parseInt(aucEY),Integer.parseInt(aucEM)-1,Integer.parseInt(aucED));
+
+
+
 try{
-	String name = request.getParameter("itemName");
-	String cat = request.getParameter("itemCat");
-	String sprice = request.getParameter("itemSPrice");
-	String aucEM = request.getParameter("itemAucEM");
-	String aucED = request.getParameter("itemAucED");
-	String aucEY = request.getParameter("itemAucEY");
-	java.sql.Date aucE = new java.sql.Date (Integer.parseInt(aucEY),Integer.parseInt(aucEM),Integer.parseInt(aucED));
-	java.util.Date utilDate = new java.util.Date();
-	java.sql.Date cur = new java.sql.Date(utilDate.getTime());
-	if(aucE.before(cur)){
-		
-	}
+	
+	
 	String desc = request.getParameter("itemDesc");
 	
 	customer.addItem(name,desc,cat,aucE,sprice);
@@ -28,7 +51,6 @@ try{
  }catch(IllegalStateException ise){
     out.println(ise.getMessage());
 }
-out.println("Add successfully!");
 response.sendRedirect("addItem.jsp");
 %>
 </font>

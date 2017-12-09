@@ -261,6 +261,12 @@ public ResultSet getBidderList(int ino) throws IllegalStateException{
 public void addItem(String name, String desc, String cate, Date aucE,String priceS) throws SQLException{
 	 if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
+	 java.util.Date utilDate = new java.util.Date();
+	 //java.sql.Date cur = new java.sql.Date(utilDate.getTime());
+	 if(aucE.before(utilDate)){
+		 System.out.println(aucE.before(utilDate));
+		 throw new IllegalStateException("Auction ending time should be later than starting time");
+	 }
 	 
 	callStmt = con.prepareCall(" {call team5.item_add_Proc(?,?,?,?,?,?)}");
     callStmt.setString(1,name);
