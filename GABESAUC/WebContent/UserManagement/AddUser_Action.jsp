@@ -15,6 +15,7 @@ if(!((request.getParameter("password")).equals(request.getParameter("password2")
 }
 else{
 try{
+	  customer.setPassword(request.getParameter("password"));
 	  customer.setAdminUsername(admin.getUsername());
 	  customer.addCustomer();
    

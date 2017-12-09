@@ -73,20 +73,24 @@ public class Customer implements Serializable {
     return this.loggedIn;
   }
   
-  public void addCustomer()  throws IllegalStateException{
+  public void addCustomer() {
 	   
-	
 	   try{
-		      con = openDBConnection();
-	          stmt = con.createStatement(); 
-	         String queryString = "insert into CUSTOMER (id, username, fname, lname, emailad, password, adminusername) values('" + this.id+ "'," + "'" + this.username+ "'," + "'"+ this.fname + "'," + "'" + this.lname + "'," + "'"
-	        + this.emailad + "'," +  "'" + this.password + "'," +"'" + this.adminUsername + "')";
-	         stmt.executeUpdate(queryString);
-	         stmt.close();
+		    con = openDBConnection();
+		    callStmt = con.prepareCall(" {call team5.CUSTOMER_ADD_PROC(?,?,?,?,?,?,?)}");
+		    callStmt.setString(1,this.emailad);
+		    callStmt.setString(2,this.fname);
+		    callStmt.setString(3,this.lname);
+		    callStmt.setString(4,this.username);
+		    callStmt.setString(5,this.password);
+		    callStmt.setString(6,this.adminUsername);
+		    callStmt.setInt(7, this.id);
+		    callStmt.execute();
+		    callStmt.close();
 	   } catch (Exception E) {
-	    E.printStackTrace();
+	             E.printStackTrace();
 	   }
-	    }
+}
   
  
   
@@ -276,9 +280,9 @@ public void addItem(String name, String desc, String cate, Date aucS, Date aucE,
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
 	    try{
 	    	stmt = con.createStatement();
-	        String queryString = "SELECT bidderno,itemno,rating,quality,delivery,comments" + 
-	        		" FROM Rates, Item" + 
-	        		" WHERE sellerno = '" + this.getId()+ "' and itemno = INUMBER";
+	        String queryString = "SELECT b.USERNAME, r.ITEMNO, (SUM(r.RATING)/COUNT(r.itemno)) AS OverallRating, r.QUALITY, r.delivery, r.COMMENTS" + 
+	        		" FROM Customer b, Customer s, Rates r, ITEM i" + 
+	        		" WHERE b.ID = r.bidderno and i.sellerno = s.id and r.itemno = i.INUMBER and s.id = '" + this.id + "'";
 	        result = stmt.executeQuery(queryString);
 	    }
 	    catch (Exception E) {
