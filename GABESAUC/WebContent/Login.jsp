@@ -37,4 +37,3 @@ http-equiv="content-type">
 </div>
 </body>
 </html>
-

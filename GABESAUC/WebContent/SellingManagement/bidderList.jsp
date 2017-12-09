@@ -63,15 +63,30 @@ try{
 	 curbid =rs.getInt("currentbid");
 	}} catch(IllegalStateException ise){
         out.println(ise.getMessage());
-    } 
+    }
+String winner ="" ;
+%>
+<td style="vertical-align: top; text-align: center;">Winner</td>
 
+<%
+if(num==0){
+	%>
+	<td style="vertical-align: top; text-align: center;"><%="N/A"%></td>
+	<td style="vertical-align: top; text-align: center;"><%="N/A"%></td>
+	</tbody></table>
+	            <form method="post" action="listItems.jsp">
+                            <input name="itemnumber" type="hidden" value ="<%=itemno%>">
+                            <button class="button" type = "submit" value = "return">Return Back to Item List</button>
+                        </form>
+<%}
+else{
 try{
 	
 	ResultSet rs= customer.getCustomerInfo(num);
 	
 	while(rs.next()){
 	%>
-	<td style="vertical-align: top; text-align: center;">Winner</td>
+	
 		<td style="vertical-align: top; text-align: center;"><%=rs.getString("USERNAME")%></td>
 		<td style="vertical-align: top; text-align: center;"><%=curbid%></td>
 		
@@ -83,6 +98,6 @@ try{
 
 	<%rs.close();} catch(IllegalStateException ise){
         out.println(ise.getMessage());
-    }%>  
+    }}%>  
 </body>
 </html>
