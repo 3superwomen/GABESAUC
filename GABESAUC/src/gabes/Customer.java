@@ -108,9 +108,11 @@ public class Customer implements Serializable {
 
 	     con = openDBConnection();
 	     try{
-	     String queryString = "SELECT id "+ "FROM CUSTOMER "+"WHERE username= '"+this.username+"' and password= '"+ this.password+ "'";
-         stmt = con.createStatement();
-	     result= stmt.executeQuery(queryString);
+	     pstmt=  con.prepareStatement("SELECT ID FROM TEAM5.CUSTOMER WHERE USERNAME =? AND PASSWORD=?");
+         pstmt.clearParameters();
+         pstmt.setString(1,this.username);
+         pstmt.setString(2, this.password);
+	     result= pstmt.executeQuery();
 	     if(result.next()) {
 	    	   this.setId(result.getInt("id")); 
 	    	   this.loggedIn = true;  
