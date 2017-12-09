@@ -8,7 +8,8 @@ int value = 0;
 String rating  = request.getParameter("rating");
 String quality = request.getParameter("quality");
 String delivery = request.getParameter("delivery");
-String comments = request.getParameter("comments");
+StringBuffer text = new StringBuffer(request.getParameter("comments"));
+String comments = text.toString();
 if((quality == null))
 {   
 	value = 1;
