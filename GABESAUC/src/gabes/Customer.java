@@ -279,7 +279,6 @@ public void addItem(String name, String desc, String cate, Date aucE,String pric
     callStmt.close();
   }  
 
-<<<<<<< HEAD
 public ResultSet getRelevantProducts(String cat, String inm) throws IllegalStateException{
 	  if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
@@ -296,10 +295,10 @@ public ResultSet getRelevantProducts(String cat, String inm) throws IllegalState
 	 return result;
 }
 
-  public ResultSet viewFeedback() throws IllegalStateException{
-=======
+
+
 public ResultSet viewFeedback() throws IllegalStateException{
->>>>>>> branch 'master' of https://github.com/3superwomen/GABESAUC.git
+
 	  if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
 	    try{
