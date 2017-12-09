@@ -3,14 +3,27 @@
 <meta content="text/html; charset=ISO-8859-1"
 http-equiv="content-type">
 <title>Login </title>
-</head>
-<body>
-<div style="text-align: center;">
-<h1>WELCOME TO GABES</h1> <br>
-<h2> Sign In </h2>
+<style>
+div.container{
+   width:100%
+   border: 1px solid gray
+ }
+ header,footer{
+ padding: lem;
+ color:white;
+ background-color: black;
+ clear:left;
+ text-align:center
+ }
+ </style>
+ </head>
+ <body bgcolor = "#99ff66">
+ <div class ="container">
+ <header>
+ <h1> WELCOME TO GABES </h1>
+ </header>
 <form method="post" action="Login_action.jsp" name="Login">
-
-
+<br><br>
 <table align="center">
 <tr>
 	<th align "right"> Username: </th> 
@@ -34,6 +47,7 @@ http-equiv="content-type">
 </td>
 </tr>
 </table>
-</div>
 </body>
+
+</div>
 </html>
