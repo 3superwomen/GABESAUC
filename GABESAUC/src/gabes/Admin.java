@@ -174,17 +174,10 @@ public class Admin implements Serializable {
 	 try {
 		 con = openDBConnection();
 		 stmt = con.createStatement();
-//		 String queryString = "SELECT CATEG,INUMBER, INAME,CURRENTBID,((currentBid+1)*0.05) AS commission, sum(currentbid) AS subtotal" +
-//				 " FROM ITEM, BIDS" + 
-//				 " where status = '" + this.getStatus()+ "' and itemid = " + this.getInumber()+ "'";
-//		 SELECT categ,inumber,iname,currentbid,(currentBid*0.05) as commision,SUM(currentbid)
-//		 FROM ITEM
-//		 where status = 'SOLD'
-//		 group by categ, inumber, iname, currentbid, (currentBid*0.05);
-		 String queryString = "SELECT categ,inumber,iname,currentbid,(currentBid*0.05) as commision,SUM(currentbid)" +
+		 String queryString = "SELECT categ,inumber,iname,currentbid,(currentBid*0.05) as commision" +
 				 " FROM ITEM" + 
 				 " where status = 'SOLD'"
-				 +" group by categ, inumber, iname, currentbid, (currentBid*0.05)";
+				 +" group by categ, inumber, iname, currentbid, (currentBid*0.05) order by categ";
         result = stmt.executeQuery(queryString);
 	 } catch (Exception e) {
 		 e.printStackTrace();
@@ -192,6 +185,22 @@ public class Admin implements Serializable {
 	 return result;
  }
  
+ public ResultSet getSalesTotals() throws IllegalStateException
+ {
+	 if(!isLoggedIn())
+	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
+	 try {
+		 con = openDBConnection();
+		 stmt = con.createStatement();
+		 String queryString = "SELECT sum(currentbid) as total, sum(currentbid*0.05) as finalcommission" +
+				 " FROM ITEM" + 
+				 " where status = 'SOLD'";
+        result = stmt.executeQuery(queryString);
+	 } catch (Exception e) {
+		 e.printStackTrace();
+	 }
+	 return result; 
+ }
   
 // SELECT i.categ, i.INUMBER, i.INAME, b.maximumbidlimit AS FINALSELLINGPRICE, ((currentBid+1)*0.05) AS Commission, SUM(maximumbidlimit) AS Subtotal
 // FROM ITEM i, BIDS b
@@ -212,14 +221,14 @@ public class Admin implements Serializable {
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
 	 try {
 		 con = openDBConnection();
-	 String queryString = "SELECT c.ID, c.username, c.fname, c.lname, c.emailad, AVG(r.rating) AS sellerrating, ((currentBid+1)*0.05) AS Commissions\n" + 
-	 		"        FROM Customer c, RATES r, BIDS b, Item i\n" + 
-	 		"        WHERE c.isseller = 'Y' AND i.sellerno = c.id  AND i.AUC_END_DATE <= Current_date AND b.bidderid = r.bidderno AND i.status='SOLD'\n" + 
-	 		"        AND b.itemid = i.inumber AND r.itemno = i.inumber AND maximumbidlimit = (SELECT max(maximumbidlimit)\n" + 
-	 		"                                                                        FROM BIDS b2\n" + 
-	 		"                                                                        WHERE b.bidderid = b2.bidderid and b.itemid = b2.itemid)\n" + 
-	 		"        group by c.ID, c.username, c.fname, c.lname, c.emailad, ((currentBid+1)*0.05)\n" + 
-	 		"        ORDER BY c.ID;";
+	 String queryString = "select id,username,fname,lname,emailad, avg(rating) as sellerrating, (currentBid*0.05) as commissions" + 
+	 		" from Customer, RATES, BIDS b, Item" + 
+	 		" where isseller = 'Y' and sellerno = id and AUC_END_DATE <= Current_date and bidderid = bidderno and status='SOLD'" + 
+	 		" and itemid = inumber and itemno = inumber and maximumbidlimit = (select max(maximumbidlimit)" + 
+	 		" from BIDS b2" + 
+	 		" where b.bidderid = b2.bidderid and b.itemid = b2.itemid)" + 
+	 		" group by ID, username, fname, lname, emailad, (currentBid*0.05)" + 
+	 		" ORDER BY ID";
 	 stmt = con.createStatement();
 	 result = stmt.executeQuery(queryString);
 	 } catch (Exception e) {
