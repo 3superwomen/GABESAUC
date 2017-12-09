@@ -145,7 +145,8 @@ public class Item implements Serializable{
 					e.printStackTrace();
 				}
 				return result; 
-			  }
+	  }
+	  
 	  
 	  public ResultSet getSalesSubTotals() throws IllegalStateException
 	  {

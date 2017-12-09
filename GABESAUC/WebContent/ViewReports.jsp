@@ -33,6 +33,7 @@
                		<td style="vertical-align: top; text-align: center;"><%=rs.getInt(4)%></td>
                 	<td style="vertical-align: top; text-align: center;"><%=rs.getDouble(5)%></td>  
              	</tr>
+             	
              	<%}%>
              		<%while(rs3.next()){
              			%>

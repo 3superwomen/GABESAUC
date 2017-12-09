@@ -185,6 +185,7 @@ public class Admin implements Serializable {
 	 return result;
  }
  
+ 
  public ResultSet getSalesTotals() throws IllegalStateException
  {
 	 if(!isLoggedIn())
