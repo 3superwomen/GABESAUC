@@ -279,6 +279,22 @@ public void addItem(String name, String desc, String cate, Date aucE,String pric
     callStmt.close();
   }  
 
+public ResultSet getRelevantProducts(String cat, String inm) throws IllegalStateException{
+	  if(!isLoggedIn())
+	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
+	 try {
+		 con = openDBConnection();
+	 String queryString = "SELECT * " 
+   		+ "FROM ITEM "
+			 + "WHERE UPPER(CATEG||' '||INAME) LIKE '%'||UPPER("+cat+"||' '||"+inm+")";
+	 stmt = con.createStatement();
+	 result = stmt.executeQuery(queryString);
+	 } catch (Exception e) {
+		 e.printStackTrace();
+	 }
+	 return result;
+}
+
   public ResultSet viewFeedback() throws IllegalStateException{
 	  if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
