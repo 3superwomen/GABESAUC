@@ -201,6 +201,7 @@ public class Admin implements Serializable {
 	 return result; 
  }
   
+ 
 // SELECT i.categ, i.INUMBER, i.INAME, b.maximumbidlimit AS FINALSELLINGPRICE, ((currentBid+1)*0.05) AS Commission, SUM(maximumbidlimit) AS Subtotal
 // FROM ITEM i, BIDS b
 // WHERE i.inumber = b.itemid and i.status = 'SOLD' AND b.maximumbidlimit >= ANY (select max(maximumbidlimit)
