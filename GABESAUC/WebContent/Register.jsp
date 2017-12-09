@@ -2,6 +2,9 @@
 <jsp:useBean id="customer" class="gabes.Customer" scope="session"/>
 <jsp:useBean id="admin" class="gabes.Admin" scope="session"/>
 
+<%  String value = request.getParameter("value");
+if(value!=null)
+   out.println("PASSWORD DOES NOT MATCH RETYPE PASSWORD");%>
 <html>
 <head>
 <meta content="text/html; charset=ISO-8859-1"
