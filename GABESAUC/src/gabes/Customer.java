@@ -252,22 +252,18 @@ public ResultSet getBidderList(int ino) throws IllegalStateException{
 	 return result;
 }
   
-public void addItem(String name, String desc, String cate, Date aucS, Date aucE,String priceS) throws SQLException{
+public void addItem(String name, String desc, String cate, Date aucE,String priceS) throws SQLException{
 	 if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
 	 
-	callStmt = con.prepareCall(" {call team5.item_add_Proc(?,?,?,?,?,?,?)}");
-    callStmt.setInt(1,phoneno);
-   //callStmt.setString(2,email);
-    callStmt.setString(3,fname);
-    callStmt.setString(4,lname);
-    callStmt.setString(5,"Y");
-    callStmt.setString(6,"Y");
-    callStmt.setString(7,username);
-    //callStmt.setString(8,newpw);
-    callStmt.setInt(9,this.id);
+	callStmt = con.prepareCall(" {call team5.item_add_Proc(?,?,?,?,?,?)}");
+    callStmt.setString(1,name);
+    callStmt.setString(2,desc);
+    callStmt.setString(3,cate);
+    callStmt.setDate(4,(java.sql.Date) aucE);
+    callStmt.setInt(5,this.id);
+    callStmt.setInt(6,Integer.parseInt(priceS));
     callStmt.execute();
-    
     callStmt.close();
   }  
 

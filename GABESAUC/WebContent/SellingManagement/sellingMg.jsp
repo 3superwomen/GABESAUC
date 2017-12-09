@@ -15,7 +15,7 @@
 <form method="post" action="listItems.jsp" name="listIt">
 <button class="button" type = "submit" value = "ListItems">List Items</button>
 </form>
-<form method="post" action="addItems.jsp" name="addIt">
+<form method="post" action="addItem.jsp" name="addIt">
 <button class="button" type = "submit" value = "addItem">Add Items</button>
 </form>
 <form method="post" action="http://localhost:8080/GABESAUC/WelcomeCustomer.jsp" name="menu">
