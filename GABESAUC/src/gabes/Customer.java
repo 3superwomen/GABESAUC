@@ -73,20 +73,24 @@ public class Customer implements Serializable {
     return this.loggedIn;
   }
   
-  public void addCustomer()  throws IllegalStateException{
+  public void addCustomer() {
 	   
-	
 	   try{
-		      con = openDBConnection();
-	          stmt = con.createStatement(); 
-	         String queryString = "insert into CUSTOMER (id, username, fname, lname, emailad, password, adminusername) values('" + this.id+ "'," + "'" + this.username+ "'," + "'"+ this.fname + "'," + "'" + this.lname + "'," + "'"
-	        + this.emailad + "'," +  "'" + this.password + "'," +"'" + this.adminUsername + "')";
-	         stmt.executeUpdate(queryString);
-	         stmt.close();
+		    con = openDBConnection();
+		    callStmt = con.prepareCall(" {call team5.CUSTOMER_ADD_PROC(?,?,?,?,?,?,?)}");
+		    callStmt.setString(1,this.emailad);
+		    callStmt.setString(2,this.fname);
+		    callStmt.setString(3,this.lname);
+		    callStmt.setString(4,this.username);
+		    callStmt.setString(5,this.password);
+		    callStmt.setString(6,this.adminUsername);
+		    callStmt.setInt(7, this.id);
+		    callStmt.execute();
+		    callStmt.close();
 	   } catch (Exception E) {
-	    E.printStackTrace();
+	             E.printStackTrace();
 	   }
-	    }
+}
   
  
   
@@ -104,9 +108,11 @@ public class Customer implements Serializable {
 
 	     con = openDBConnection();
 	     try{
-	     String queryString = "SELECT id "+ "FROM CUSTOMER "+"WHERE username= '"+this.username+"' and password= '"+ this.password+ "'";
-         stmt = con.createStatement();
-	     result= stmt.executeQuery(queryString);
+	     pstmt=  con.prepareStatement("SELECT ID FROM TEAM5.CUSTOMER WHERE USERNAME =? AND PASSWORD=?");
+         pstmt.clearParameters();
+         pstmt.setString(1,this.username);
+         pstmt.setString(2, this.password);
+	     result= pstmt.executeQuery();
 	     if(result.next()) {
 	    	   this.setId(result.getInt("id")); 
 	    	   this.loggedIn = true;  

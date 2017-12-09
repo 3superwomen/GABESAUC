@@ -104,11 +104,13 @@ public class Admin implements Serializable {
    * stored in class fields username and password exist in Table ADMINS
    */
   public boolean login() {
+	  con = openDBConnection();
     try{
-     con = openDBConnection();
-    stmt = con.createStatement();
-    String queryString = "SELECT username "+ "FROM ADMINS "+"WHERE username= '"+this.username+"' and password= '"+ this.password+ "'";
-    result= stmt.executeQuery(queryString);
+     pstmt=  con.prepareStatement("SELECT * FROM TEAM5.ADMINS WHERE USERNAME =? AND PASSWORD=?");
+     pstmt.clearParameters();
+     pstmt.setString(1,this.username);
+     pstmt.setString(2, this.password);
+     result= pstmt.executeQuery();
     if(result.next()) {
    	   this.loggedIn = true;  
     }
@@ -119,10 +121,7 @@ public class Admin implements Serializable {
            return false;
        }
    }
-    
-    
-    
-    
+      
     
   public int seqcustId()  throws IllegalStateException{
 	  int nextId =0;

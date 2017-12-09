@@ -160,8 +160,8 @@ public class Item implements Serializable{
 //			 String queryString = "SELECT CATEG,INUMBER, INAME,CURRENTBID,((currentBid+1)*0.05) AS commission, sum(currentbid) AS subtotal" +
 //					 " FROM ITEM, BIDS" + 
 //					 " where status = '" + this.getStatus()+ "' and itemid = " + this.getInumber()+ "'";
-			 String queryString = "SELECT CATEG,INUMBER,INAME,CURRENTBID" +
-					 " FROM ITEM, BIDS" + 
+			 String queryString = "SELECT categ,inumber,iname,currentbid" +
+					 " FROM ITEM" + 
 					 " where status = 'SOLD'";
 	        result = stmt.executeQuery(queryString);
 		 } catch (Exception e) {
