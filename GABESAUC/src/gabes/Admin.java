@@ -123,11 +123,9 @@ public class Admin implements Serializable {
    }
       
     
-  public int seqcustId()  throws IllegalStateException{
+  public int seqcustId()  {
 	  int nextId =0;
-	   
-	  if(!isLoggedIn())
-	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
+	  con = openDBConnection();
 	       try{
 	    	   String custId = "select CUST_ID.NEXTVAL from DUAL";
 	    	   pstmt = con.prepareStatement(custId);

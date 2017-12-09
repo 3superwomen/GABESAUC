@@ -1,45 +1,73 @@
-
-<html>
-<head>
-<meta content="text/html; charset=ISO-8859-1"
-http-equiv="content-type">
-<title>CREATE YOUR GABES ACCOUNT </title>
-</head>
-<body>
 <%@ page language="java" import="java.sql.*" %>
 <jsp:useBean id="customer" class="gabes.Customer" scope="session"/>
 <jsp:useBean id="admin" class="gabes.Admin" scope="session"/>
 
-<h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-Add User<br>
-</h2>
-<form style="font-family: Arial Black;" method="post"
-action="AddUser_Action.jsp" name="AddForm">
-<div style="text-align: left;"><big>User
-Id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <small><small><small><small>&nbsp;</small></small></small></small>
-<input name="id" value= <%=admin.seqcustId()%> readonly> <br>
-Username&nbsp;&nbsp; &nbsp; &nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input name="username" value=""> <br>
-First
-name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input name="fname" value=""> <br>
-Last name&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-name="lname" value=""> <br>
-Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-name="emailad" value=""> <br>
-Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
-&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-name="password" type="password" value=""> <br>
-Retype Password&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</big>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<input name="password2" type="password" value=""><br>
-</div>
-<input style="color: black;" name="Add" value="Add" type="submit"><input
-style="color: black;" name="Clear" value="Clear" type="reset"> </form>
+<%  String value = request.getParameter("value");
+if(value!=null)
+   out.println("PASSWORD DOES NOT MATCH RETYPE PASSWORD");%>
+<html>
+<head>
+<meta content="text/html; charset=ISO-8859-1"
+http-equiv="content-type">
+<title>Login </title>
+<style>
+div.container{
+   width:100%
+   border: 1px solid gray
+ }
+ header,footer{
+ padding: lem;
+ color:white;
+ background-color: black;
+ clear:left;
+ text-align:center
+ }
+ </style>
+ </head>
+ <body bgcolor = "#99ff66">
+ <div class ="container">
+ <header>
+ <h1> CREATE YOUR ACCOUNT</h1>
+ </header>
+<form style=""font-family: Times New Roman,Times,serif";" method="post"action="Register_Action.jsp" name="RegisterForm">
+<table align="center">
+<tr>
+	<th align "right"> ID : </th> 
+	<td> <input name="id" size ="25%" height = "100" value= <%=admin.seqcustId()%> readonly></td>
+</tr>
+<tr>
+	<th align "right"> Username : </th> 
+	<td> <input name="username" size ="25%" height = "100" value= "" ></td>
+</tr>
+<tr>
+	<th align "right"> Firstname : </th> 
+	<td> <input name="fname" size ="25%" height = "100" value= "" ></td>
+</tr>
+<tr>
+	<th align "right"> Lastname : </th> 
+	<td> <input name="lname" size ="25%" height = "100" value= "" ></td>
+</tr>
+<tr>
+	<th align "right"> Phone No: </th> 
+	<td> <input name="phoneno" size ="25%" height = "100" value= "" ></td>
+</tr>
+<tr>
+	<th align "right"> Email Address : </th> 
+	<td> <input name="emailad" size ="25%" height = "100" value= "" ></td>
+</tr>
+<tr>
+	<th align "right"> Password : </th> 
+	<td> <input name="password" size ="25%" height = "100" value= "" ></td>
+</tr>
+<tr>
+	<th align "right"> Retype Password : </th> 
+	<td> <input name="password2" size ="25%" height = "100" value= "" ></td>
+</tr>
+<td colspan="4" align ="right">
+   <input style="color: black;" name="Confirm" value="Confirm" type="submit">
+</td>
+ </div>
+ </table>
+ </form>
 </body>
 </html>

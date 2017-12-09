@@ -16,7 +16,7 @@ public class Customer implements Serializable {
   /**
    * The following fields correspond to the ADMINS table in the Oracle database
    */
-  private int phoneno;
+  private String phoneno;
   private String emailad;
   private String fname;
   private String lname;
@@ -84,6 +84,25 @@ public class Customer implements Serializable {
 		    callStmt.setString(4,this.username);
 		    callStmt.setString(5,this.password);
 		    callStmt.setString(6,this.adminUsername);
+		    callStmt.setInt(7, this.id);
+		    callStmt.execute();
+		    callStmt.close();
+	   } catch (Exception E) {
+	             E.printStackTrace();
+	   }
+}
+  
+  public void registerCustomer() {
+	   
+	   try{
+		    con = openDBConnection();
+		    callStmt = con.prepareCall(" {call team5.CUSTOMER_REGISTER_PROC(?,?,?,?,?,?,?)}");
+		    callStmt.setString(1,this.phoneno);
+		    callStmt.setString(2,this.emailad);
+		    callStmt.setString(3,this.fname);
+		    callStmt.setString(4,this.lname);
+		    callStmt.setString(5,this.username);
+		    callStmt.setString(6,this.password);
 		    callStmt.setInt(7, this.id);
 		    callStmt.execute();
 		    callStmt.close();
@@ -331,10 +350,10 @@ public ResultSet viewFeedback() throws IllegalStateException{
 	    return result; 
 }
   
-  public int getPhoneno() {
+  public String getPhoneno() {
 	return phoneno;
 }
-public void setPhoneno(int phoneno) {
+public void setPhoneno(String phoneno) {
 	this.phoneno = phoneno;
 }
 public String getEmailad() {
