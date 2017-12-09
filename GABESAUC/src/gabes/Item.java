@@ -148,62 +148,7 @@ public class Item implements Serializable{
 			  }
 	  
 	  
-	  /**
-	   * Sales summary report returns category, item id, item name, final selling price, and commission
-	   * @return view
-	   */
-	  
-	 public ResultSet getSalesSummaryReport() {
-		 try {
-			 con = openDBConnection();
-			 stmt = con.createStatement();
-//			 String queryString = "SELECT CATEG,INUMBER, INAME,CURRENTBID,((currentBid+1)*0.05) AS commission, sum(currentbid) AS subtotal" +
-//					 " FROM ITEM, BIDS" + 
-//					 " where status = '" + this.getStatus()+ "' and itemid = " + this.getInumber()+ "'";
-			 String queryString = "SELECT categ,inumber,iname,currentbid" +
-					 " FROM ITEM" + 
-					 " where status = 'SOLD'";
-	        result = stmt.executeQuery(queryString);
-		 } catch (Exception e) {
-			 e.printStackTrace();
-		 }
-		 return result;
-	 }
-	 
-	  
-//	 SELECT i.categ, i.INUMBER, i.INAME, b.maximumbidlimit AS FINALSELLINGPRICE, ((currentBid+1)*0.05) AS Commission, SUM(maximumbidlimit) AS Subtotal
-//     FROM ITEM i, BIDS b
-//     WHERE i.inumber = b.itemid and i.status = 'SOLD' AND b.maximumbidlimit >= ANY (select max(maximumbidlimit)
-//                                                                             from BIDS
-//                                                                             where itemid = b.itemid
-//                                                                             group by b.itemid) 
-//     Group by i.categ, i.INUMBER, i.INAME, b.maximumbidlimit, ((currentBid+1)*0.05)
-//     ORDER BY i.categ desc, i.inumber;
-     
-	 /**
-	  * Overall Commission Report returns the user id, username, first name, last name, 
-	  * email, seller rating, commissions, and total income.
-	  * @return view
-	  */
-	 public ResultSet getOverallComissionReport() {
-		 try {
-			 con = openDBConnection();
-		 String queryString = "CREATE OR REPLACE VIEW OVERALL_COMMISSION_REPORT_View AS\n" + 
-		 		"        SELECT c.ID, c.username, c.fname, c.lname, c.emailad, AVG(r.rating) AS sellerrating, ((currentBid+1)*0.05) AS Commissions\n" + 
-		 		"        FROM Customer c, RATES r, BIDS b, Item i\n" + 
-		 		"        WHERE c.isseller = 'Y' AND i.sellerno = c.id  AND i.AUC_END_DATE <= Current_date AND b.bidderid = r.bidderno AND i.status='SOLD'\n" + 
-		 		"        AND b.itemid = i.inumber AND r.itemno = i.inumber AND maximumbidlimit = (SELECT max(maximumbidlimit)\n" + 
-		 		"                                                                        FROM BIDS b2\n" + 
-		 		"                                                                        WHERE b.bidderid = b2.bidderid and b.itemid = b2.itemid)\n" + 
-		 		"        group by c.ID, c.username, c.fname, c.lname, c.emailad, ((currentBid+1)*0.05)\n" + 
-		 		"        ORDER BY c.ID;";
-		 stmt = con.createStatement();
-		 result = stmt.executeQuery(queryString);
-		 } catch (Exception e) {
-			 e.printStackTrace();
-		 }
-		 return result;
-	 }
+	
 	 
 	
 }
