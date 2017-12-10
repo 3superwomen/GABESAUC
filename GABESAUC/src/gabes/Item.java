@@ -134,6 +134,7 @@ public class Item implements Serializable{
 		}
 		return result; 
 	  }
+	 
 	  
 	  public ResultSet getSellerInfo() {
 		  try {

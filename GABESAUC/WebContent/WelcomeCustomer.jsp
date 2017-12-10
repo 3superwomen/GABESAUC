@@ -14,6 +14,10 @@ value="Update Profile" type="Submit"><br>
 style="font-family: Arial Black; color: black;" name=SellingManagement"
 value="Selling Management" type="Submit"><br>
 </form>
+<form method="post" action="BiddingManagement.jsp"> <input
+style="font-family: Arial Black; color: black;" name="BiddingManagement"
+value="Bidding Management" type="Submit">
+</form>
 <form method="post" action="LeaveFeedback/LeaveFeedback.jsp"> <input
 style="font-family: Arial Black; color: black;" name="LeaveFeedback"
 value="Leave Feedback" type="Submit">

@@ -49,9 +49,9 @@ User List</h1>
     				</td>
     				<td style="vertical-align: top; text-align: center;"><%=rs.getString("username")%><br>
     				</td>
-                    <td style="vertical-align: top; text-align: center;"><input name="username" value="<%=rs.getString("fname")%>"><br>
+                    <td style="vertical-align: top; text-align: center;"><%=rs.getString("fname")%><br>
     				</td>
-    				<td style="vertical-align: top; text-align: center;"><input name="username" value="<%=rs.getString("lname")%>"><br>
+    				<td style="vertical-align: top; text-align: center;"><%=rs.getString("lname")%><br>
     				</td>
     				<td style="vertical-align: top; text-align: center;"><%=rs.getString("emailad")%><br>
     				</td>
