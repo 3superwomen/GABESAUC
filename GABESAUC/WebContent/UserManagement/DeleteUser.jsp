@@ -6,10 +6,9 @@ http-equiv="content-type">
 </head>
 <body>
 <form style="font-family: Arial Black;" method="post"
-action="DeleteUser_Action.jsp" name="DeleteForm">
+action="DeleteUser_Action.jsp" name="Delete">
 <%@ page language="java" import="java.sql.*" %>
 <jsp:useBean id="admin" class="gabes.Admin" scope="session"/>
-<jsp:useBean id="customer" class="gabes.Customer" scope="session"/>
 <%  String value = request.getParameter("value");
 if(value!=null)
    out.println("PASSWORD DOES NOT MATCH RETYPE PASSWORD");%>			
@@ -41,15 +40,15 @@ Delete User</h1>
           ResultSet rs = admin.getCustomers();
          while (rs.next()) { %>
   		     <tr>
-    				 <td style="vertical-align: top; text-align: center;"><input name="username" value="<%=rs.getInt("id")%>"><br>
+    				 <td style="vertical-align: top; text-align: center;"><%=rs.getInt("id")%><br>
     				</td>
     				<td style="vertical-align: top; text-align: center;"><input name="username" value="<%=rs.getString("username")%>"><br>
     				</td>
-                    <td style="vertical-align: top; text-align: center;"><input name="username" value="<%=rs.getString("fname")%>"><br>
+                    <td style="vertical-align: top; text-align: center;"><%=rs.getString("fname")%><br>
     				</td>
-    				<td style="vertical-align: top; text-align: center;"><input name="username" value="<%=rs.getString("lname")%>"><br>
+    				<td style="vertical-align: top; text-align: center;"><%=rs.getString("lname")%><br>
     				</td>
-    				<td style="vertical-align: top; text-align: center;"><input name="username" value="<%=rs.getString("emailad")%>"><br>
+    				<td style="vertical-align: top; text-align: center;"><%=rs.getString("emailad")%><br>
     				</td>
              		<td style="vertical-align: top; text-align: center;"><input style="color: black;" name="Delete" value="Delete" type="submit"></input>
     				</td>

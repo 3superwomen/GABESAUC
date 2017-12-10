@@ -141,7 +141,21 @@ public class Admin implements Serializable {
 	   }
   
   
-	           
+
+public void deleteUser(String username) {
+	 if(!isLoggedIn())
+	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
+	 try {
+		 con = openDBConnection();
+		 String queryString = "delete from customer where username =?";
+		 pstmt = con.prepareStatement(queryString);
+		 pstmt.clearParameters();
+		 pstmt.setString(1, username);
+		 pstmt.executeUpdate();
+		 } catch (Exception e) {
+			 e.printStackTrace();
+		 }
+	 }      
   
   public ResultSet getCustomers()  throws IllegalStateException{
 	   

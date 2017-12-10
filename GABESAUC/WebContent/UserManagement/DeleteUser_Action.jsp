@@ -1,11 +1,12 @@
-<%@page import="gabes.Customer"%>
+<%@page import="gabes.Admin"%>
 <%@ page language="java" import="java.sql.*" %>
-<jsp:useBean id="customer" class="gabes.Customer" scope="session"/> 
-<jsp:setProperty name="customer" property="*"/>
+<jsp:useBean id="admin" class="gabes.Admin" scope="session"/> 
+<jsp:setProperty name="admin" property="*"/>
 
 <%
 try{
-	customer.deleteUser();
+	String username = request.getParameter("username");
+	admin.deleteUser(username);
       
  }catch(IllegalStateException ise){
     out.println(ise.getMessage());
