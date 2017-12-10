@@ -200,16 +200,6 @@ public class Admin implements Serializable {
 	 }
 	 return result; 
  }
-  
- 
-// SELECT i.categ, i.INUMBER, i.INAME, b.maximumbidlimit AS FINALSELLINGPRICE, ((currentBid+1)*0.05) AS Commission, SUM(maximumbidlimit) AS Subtotal
-// FROM ITEM i, BIDS b
-// WHERE i.inumber = b.itemid and i.status = 'SOLD' AND b.maximumbidlimit >= ANY (select max(maximumbidlimit)
-//                                                                         from BIDS
-//                                                                         where itemid = b.itemid
-//                                                                         group by b.itemid) 
-// Group by i.categ, i.INUMBER, i.INAME, b.maximumbidlimit, ((currentBid+1)*0.05)
-// ORDER BY i.categ desc, i.inumber;
  
  /**
   * Overall Commission Report returns the user id, username, first name, last name, 
@@ -236,7 +226,8 @@ public class Admin implements Serializable {
 	 }
 	 return result;
  }
-  
+	
+
    /**
    * sets loggedIn class field to false
    * @throws IllegalStateException if then method is called when loggedIn = false

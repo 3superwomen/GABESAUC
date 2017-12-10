@@ -5,17 +5,17 @@ http-equiv="content-type">
 <title>User Management</title>
 </head>
 <body>
+<form style="font-family: Arial Black;" method="post"
+action="DeleteUser.jsp" name="DeleteForm">
 <%@ page language="java" import="java.sql.*" %>
 <jsp:useBean id="admin" class="gabes.Admin" scope="session"/>
-
+<jsp:useBean id="customer" class="gabes.Customer" scope="session"/>
 <%  String value = request.getParameter("value");
 if(value!=null)
    out.println("PASSWORD DOES NOT MATCH RETYPE PASSWORD");%>
 <table style="text-align: left; width: 653px; height: 100px;" border="1"
-    			cellpadding="2" cellspacing="2">
-    			
-    <br>
-
+    			cellpadding="2" cellspacing="2">			
+<br>
 <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 User List</h1>			
 	<tbody>
@@ -38,6 +38,8 @@ User List</h1>
     			style="font-family: Arial Black;">Email</span> </td>
     			<td style="vertical-align: top; font-family: Arial Black;">Password<br>
     			</td>
+    			<td style="vertical-align: top; font-family: Arial Black;">Delete<br>
+    			</td>
     		</tr>
 	<%try{ 
           ResultSet rs = admin.getCustomers();
@@ -47,20 +49,28 @@ User List</h1>
     				</td>
     				<td style="vertical-align: top; text-align: center;"><%=rs.getString("username")%><br>
     				</td>
-                    <td style="vertical-align: top; text-align: center;"><%=rs.getString("fname")%><br>
+                    <td style="vertical-align: top; text-align: center;"><input name="username" value="<%=rs.getString("fname")%>"><br>
     				</td>
-    				<td style="vertical-align: top; text-align: center;"><%=rs.getString("lname")%><br>
+    				<td style="vertical-align: top; text-align: center;"><input name="username" value="<%=rs.getString("lname")%>"><br>
     				</td>
     				<td style="vertical-align: top; text-align: center;"><%=rs.getString("emailad")%><br>
     				</td>
     				<td  style="vertical-align:  top; text-align: center;"><input type="password" value="<%=rs.getString("password")%>"> </td>
+             		<td style="vertical-align: top; text-align: center;"><input style="color: black;" name="Delete" value="Delete" type="submit"></input>
+    				</td>
               </tr>
-  	
                 
   <%}%>
-               </tbody>
-    			</table>
+  <% rs.close();}
 
+    catch(IllegalStateException ise){
+        out.println(ise.getMessage());
+    }
+
+%>
+</tbody>
+</table>
+</form>
 <br>
 <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Add User<br>
@@ -93,16 +103,9 @@ Retype Password&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</big>&nbsp;&nbsp;&nbsp;&nbs
 </div>
 <input style="color: black;" name="Add" value="Add" type="submit"><input
 style="color: black;" name="Clear" value="Clear" type="reset"> </form>
-<br>
-<br>
        
-<% rs.close();}
+       
 
-    catch(IllegalStateException ise){
-        out.println(ise.getMessage());
-    }
-
-%>
 </body>
 </html>
 

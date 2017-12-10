@@ -8,9 +8,8 @@ http-equiv="content-type">
 <%@ page language="java" import="java.sql.*" %>
 <jsp:useBean id="admin" class="gabes.Admin" scope="session"/>
 <table style="text-align: left; width: 653px; height: 100px;" border="1"
-    			cellpadding="2" cellspacing="2">
-    			
-    <br>
+    			cellpadding="2" cellspacing="2">			
+<br>
 <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 User List</h1>			
 	<tbody>
@@ -33,12 +32,15 @@ User List</h1>
     			style="font-family: Arial Black;">Email</span> </td>
     			<td style="vertical-align: top; font-family: Arial Black;">Password<br>
     			</td>
+    			<td style="vertical-align: top;"><span
+    			style="font-family: Arial Black;">Delete User</span><br>
+    			</td>
     		</tr>
 	<%try{ 
           ResultSet rs = admin.getCustomers();
          while (rs.next()) { %>
   		     <tr>
-    				 <td style="vertical-align: top; text-align: center;"><%=rs.getInt("id")%><br>
+    				<td style="vertical-align: top; text-align: center;"><%=rs.getInt("id")%><br>
     				</td>
     				<td style="vertical-align: top; text-align: center;"><%=rs.getString("username")%><br>
     				</td>
@@ -48,11 +50,17 @@ User List</h1>
     				</td>
     				<td style="vertical-align: top; text-align: center;"><%=rs.getString("emailad")%><br>
     				</td>
-    				<td  style="vertical-align:  top; text-align: center;"><input type="password" value="<%=rs.getString("password")%>"> </td>
+    				<td style="vertical-align:  top; text-align: center;"><input type="password" value="<%=rs.getString("password")%>"> </td>
+
               </tr>
   	
                 
-  <%}%>
+<%} }
+    catch(IllegalStateException ise){
+        out.println(ise.getMessage());
+    }
+%>
+
                </tbody>
     			</table>
 
@@ -86,18 +94,12 @@ name="password" value=""> <br>
 Retype Password&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</big>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <input name="password2" value=""><br>
 </div>
-<input style="color: black;" name="Add" value="Add" type="submit"><input
-style="color: black;" name="Clear" value="Clear" type="reset"> </form>
+<input style="color: black;" name="Add" value="Add" type="submit"></input>
+<input style="color: black;" name="Clear" value="Clear" type="reset"></input> </form>
 <br>
 <br>
-       
-<% rs.close();}
 
-    catch(IllegalStateException ise){
-        out.println(ise.getMessage());
-    }
 
-%>
 </body>
 </html>
 

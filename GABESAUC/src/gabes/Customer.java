@@ -331,8 +331,6 @@ public ResultSet getRelevantProducts(String cat, String inm) throws IllegalState
 	 return result;
 }
 
-
-
 public ResultSet viewFeedback() throws IllegalStateException{
 
 	  if(!isLoggedIn())
@@ -349,6 +347,23 @@ public ResultSet viewFeedback() throws IllegalStateException{
 	    }
 	    return result; 
 }
+
+
+public void deleteUser() {
+	 if(!isLoggedIn())
+	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
+	 try {
+		 con = openDBConnection();
+		 String queryString = "delete from customer where lname = ? and fname = ?";
+		 pstmt = con.prepareStatement(queryString);
+		 pstmt.clearParameters();
+		 pstmt.setString(1, this.lname);
+		 pstmt.setString(2, this.fname);
+		 pstmt.executeUpdate();
+		 } catch (Exception e) {
+			 e.printStackTrace();
+		 }
+	 }
   
   public String getPhoneno() {
 	return phoneno;

@@ -18,7 +18,7 @@ try{
 	  customer.setPassword(request.getParameter("password"));
 	  customer.setAdminUsername(admin.getUsername());
 	  customer.addCustomer();
-   
+      
  }catch(IllegalStateException ise){
     out.println(ise.getMessage());
 }
