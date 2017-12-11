@@ -34,7 +34,6 @@ String name = request.getParameter("itemName");
 String cat = request.getParameter("itemCat");
 String sprice = request.getParameter("itemSPrice");
 String aucEM = request.getParameter("itemAucEM");
-out.println(aucEM);
 String aucED = request.getParameter("itemAucED");
 String aucEY = request.getParameter("itemAucEY");
 Date aucE =new Date (Integer.parseInt(aucEY),Integer.parseInt(aucEM)-1,Integer.parseInt(aucED));
