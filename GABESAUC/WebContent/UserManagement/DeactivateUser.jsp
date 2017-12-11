@@ -15,32 +15,21 @@ div.container{
  clear:left;
  text-align:center
  }
-  .content form{
-float: left;
-width: 266px;
-}
-table#t01{
-color:black;
-background-color:#f1f1c1;
-}
-.content marquee{
-	color:#ff4719
-}
  </style>
 <body>
 <form style="font-family: Arial Black;" method="post"
-action="DeleteUser_Action.jsp" name="Delete">
+action="DeactivateUser_Action.jsp" name="Deactivate">
 <%@ page language="java" import="java.sql.*" %>
 <jsp:useBean id="admin" class="gabes.Admin" scope="session"/>
-<h1>Delete User<br>
+<h1>Deactivate User<br>
 </h1>
 <form style="font-family: Arial Black;" method="post"
-action="DeleteUser_Action.jsp" name="DeleteForm">
+action="DeactivateUser_Action.jsp" name="DeactivateForm">
 Username&nbsp;&nbsp; &nbsp; &nbsp;
 <input name="username" value=""> <br>
 
 </div>
-<input style="color: black;" name="Delete" value="Delete" type="submit">		
+<input style="color: black;" name="Deactivate" value="Deactivate" type="submit">		
 </tbody>
 </table>
 </form>
