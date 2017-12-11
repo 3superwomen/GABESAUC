@@ -5,8 +5,6 @@ http-equiv="content-type">
 <title>User Management</title>
 </head>
 <body>
-<form style="font-family: Arial Black;" method="post"
-action="DeleteUser.jsp" name="DeleteForm">
 <%@ page language="java" import="java.sql.*" %>
 <jsp:useBean id="admin" class="gabes.Admin" scope="session"/>
 <jsp:useBean id="customer" class="gabes.Customer" scope="session"/>
@@ -38,8 +36,6 @@ User List</h1>
     			style="font-family: Arial Black;">Email</span> </td>
     			<td style="vertical-align: top; font-family: Arial Black;">Password<br>
     			</td>
-    			<td style="vertical-align: top; font-family: Arial Black;">Delete<br>
-    			</td>
     		</tr>
 	<%try{ 
           ResultSet rs = admin.getCustomers();
@@ -56,8 +52,7 @@ User List</h1>
     				<td style="vertical-align: top; text-align: center;"><%=rs.getString("emailad")%><br>
     				</td>
     				<td  style="vertical-align:  top; text-align: center;"><input type="password" value="<%=rs.getString("password")%>"> </td>
-             		<td style="vertical-align: top; text-align: center;"><input style="color: black;" name="Delete" value="Delete" type="submit"></input>
-    				</td>
+        
               </tr>
                 
   <%}%>

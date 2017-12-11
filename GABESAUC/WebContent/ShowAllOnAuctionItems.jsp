@@ -8,7 +8,30 @@
 <style type="text/css">
 .button{
 	background-color: #003300;
-}</style>
+}
+div.container{
+   width:100%
+   border: 1px solid gray
+ }
+ header,footer{
+ padding: lem;
+ color:white;
+ background-color: black;
+ clear:left;
+ text-align:center
+ }
+  .content form{
+float: left;
+width: 266px;
+}
+table#t01{
+color:black;
+background-color:#f1f1c1;
+}
+.content marquee{
+	color:#ff4719
+}
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>All Items On Auction</title>
 </head>

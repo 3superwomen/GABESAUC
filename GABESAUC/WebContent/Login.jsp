@@ -15,6 +15,11 @@ div.container{
  clear:left;
  text-align:center
  }
+ .logo{
+float:left;
+margin-top:-30px;
+url:logo.PNG;
+}
  </style>
  </head>
  <body bgcolor = "#99ff66">

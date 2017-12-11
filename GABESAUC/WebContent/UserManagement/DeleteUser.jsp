@@ -1,9 +1,32 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta content="text/html; charset=ISO-8859-1"
-http-equiv="content-type">
 <title>Delete User</title>
-</head> 
+<style>
+div.container{
+   width:100%
+   border: 1px solid gray
+ }
+ header,footer{
+ padding: lem;
+ color:white;
+ background-color: black;
+ clear:left;
+ text-align:center
+ }
+  .content form{
+float: left;
+width: 266px;
+}
+table#t01{
+color:black;
+background-color:#f1f1c1;
+}
+.content marquee{
+	color:#ff4719
+}
+ </style>
 <body>
 <form style="font-family: Arial Black;" method="post"
 action="DeleteUser_Action.jsp" name="Delete">

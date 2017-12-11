@@ -7,6 +7,33 @@
 <html>
 <head>
 <title>Monthly Commission Income Reports</title>
+<style>
+div.container{
+   width:100%
+   border: 1px solid gray
+ }
+ header,footer{
+ padding: lem;
+ color:white;
+ background-color: black;
+ clear:left;
+ text-align:center
+ }
+  .content form{
+float: left;
+width: 266px;
+}
+table#t01{
+color:black;
+background-color:#f1f1c1;
+}
+.content marquee{
+	color:#ff4719
+}
+ </style>
+ </head>
+ <body bgcolor = "#99ff66">
+ <div class ="container"></div>
 </head>
 <body>
 <h2>Sales Summary Report </h2>
@@ -74,7 +101,8 @@
 	</tr>
 	<% 
                  try{ 
-                 	ResultSet rs= admin.getOverallComissionReport(); 
+                 	ResultSet rs= admin.getOverallCommissionReport(); 
+                 	ResultSet rs2 = admin.getOverallCommissionTotal();
                	while(rs.next()){
                		%>
              <tr> 
@@ -86,7 +114,20 @@
                 <td style="vertical-align: top; text-align: center;"><%=rs.getInt(6)%></td> 
                 <td style="vertical-align: top; text-align: center;"><%=rs.getDouble(7)%></td>  
              </tr>
-   <%}%><%} catch(IllegalStateException ise2){
+             <%}%>
+             <%while(rs2.next()){
+              	%>
+             		<tr>
+             			<td style="vertical-align: top; text-align: center;"><%="Total:"%></td>
+             			<td style="vertical-align: top; text-align: center;"><%="                    "%></td>
+             			<td style="vertical-align: top; text-align: center;"><%="                    "%></td>
+             			<td style="vertical-align: top; text-align: center;"><%="                    "%></td>
+             			<td style="vertical-align: top; text-align: center;"><%="                    "%></td>
+             			<td style="vertical-align: top; text-align: center;"><%="                    "%></td>
+             			<td style="vertical-align: top; text-align: center;"><%=rs2.getDouble(1)%></td>
+             		</tr>
+             <%}%>
+   <%}%><% catch(IllegalStateException ise2){
          out.println(ise2.getMessage());} %>
 </tbody>
 </table>

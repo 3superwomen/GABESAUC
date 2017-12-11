@@ -5,7 +5,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
-<body>
+<style>
+div.container{
+   width:100%
+   border: 1px solid gray
+ }
+ header,footer{
+ padding: lem;
+ color:white;
+ background-color: black;
+ clear:left;
+ text-align:center
+ }
+ </style>
+ </head>
+ <body bgcolor = "#99ff66">
+ <div class ="container"></div>
 <h1>Welcome!</h1>
 <jsp:include page="printdate.jsp" /> 
 <form method="post" action="UserManagement/AddUser.jsp""> <input

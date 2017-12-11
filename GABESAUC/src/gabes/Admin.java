@@ -215,12 +215,32 @@ public void deleteUser(String username) {
 	 return result; 
  }
  
+ public ResultSet getOverallCommissionTotal() throws IllegalStateException
+ {
+	 if(!isLoggedIn())
+	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
+	 try {
+		 con = openDBConnection();
+		 stmt = con.createStatement();
+		 String queryString = "SELECT sum(currentbid*0.05) as totalcommission" +
+				 " from Customer, RATES, BIDS b, Item" + 
+			 		" where isseller = 'Y' and sellerno = id and AUC_END_DATE <= Current_date and bidderid = bidderno and status='SOLD'" + 
+			 		" and itemid = inumber and itemno = inumber and maximumbidlimit = (select max(maximumbidlimit)" + 
+			 		" from BIDS b2" + 
+			 		" where b.bidderid = b2.bidderid and b.itemid = b2.itemid)";
+        result = stmt.executeQuery(queryString);
+	 } catch (Exception e) {
+		 e.printStackTrace();
+	 }
+	 return result; 
+ }
+ 
  /**
   * Overall Commission Report returns the user id, username, first name, last name, 
   * email, seller rating, commissions, and total income.
   * @return view
   */
- public ResultSet getOverallComissionReport() throws IllegalStateException{
+ public ResultSet getOverallCommissionReport() throws IllegalStateException{
 	 if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
 	 try {

@@ -5,12 +5,38 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
-<body>
+<style>
+div.container{
+   width:100%
+   border: 1px solid gray
+ }
+ header,footer{
+ padding: lem;
+ color:white;
+ background-color: black;
+ clear:left;
+ text-align:center
+ }
+  .content form{
+float: left;
+width: 266px;
+}
+table#t01{
+color:black;
+background-color:#f1f1c1;
+}
+.content marquee{
+	color:#ff4719
+}
+ </style>
+ </head>
+ <body bgcolor = "#99ff66">
+ <div class ="container"></div>
 <h1>Welcome!</h1>
 <jsp:include page="printdate.jsp" />  		
-<form method="post" action="UpdateProfile.jsp"> <input
-style="font-family: Arial Black; color: black;" name="UpdateProfile"
-value="Update Profile" type="Submit"><br>
+<form method="post" action="EditProfile.jsp"> <input
+style="font-family: Arial Black; color: black;" name="EditProfile"
+value="Edit Profile" type="Submit"><br>
 </form>
 <%
 try {
