@@ -6,8 +6,7 @@
 <%
 try{
 	String username = request.getParameter("username");
-	admin.deleteUser(username);
-      
+	admin.deactivateUser(username);
  }catch(IllegalStateException ise){
     out.println(ise.getMessage());
 }

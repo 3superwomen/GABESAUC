@@ -140,17 +140,18 @@ public class Admin implements Serializable {
 	       return nextId;
 	   }
   
-  
 
-public void deleteUser(String username) {
+public void deactivateUser(String username) {
 	 if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
 	 try {
 		 con = openDBConnection();
-		 String queryString = "delete from customer where username =?";
+		 String queryString = "update set isSeller=? and isBidder=? where username =?";
 		 pstmt = con.prepareStatement(queryString);
 		 pstmt.clearParameters();
-		 pstmt.setString(1, username);
+		 pstmt.setString(1, "N");
+		 pstmt.setString(2, "N");
+		 pstmt.setString(3, username);
 		 pstmt.executeUpdate();
 		 } catch (Exception e) {
 			 e.printStackTrace();

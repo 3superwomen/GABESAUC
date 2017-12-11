@@ -21,6 +21,7 @@ div.container{
 float: left;
 width: 266px;
 }
+
 table#t01{
 color:black;
 background-color:#f1f1c1;
