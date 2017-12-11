@@ -8,13 +8,36 @@
 <style type="text/css">
 .button{
 	background-color: #003300;
-}</style>
+}
+div.container{
+   width:100%
+   border: 1px solid gray
+ }
+ header,footer{
+ padding: lem;
+ color:white;
+ background-color: black;
+ clear:left;
+ text-align:center
+ }
+  .content form{
+float: left;
+width: 266px;
+}
+table#t01{
+color:black;
+background-color:#f1f1c1;
+}
+.content marquee{
+	color:#ff4719
+}
+ </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Update Profile</title>
 </head>
 <h2>Update Profile</h2>
 <body>
-<form style="font-family: Arial Black;" method="post" action="UpdateProfile_Action.jsp">
+<form style="font-family: Arial Black;" method="post" action="EditProfile_Action.jsp">
 <%try{ 
           ResultSet rs = customer.getCustomerInfo();
          while (rs.next()) { %>

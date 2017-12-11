@@ -8,6 +8,30 @@
 <head>
 <title>View Feedback</title>
 </head>
+<style>
+div.container{
+   width:100%
+   border: 1px solid gray
+ }
+ header,footer{
+ padding: lem;
+ color:white;
+ background-color: black;
+ clear:left;
+ text-align:center
+ }
+  .content form{
+float: left;
+width: 266px;
+}
+table#t01{
+color:black;
+background-color:#f1f1c1;
+}
+.content marquee{
+	color:#ff4719
+}
+ </style>
 <body>
 <h2>View Feedback</h2>
 <table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">

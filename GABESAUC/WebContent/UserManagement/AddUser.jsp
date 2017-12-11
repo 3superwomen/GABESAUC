@@ -7,15 +7,13 @@ http-equiv="content-type">
 <body>
 <%@ page language="java" import="java.sql.*" %>
 <jsp:useBean id="admin" class="gabes.Admin" scope="session"/>
-
+<jsp:useBean id="customer" class="gabes.Customer" scope="session"/>
 <%  String value = request.getParameter("value");
 if(value!=null)
    out.println("PASSWORD DOES NOT MATCH RETYPE PASSWORD");%>
 <table style="text-align: left; width: 653px; height: 100px;" border="1"
-    			cellpadding="2" cellspacing="2">
-    			
-    <br>
-
+    			cellpadding="2" cellspacing="2">			
+<br>
 <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 User List</h1>			
 	<tbody>
@@ -54,13 +52,20 @@ User List</h1>
     				<td style="vertical-align: top; text-align: center;"><%=rs.getString("emailad")%><br>
     				</td>
     				<td  style="vertical-align:  top; text-align: center;"><input type="password" value="<%=rs.getString("password")%>"> </td>
+        
               </tr>
-  	
                 
   <%}%>
-               </tbody>
-    			</table>
+  <% rs.close();}
 
+    catch(IllegalStateException ise){
+        out.println(ise.getMessage());
+    }
+
+%>
+</tbody>
+</table>
+</form>
 <br>
 <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Add User<br>
@@ -93,16 +98,9 @@ Retype Password&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</big>&nbsp;&nbsp;&nbsp;&nbs
 </div>
 <input style="color: black;" name="Add" value="Add" type="submit"><input
 style="color: black;" name="Clear" value="Clear" type="reset"> </form>
-<br>
-<br>
        
-<% rs.close();}
+       
 
-    catch(IllegalStateException ise){
-        out.println(ise.getMessage());
-    }
-
-%>
 </body>
 </html>
 

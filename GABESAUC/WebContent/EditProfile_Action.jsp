@@ -13,17 +13,17 @@ try{
 	String newpw = request.getParameter("newpw");
 	String redonewpw = request.getParameter("redonewpw");
 	String oldpw = request.getParameter("oldpw");
-	if(newpw==""){
+	if(newpw=="" && redonewpw ==""){
 		newpw = oldpw;
 	}
-	else {
-		if(!newpw.equals(redonewpw)){
-			out.println("Passwords do not match.");
-		}
-	}
+// 	else {
+// 		if(!newpw.equals(redonewpw)){
+// 			response.sendRedirect("UpdateErrorPage.jsp");
+// 		}
+// 	}
 	customer.editProfile(username,fname,lname,email,phoneno,newpw);
  }catch(IllegalStateException ise){
     out.println(ise.getMessage());
 }
-response.sendRedirect("UpdateProfile.jsp");
+response.sendRedirect("EditProfile.jsp");
 %>

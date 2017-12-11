@@ -172,6 +172,22 @@ public class Customer implements Serializable {
        return  result;
   	}
   
+  public ResultSet getCustomerInfo2()  throws IllegalStateException{
+	   
+      if(!isLoggedIn())
+      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
+       try{
+    	   stmt = con.createStatement();
+          String queryString = "Select username,isBidder, isSeller FROM CUSTOMER where"
+          		+ " username='" + this.username +"'";
+          result = stmt.executeQuery(queryString);
+       }       
+       catch (Exception E) {
+    	   E.printStackTrace();
+       }
+       return  result;
+  	}
+  
 
   public void updateProfile() throws IllegalStateException{
 	  if(!isLoggedIn())
@@ -231,6 +247,26 @@ public ResultSet getItemList()  throws IllegalStateException{
 	       }
 	        return result; 
 	     }
+
+public ResultSet getItemsOnAuction()  throws IllegalStateException{
+	  
+	  if(!isLoggedIn())
+	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
+	       try{
+	    	   stmt = con.createStatement();
+        String queryString = "SELECT INUMBER , INAME , CATEG, auc_start, auc_end_date , startbid , currentbid " 
+        		+ "FROM ITEM "
+              + " WHERE status = 'ON AUCTION'";
+
+        result = stmt.executeQuery(queryString);
+        
+	       }
+	       catch (Exception E) {
+	         E.printStackTrace();
+	       }
+	        return result; 
+	     }
+
 public ResultSet getItemInfo(int ino) throws IllegalStateException{
 	  if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
@@ -331,8 +367,6 @@ public ResultSet getRelevantProducts(String cat, String inm) throws IllegalState
 	 return result;
 }
 
-
-
 public ResultSet viewFeedback() throws IllegalStateException{
 
 	  if(!isLoggedIn())
@@ -349,6 +383,7 @@ public ResultSet viewFeedback() throws IllegalStateException{
 	    }
 	    return result; 
 }
+
   
   public String getPhoneno() {
 	return phoneno;

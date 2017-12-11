@@ -134,6 +134,7 @@ public class Item implements Serializable{
 		}
 		return result; 
 	  }
+	 
 	  
 	  public ResultSet getSellerInfo() {
 		  try {
@@ -145,8 +146,9 @@ public class Item implements Serializable{
 					e.printStackTrace();
 				}
 				return result; 
-			  }
+	  }
 	  
+
 	  public ResultSet getItemWithNoBids() {
 		  con = openDBConnection();
 		    try{
@@ -176,6 +178,23 @@ public class Item implements Serializable{
 		  
 	  
 	 
+
+	  public ResultSet getSalesSubTotals() throws IllegalStateException
+	  {
+	 	 try {
+	 		 con = openDBConnection();
+	 		 stmt = con.createStatement();
+	 		 String queryString = "SELECT categ, sum(currentbid) as subtotal, sum(currentbid*0.05) as finalcommission" +
+	 				 " FROM ITEM" + 
+	 				 " where status = 'SOLD'"
+	 				 +" group by categ order by categ";
+	         result = stmt.executeQuery(queryString);
+	 	 } catch (Exception e) {
+	 		 e.printStackTrace();
+	 	 }
+	 	 return result; 
+	  }
+
 	
 	 
 	
