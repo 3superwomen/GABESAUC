@@ -1,5 +1,6 @@
 
 <%@ page language="java" import="java.sql.*"%>
+<jsp:useBean id="admin" class= "gabes.Admin" scope="session"/> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +21,8 @@ div.container{
  </style>
  </head>
  <body bgcolor = "#99ff66">
+  <%if(!admin.isLoggedIn())
+     { response.sendRedirect("Login.jsp");} %>
  <div class ="container"></div>
 <h1>Welcome!</h1>
 <tr>
@@ -29,9 +32,9 @@ div.container{
 style="font-family: Arial Black; color: black;" name="User Management"
 value="User Management" type="Submit"><br>
 </form>
-<form method="post" action="UserManagement/DeleteUser.jsp""> <input
-style="font-family: Arial Black; color: black;" name="Delete User"
-value="Delete User" type="Submit"><br>
+<form method="post" action="UserManagement/DeactivateUser.jsp""> <input
+style="font-family: Arial Black; color: black;" name="Deactivate User"
+value="Deactivate user" type="Submit"><br>
 </form>
 <form method="post" action="ViewReports.jsp"> <input
 style="font-family: Arial Black; color: black;" name="View Reports"

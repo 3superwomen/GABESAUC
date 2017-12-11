@@ -2,12 +2,15 @@
 <head>
 <meta content="text/html; charset=ISO-8859-1"
 http-equiv="content-type">
+<%@ page language="java" import="java.sql.*" %>
+<jsp:useBean id="item" class="gabes.Item" scope="session"/>
+<jsp:useBean id="admin" class="gabes.Admin" scope="session"/>
 <title>User Management</title>
 </head>
 <body>
-<%@ page language="java" import="java.sql.*" %>
-<jsp:useBean id="item" class="gabes.Item" scope="session"/>
 
+ <%if(!admin.isLoggedIn())
+     { response.sendRedirect("../Login.jsp");} %>
 
 <table style="text-align: left; width: 653px; height: 100px;" border="1"
     			cellpadding="2" cellspacing="2">

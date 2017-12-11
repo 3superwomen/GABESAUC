@@ -4,5 +4,5 @@
 <jsp:setProperty name="item" property="*"/> 
 <%
     item.deleteItem();
-    response.sendRedirect("DeleteItem.jsp");
 %>
+<jsp:forward page = "DeleteItem.jsp"/>

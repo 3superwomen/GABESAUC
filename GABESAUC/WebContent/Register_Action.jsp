@@ -10,9 +10,11 @@
 
 <%
 if(!((request.getParameter("password")).equals(request.getParameter("password2"))))
-{
-	response.sendRedirect("Register.jsp?value="+ 1);
-}
+{ %>
+	<jsp:forward page = "Register.jsp">
+	 <jsp:param name = "value" value="1"/>
+	</jsp:forward>
+<%}
 else{
 try{
 	  customer.setPassword(request.getParameter("password"));

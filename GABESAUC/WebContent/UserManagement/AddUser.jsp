@@ -8,6 +8,8 @@ http-equiv="content-type">
 <%@ page language="java" import="java.sql.*" %>
 <jsp:useBean id="admin" class="gabes.Admin" scope="session"/>
 <jsp:useBean id="customer" class="gabes.Customer" scope="session"/>
+ <%if(!admin.isLoggedIn())
+     { response.sendRedirect("../Login.jsp");} %>
 <%  String value = request.getParameter("value");
 if(value!=null)
    out.println("PASSWORD DOES NOT MATCH RETYPE PASSWORD");%>

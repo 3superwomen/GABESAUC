@@ -31,11 +31,15 @@ background-color:#f1f1c1;
  </style>
  </head>
  <body bgcolor = "#99ff66">
+
+ <%if(!customer.isLoggedIn())
+     { response.sendRedirect("Login.jsp");} %>
  <div class ="container"></div>
 <h1>Welcome!</h1>
 <tr>
-<td align="right" width="690"><a href="ExitAdmin.jsp">Logout</a></td></tr><br>
-<jsp:include page="printdate.jsp" />  		
+<td align="right" width="690"><a href="ExitCustomer.jsp">Logout</a></td></tr><br>
+<jsp:include page="printdate.jsp" />  	
+
 <form method="post" action="EditProfile.jsp"> <input
 style="font-family: Arial Black; color: black;" name="EditProfile"
 value="Edit Profile" type="Submit"><br>
@@ -54,25 +58,25 @@ try {
 			<form method="post" action="BiddingManagement.jsp"> 
 			<input style="font-family: Arial Black; color: black;" name="BiddingManagement" 
 			value="Bidding Management" type="Submit">
+		</form> 
+		<%}%>
+		 <%if(rs2.getString("isSeller").charAt(0) == 'Y'){%>
+		<form method="post" action="LeaveFeedback/ViewFeedback.jsp">
+		<input
+		style="font-family: Arial Black; color: black;" name="ViewFeedback"
+		value="View My Feedback" type="Submit">
 		</form>
-		<%}
-		}
-	}
+		<%}%>
+	<%} }
 	catch(IllegalStateException ie){
 		 out.println(ie.getMessage());
 	}%>
+	
 <form method="post" action="LeaveFeedback/LeaveFeedback.jsp"> <input
 style="font-family: Arial Black; color: black;" name="LeaveFeedback"
 value="Leave Feedback" type="Submit">
-</form>
-<form method="post" action="LeaveFeedback/ViewFeedback.jsp"> <input
-style="font-family: Arial Black; color: black;" name="ViewFeedback"
-value="View My Feedback" type="Submit">
-</form>
-<form method="post" action="ExitCustomer.jsp"> <input
-style="font-family: Arial Black; color: black;" name="Exit"
-value="Exit" type="Submit">
-</form>
+
+
 </body>
 </html>
 
