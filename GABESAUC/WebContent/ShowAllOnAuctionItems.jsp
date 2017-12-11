@@ -31,7 +31,6 @@ div.container{
                <h1>Item List - On Auction</h1>
             <tbody>
                 <tr>
-
                     <td style="vertical-align: top; text-align: center;">Item ID</td>
                     <td style="vertical-align: top; text-align: center;">Item Name</td>
                     <td style="vertical-align: top; text-align: center;">Category</td>

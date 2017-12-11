@@ -8,6 +8,7 @@ div.container{
    width:100%
    border: 1px solid gray
  }
+ 
  header,footer{
  padding: lem;
  color:white;
@@ -15,6 +16,7 @@ div.container{
  clear:left;
  text-align:center
  }
+ 
  </style>
 <body>
 <form style="font-family: Arial Black;" method="post"

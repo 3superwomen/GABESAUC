@@ -140,7 +140,6 @@ public class Admin implements Serializable {
 	       return nextId;
 	   }
   
-  
 
 public void deactivateUser(String username) {
 	 if(!isLoggedIn())
