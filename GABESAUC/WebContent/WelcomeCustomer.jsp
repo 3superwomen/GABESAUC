@@ -33,6 +33,8 @@ background-color:#f1f1c1;
  <body bgcolor = "#99ff66">
  <div class ="container"></div>
 <h1>Welcome!</h1>
+<tr>
+<td align="right" width="690"><a href="ExitAdmin.jsp">Logout</a></td></tr><br>
 <jsp:include page="printdate.jsp" />  		
 <form method="post" action="EditProfile.jsp"> <input
 style="font-family: Arial Black; color: black;" name="EditProfile"

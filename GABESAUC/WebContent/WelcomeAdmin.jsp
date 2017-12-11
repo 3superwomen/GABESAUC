@@ -22,6 +22,8 @@ div.container{
  <body bgcolor = "#99ff66">
  <div class ="container"></div>
 <h1>Welcome!</h1>
+<tr>
+<td align="right" width="690"><a href="ExitAdmin.jsp">Logout</a></td></tr><br>
 <jsp:include page="printdate.jsp" /> 
 <form method="post" action="UserManagement/AddUser.jsp""> <input
 style="font-family: Arial Black; color: black;" name="User Management"
@@ -34,10 +36,6 @@ value="Delete User" type="Submit"><br>
 <form method="post" action="ViewReports.jsp"> <input
 style="font-family: Arial Black; color: black;" name="View Reports"
 value="View Reports" type="Submit"><br>
-</form>
-<form method="post" action="ExitAdmin.jsp"> <input
-style="font-family: Arial Black; color: black;" name="Exit"
-value="Exit" type="Submit"><br>
 </form>
 </body>
 </html>

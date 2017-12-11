@@ -35,6 +35,7 @@ background-color:#f1f1c1;
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>All Items On Auction</title>
 </head>
+<jsp:include page="printdate.jsp" /> 
 <body>
 <table style="text-align: left; width: 100%;" border="1" cellpadding="2"
                cellspacing="2">

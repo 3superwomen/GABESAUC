@@ -6,6 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
- <% out.print("Today is: "+java.util.Calendar.getInstance().getTime()); %>  
+<%out.print("Today is: "+java.util.Calendar.getInstance().getTime());%>  
 </body>
 </html>
