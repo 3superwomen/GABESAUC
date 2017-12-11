@@ -172,6 +172,22 @@ public class Customer implements Serializable {
        return  result;
   	}
   
+  public ResultSet getCustomerInfo2()  throws IllegalStateException{
+	   
+      if(!isLoggedIn())
+      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
+       try{
+    	   stmt = con.createStatement();
+          String queryString = "Select username,isBidder, isSeller FROM CUSTOMER where"
+          		+ " username='" + this.username +"'";
+          result = stmt.executeQuery(queryString);
+       }       
+       catch (Exception E) {
+    	   E.printStackTrace();
+       }
+       return  result;
+  	}
+  
 
   public void updateProfile() throws IllegalStateException{
 	  if(!isLoggedIn())

@@ -1,5 +1,5 @@
-
-<%@ page language="java" import="java.sql.*"%>
+<%@ page language="java" import="java.sql.*" %>
+<jsp:useBean id="customer" class="gabes.Customer" scope="session"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,14 +10,27 @@
 style="font-family: Arial Black; color: black;" name="UpdateProfile"
 value="Update Profile" type="Submit"><br>
 </form>
-<form method="post" action="SellingManagement/sellingMg.jsp"> <input
-style="font-family: Arial Black; color: black;" name=SellingManagement"
-value="Selling Management" type="Submit"><br>
-</form>
-<form method="post" action="BiddingManagement.jsp"> <input
-style="font-family: Arial Black; color: black;" name="BiddingManagement"
-value="Bidding Management" type="Submit">
-</form>
+<%
+try {
+	ResultSet rs2 = customer.getCustomerInfo2();
+	while(rs2.next()){
+		if(rs2.getString("isSeller").charAt(0) == 'Y'){%>
+			<form method="post" action="SellingManagement/sellingMg.jsp"> <input
+					style="font-family: Arial Black; color: black;" name=SellingManagement"
+					value="Selling Management" type="Submit"><br>
+		    </form>
+		<%}%>
+		<%if(rs2.getString("isBidder").charAt(0) == 'Y'){%>
+			<form method="post" action="BiddingManagement.jsp"> 
+			<input style="font-family: Arial Black; color: black;" name="BiddingManagement" 
+			value="Bidding Management" type="Submit">
+		</form>
+		<%}
+		}
+	}
+	catch(IllegalStateException ie){
+		 out.println(ie.getMessage());
+	}%>
 <form method="post" action="LeaveFeedback/LeaveFeedback.jsp"> <input
 style="font-family: Arial Black; color: black;" name="LeaveFeedback"
 value="Leave Feedback" type="Submit">
