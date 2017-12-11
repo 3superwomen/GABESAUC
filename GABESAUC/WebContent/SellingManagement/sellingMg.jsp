@@ -15,6 +15,9 @@
 <form method="post" action="listItems.jsp" name="listIt">
 <button class="button" type = "submit" value = "ListItems">List Items</button>
 </form>
+<form method="post" action="salesReport.jsp" name="sales">
+<button class="button" type = "submit" value = "sales">Sales Report</button>
+</form>
 <form method="post" action="sellerSearch.jsp" name="search">
 <button class="button" type = "submit" value = "searchIt">Check Maketing Price</button>
 </form>
