@@ -6,6 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
+<h1>Welcome!</h1>
+<jsp:include page="printdate.jsp" />  		
 <form method="post" action="UpdateProfile.jsp"> <input
 style="font-family: Arial Black; color: black;" name="UpdateProfile"
 value="Update Profile" type="Submit"><br>

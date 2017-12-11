@@ -6,6 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
+<h1>Welcome!</h1>
+<jsp:include page="printdate.jsp" /> 
 <form method="post" action="UserManagement/AddUser.jsp""> <input
 style="font-family: Arial Black; color: black;" name="User Management"
 value="User Management" type="Submit"><br>
