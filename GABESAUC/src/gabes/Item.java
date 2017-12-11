@@ -147,8 +147,37 @@ public class Item implements Serializable{
 				return result; 
 			  }
 	  
+	  public ResultSet getItemWithNoBids() {
+		  con = openDBConnection();
+		    try{
+		    	   stmt = con.createStatement();
+					String queryString = "SELECT INUMBER,INAME,IDESCRIP, CATEG, STATUS, AUC_START, AUC_END_DATE FROM TEAM5.ITEM WHERE status = 'NOT ON AUCTION'" ;
+					result = stmt.executeQuery(queryString);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return result; 
+	  }
 	  
+	  
+	  
+		public void deleteItem() {
+			con = openDBConnection();
+			try {
+				pstmt = con.prepareStatement("delete from TEAM5.ITEM where inumber = ?");
+				 pstmt.clearParameters();
+		         pstmt.setInt(1,this.inumber);
+				pstmt.executeQuery();
+				pstmt.close();
+			} catch (Exception E) {
+				E.printStackTrace();
+			}
+		}
+		  
+	  
+	 
 	
 	 
 	
 }
+

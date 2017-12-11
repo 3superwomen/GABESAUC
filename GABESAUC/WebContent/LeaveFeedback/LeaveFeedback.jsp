@@ -8,7 +8,7 @@
 http-equiv="content-type">
 
 </head>
-<body><%out.println(customer.getId() +""); %>
+<body>
     			
     <br>
 <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
