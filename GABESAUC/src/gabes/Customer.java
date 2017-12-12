@@ -208,6 +208,7 @@ public class Customer implements Serializable {
           E.printStackTrace();
       }       
   }
+  
 
   public void editProfile(String username, String fname, String lname, String email, String phoneno, String newpw) throws SQLException{
 	  if(!isLoggedIn())

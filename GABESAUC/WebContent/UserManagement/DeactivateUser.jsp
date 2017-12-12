@@ -8,7 +8,6 @@ div.container{
    width:100%
    border: 1px solid gray
  }
- 
  header,footer{
  padding: lem;
  color:white;
@@ -27,7 +26,6 @@ div.container{
 action="DeactivateUser_Action.jsp" name="DeactivateForm">
 Username&nbsp;&nbsp; &nbsp; &nbsp;
 <input name="username" value=""> <br>
-
 </div>
 <input style="color: black;" name="Deactivate" value="Deactivate" type="submit">		
 </tbody>
