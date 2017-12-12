@@ -146,11 +146,11 @@ public void deactivateUser(String username) {
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
 	 try {
 		 con = openDBConnection();
-		 String queryString = "update set isSeller=? and isBidder=? where username =?";
+		 String queryString = "update customer set isSeller=? and isBidder=? where username =?";
 		 pstmt = con.prepareStatement(queryString);
 		 pstmt.clearParameters();
-		 pstmt.setString(1, "N");
-		 pstmt.setString(2, "N");
+		 pstmt.setString(1, String.valueOf('N'));
+		 pstmt.setString(2, String.valueOf('N'));
 		 pstmt.setString(3, username);
 		 pstmt.executeUpdate();
 		 } catch (Exception e) {

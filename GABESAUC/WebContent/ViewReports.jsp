@@ -21,15 +21,7 @@ div.container{
  }
   .content form{
 float: left;
-width: 266px;
-}
-table#t01{
-color:black;
-background-color:#f1f1c1;
-}
-.content marquee{
-	color:#ff4719
-}
+width: 266px;}
  </style>
  </head>
  <body bgcolor = "#99ff66">
