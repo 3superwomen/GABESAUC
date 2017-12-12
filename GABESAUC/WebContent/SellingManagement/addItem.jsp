@@ -10,9 +10,24 @@
 <style type="text/css">
 .button{
 	background-color: #003300;
-}</style>
+}div.container{
+   width:100%
+   border: 1px solid gray
+ }
+ header,footer{
+ padding: lem;
+ color:white;
+ background-color: black;
+ clear:left;
+ text-align:center
+ }</style>
 </head>
-<body>
+<body bgcolor = "#ccffcc">
+<div class ="container">
+ <header>
+ <h1> WELCOME TO GABES </h1>
+ </header>
+ </div>
 <form  method="post" action="addItem_action.jsp">
 <table style="text-align: left; width: 100%;" border="1" cellpadding="2"
                cellspacing="2">

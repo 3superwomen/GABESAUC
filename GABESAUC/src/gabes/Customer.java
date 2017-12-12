@@ -227,7 +227,12 @@ public class Customer implements Serializable {
 	    callStmt.close();
 	  }  
   
-
+/**
+ * Get the list of items (sold and on auction) the seller posted in the past and show brief information
+ * 
+ * @return a resultset that data retrieved from the database.
+ * @throw if the seller does not log in or query cannot run well
+ */
   
 public ResultSet getItemList()  throws IllegalStateException{
 	  
@@ -247,15 +252,25 @@ public ResultSet getItemList()  throws IllegalStateException{
 	       }
 	        return result; 
 	     }
+/**
+ * Get the list of items the seller posted in the past which have sold 
+ * and show the profit every sales
+ * 
+ * @return a resultset that data retrieved from the database.
+ * @throw if the seller does not log in or query cannot run well
+ */
+
 public ResultSet getItemListForSold()  throws IllegalStateException{
 	  
 	  if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
 	       try{
 	    	   stmt = con.createStatement();
-        String queryString = "SELECT INUMBER , INAME , CATEG, auc_start, auc_end_date , startbid , currentbid,status " 
+        String queryString = "SELECT INUMBER , INAME ,  auc_start, auc_end_date , startbid , currentbid , CURRENTBID-STARTBID " 
         		+ "FROM ITEM "
-              + " WHERE SELLERNO = '" + this.id +"' ";
+              + " WHERE SELLERNO = '" + this.id +"' AND STATUS = 'SOLD' "
+              	+"GROUP BY SELLERNO, INUMBER, INAME, auc_start, auc_end_date,"+ 
+              		" startbid, currentbid, CURRENTBID-STARTBID";
 
         result = stmt.executeQuery(queryString);
         
@@ -284,6 +299,13 @@ public ResultSet getItemsOnAuction()  throws IllegalStateException{
 	       }
 	        return result; 
 	     }
+/**
+ * Get the detailed information of an specific item with item number and show to seller
+ * 
+ * @param inumber of an item
+ * @return a resultset that data retrieved from the database.
+ * @throw if the seller does not log in or query cannot run well
+ */
 
 public ResultSet getItemInfo(int ino) throws IllegalStateException{
 	  if(!isLoggedIn())
@@ -300,6 +322,15 @@ public ResultSet getItemInfo(int ino) throws IllegalStateException{
 	 }
 	 return result;
 }
+
+/**
+ * Get the information of a customer with known customer id
+ * 
+ * @param cid the id of a customer
+ * @return a resultset that data retrieved from the database.
+ * @throw if the seller does not log in or query cannot run well
+ */
+
 public ResultSet getCustomerInfo(int cid)  throws IllegalStateException{
 	   
     if(!isLoggedIn())
@@ -315,6 +346,15 @@ public ResultSet getCustomerInfo(int cid)  throws IllegalStateException{
      }
      return  result;
 	}
+
+/**
+ * Get the list of bidders bidding on an specific item with item number and show to seller
+ * 
+ * @param inumber of an item
+ * @return a resultset that data retrieved from the database.
+ * @throw if the seller does not log in or query cannot run well
+ */
+
 public ResultSet getBidderList(int ino) throws IllegalStateException{
 	  if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
@@ -331,6 +371,19 @@ public ResultSet getBidderList(int ino) throws IllegalStateException{
 	 return result;
 }
   
+/**
+ * post a new item to the system
+ * 
+ * 
+ * @param name the name of the item adding
+ * @param desc the description of the item
+ * @param cate the category of the item
+ * @param aucE the end date of the auction of the item
+ * @param priceS the start price the seller sets to this item
+ * 
+ * @throw if the seller does not log in or query cannot run well
+ */
+
 public void addItem(String name, String desc, String cate, Date aucE,String priceS) throws SQLException{
 	 if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
@@ -353,6 +406,15 @@ public void addItem(String name, String desc, String cate, Date aucE,String pric
   }  
 
       	
+/**
+ * Search a list of relevant items with the category and item name information
+ * which are ordered by relevance
+ * 
+ * @param cat the category the seller wants to search
+ * @param inm the item name the seller wants to search
+ * @return a resultset that data retrieved from the database.
+ * @throws IllegalStateException
+ */
 public ResultSet getRelevantProducts(String cat, String inm) throws IllegalStateException{
 	  if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
@@ -392,6 +454,16 @@ public ResultSet getRelevantProducts(String cat, String inm) throws IllegalState
 	 }
 	 return result;
 }
+
+/**
+ * Search a list of relevant items with the category and item name information
+ * which are ordered by date and relevance
+ * 
+ * @param cat the category the seller wants to search
+ * @param inm the item name the seller wants to search
+ * @return a resultset that data retrieved from the database.
+ * @throws IllegalStateException
+ */
 
 public ResultSet getRelevantProductsByDate(String cat, String inm) throws IllegalStateException{
 	  if(!isLoggedIn())

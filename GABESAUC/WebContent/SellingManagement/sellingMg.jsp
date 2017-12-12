@@ -6,12 +6,29 @@
 <style type="text/css">
 .button{
 	background-color: #003300;
-}</style>
+}
+div.container{
+   width:100%
+   border: 1px solid gray
+ }
+ header,footer{
+ padding: lem;
+ color:white;
+ background-color: black;
+ clear:left;
+ text-align:center
+ }</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Selling Homepage</title>
 </head>
 <%@ page language="java" import="java.sql.*" %>
 <jsp:useBean id="customer" class="gabes.Customer" scope="session"/>
+<body bgcolor = "#ccffcc">
+<div class ="container">
+ <header>
+ <h1> WELCOME TO GABES </h1>
+ </header>
+ </div>
 <form method="post" action="listItems.jsp" name="listIt">
 <button class="button" type = "submit" value = "ListItems">List Items</button>
 </form>

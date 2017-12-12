@@ -7,8 +7,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Bidders List</title>
+<style type="text/css">
+.button{
+	background-color: #003300;
+}
+div.container{
+   width:100%
+   border: 1px solid gray
+ }
+ header,footer{
+ padding: lem;
+ color:white;
+ background-color: black;
+ clear:left;
+ text-align:center
+ }	</style>
 </head>
-<body>
+<body bgcolor = "#ccffcc">
+<div class ="container">
+ <header>
+ <h1> WELCOME TO GABES </h1>
+ </header>
+ </div>
 <h1>List of Bidders</h1>
 <%
                int itemno =Integer.parseInt(request.getParameter("itemNum"));
