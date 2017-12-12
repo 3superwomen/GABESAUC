@@ -34,7 +34,7 @@ value="User Management" type="Submit"><br>
 </form>
 <form method="post" action="UserManagement/DeactivateUser.jsp""> <input
 style="font-family: Arial Black; color: black;" name="Deactivate User"
-value="Deactivate user" type="Submit"><br>
+value="Deactivate/Reactivate Users" type="Submit"><br>
 </form>
 <form method="post" action="ViewReports.jsp"> <input
 style="font-family: Arial Black; color: black;" name="View Reports"
