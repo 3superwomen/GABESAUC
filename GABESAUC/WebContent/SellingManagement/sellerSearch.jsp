@@ -10,7 +10,9 @@
 <style type="text/css">
 .button{
 	background-color: #003300;
-}</style>
+}
+
+</style>
 </head>
 <body>
 <form  method="post" action="relevantProducts.jsp">

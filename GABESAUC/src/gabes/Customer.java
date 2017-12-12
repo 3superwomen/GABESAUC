@@ -248,6 +248,24 @@ public ResultSet getItemList()  throws IllegalStateException{
 	       }
 	        return result; 
 	     }
+public ResultSet getItemListForSold()  throws IllegalStateException{
+	  
+	  if(!isLoggedIn())
+	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
+	       try{
+	    	   stmt = con.createStatement();
+        String queryString = "SELECT INUMBER , INAME , CATEG, auc_start, auc_end_date , startbid , currentbid,status " 
+        		+ "FROM ITEM "
+              + " WHERE SELLERNO = '" + this.id +"' ";
+
+        result = stmt.executeQuery(queryString);
+        
+	       }
+	       catch (Exception E) {
+	         E.printStackTrace();
+	       }
+	        return result; 
+	     }
 
 public ResultSet getItemsOnAuction()  throws IllegalStateException{
 	  
@@ -347,19 +365,63 @@ public ResultSet getRelevantProducts(String cat, String inm) throws IllegalState
    		+ "FROM ITEM "
 			 + "WHERE  UPPER(CATEG)" + 
 			 " LIKE '%' || UPPER('"+sc+"') || '%' and UPPER(INAME) LIKE '%' || UPPER('"+si+"') || '%'"
-			 +" ORDER BY CASE"
-			 +" WHEN UPPER(CATEG) = UPPER('"+cat+"') and UPPER(INAME) = UPPER ('"+inm+"')    THEN 10" + 
-			 "  WHEN UPPER(CATEG) = UPPER('"+cat+"') and SOUNDEX(INAME) = SOUNDEX('"+inm+"') THEN 9" + 
-			 "  WHEN UPPER(CATEG) LIKE UPPER('"+cat+"') || '%'  and SOUNDEX(INAME) = SOUNDEX('"+inm+"')    THEN 8" + 
-			 "  WHEN UPPER(CATEG) LIKE '%'|| UPPER('"+cat+"') ||'%' and SOUNDEX(INAME) = SOUNDEX('"+inm+"')  THEN 7" + 
-			 "  ELSE 0" + 
-			 "  END DESC " + 
-			 "  , CASE WHEN UPPER(CATEG) = UPPER('"+cat+"')       THEN 5 " + 
-			 "		   WHEN SOUNDEX(CATEG) = SOUNDEX('"+cat+"')  THEN 4 "+
-			 "         WHEN UPPER(CATEG) LIKE UPPER('"+cat+"') || '%' THEN 3" + 
-			 " 		   WHEN UPPER(CATEG) LIKE '%'|| UPPER('"+cat+"') ||'%' THEN 2 "+
-			 "         ELSE 0" + 
-			 "      END DESC ";
+			 +" ORDER BY CASE WHEN STATUS = 'ON AUCTION' THEN 12" + 
+			 "            WHEN STATUS = 'SOLD' THEN 11" + 
+			 "            ELSE 0" + 
+			 "        END DESC" + 
+			 "        , CASE"
+			 +" 	WHEN UPPER(INAME) = UPPER('"+inm+"')     THEN 10 " + 
+			 "              WHEN UPPER(INAME) LIKE UPPER('"+inm+"') || '%' THEN 9" + 
+			 "              WHEN UPPER(INAME) LIKE '%'|| UPPER('"+inm+"') ||'%'     THEN 8" + 
+			 "              ELSE 0" + 
+			 "          END DESC "+
+			 "  , CASE "
+			 + "	    WHEN UPPER(CATEG) = UPPER('ELECTRONIC') THEN 7" + 
+			 "                WHEN UPPER(CATEG) LIKE UPPER('ELECTRONIC') ||'%'       THEN 6 " + 
+			 "                WHEN UPPER(CATEG) LIKE '%'|| UPPER('Iphone') ||'%' THEN 5" + 
+			 "                ELSE 0" + 
+			 "           END DESC" + 
+			 "            , CASE" + 
+			 "                WHEN SOUNDEX(INAME) = SOUNDEX('IPHONE') THEN 4" + 
+			 "                WHEN SOUNDEX(CATEG) = SOUNDEX('ELECTRONIC') THEN 3" + 
+			 "                ELSE 0" + 
+			 "                END DESC";
+	 stmt = con.createStatement();
+	 result = stmt.executeQuery(queryString);
+	 } catch (Exception e) {
+		 e.printStackTrace();
+	 }
+	 return result;
+}
+
+public ResultSet getRelevantProductsByDate(String cat, String inm) throws IllegalStateException{
+	  if(!isLoggedIn())
+	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
+	 try {
+		 con = openDBConnection();
+		 String sc = cat.substring(0, 1);
+		 String si = inm.substring(0, 1);
+	 String queryString = "SELECT * " 
+ 		+ "FROM ITEM "
+			 + "WHERE  UPPER(CATEG)" + " LIKE '%' || UPPER('"+sc+"') || '%' and UPPER(INAME) LIKE '%' || UPPER('"+si+"') || '%'"
+			 +" ORDER BY AUC_END_DATE DESC" + 
+			 "        , CASE"
+			 +" 	WHEN UPPER(INAME) = UPPER('"+inm+"')     THEN 10 " + 
+			 "              WHEN UPPER(INAME) LIKE UPPER('"+inm+"') || '%' THEN 9" + 
+			 "              WHEN UPPER(INAME) LIKE '%'|| UPPER('"+inm+"') ||'%'     THEN 8" + 
+			 "              ELSE 0" + 
+			 "          END DESC "+
+			 "  , CASE "
+			 + "	    WHEN UPPER(CATEG) = UPPER('ELECTRONIC') THEN 7" + 
+			 "                WHEN UPPER(CATEG) LIKE UPPER('ELECTRONIC') ||'%'       THEN 6 " + 
+			 "                WHEN UPPER(CATEG) LIKE '%'|| UPPER('Iphone') ||'%' THEN 5" + 
+			 "                ELSE 0" + 
+			 "           END DESC" + 
+			 "            , CASE" + 
+			 "                WHEN SOUNDEX(INAME) = SOUNDEX('IPHONE') THEN 4" + 
+			 "                WHEN SOUNDEX(CATEG) = SOUNDEX('ELECTRONIC') THEN 3" + 
+			 "                ELSE 0" + 
+			 "                END DESC";
 	 stmt = con.createStatement();
 	 result = stmt.executeQuery(queryString);
 	 } catch (Exception e) {
