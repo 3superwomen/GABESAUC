@@ -276,7 +276,6 @@ public class Admin implements Serializable {
 	 return result;
  }
 	
- 
 
    /**
    * sets loggedIn class field to false

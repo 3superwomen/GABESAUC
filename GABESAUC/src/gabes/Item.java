@@ -162,7 +162,6 @@ public class Item implements Serializable{
 	  }
 	  
 	  
-	  
 		public void deleteItem() {
 			con = openDBConnection();
 			try {
