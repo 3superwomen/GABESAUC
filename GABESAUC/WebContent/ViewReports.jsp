@@ -95,8 +95,10 @@ width: 266px;}
 	</tr>
 	<% 
                  try{ 
+                	 double sum = 0;
+                	 String  sumStr = "";
                  	ResultSet rs= admin.getOverallCommissionReport(); 
-                 	ResultSet rs2 = admin.getOverallCommissionTotal();
+                 	//ResultSet rs2 = admin.getOverallCommissionTotal();
                	while(rs.next()){
                		%>
              <tr> 
@@ -108,9 +110,10 @@ width: 266px;}
                 <td style="vertical-align: top; text-align: center;"><%=rs.getInt(6)%></td> 
                 <td style="vertical-align: top; text-align: center;"><%=rs.getDouble(7)%></td>  
              </tr>
-             <%}%>
-             <%while(rs2.next()){
-              	%>
+             <%  sum=sum+rs.getDouble(7);
+             	sumStr = String.format("%.2f", sum);
+                		}
+              %>
              		<tr>
              			<td style="vertical-align: top; text-align: center;"><%="Total:"%></td>
              			<td style="vertical-align: top; text-align: center;"><%="                    "%></td>
@@ -118,9 +121,8 @@ width: 266px;}
              			<td style="vertical-align: top; text-align: center;"><%="                    "%></td>
              			<td style="vertical-align: top; text-align: center;"><%="                    "%></td>
              			<td style="vertical-align: top; text-align: center;"><%="                    "%></td>
-             			<td style="vertical-align: top; text-align: center;"><%=rs2.getDouble(1)%></td>
+             			<td style="vertical-align: top; text-align: center;"><Strong><%=sumStr%></Strong></td></tr>
              		</tr>
-             <%}%>
    <%}%><% catch(IllegalStateException ise2){
          out.println(ise2.getMessage());} %>
 </tbody>

@@ -73,7 +73,8 @@ public class Customer implements Serializable {
     return this.loggedIn;
   }
   
-  /* This method uses a CallStatement object to call an SQL stored procedure
+  /** 
+   * This method uses a CallStatement object to call an SQL stored procedure
    * Procedure team5.CUSTOMER_REGISTER_PROC  to  add a customer.**/
   
   public void addCustomer() {
@@ -95,7 +96,8 @@ public class Customer implements Serializable {
 	   }
 }
  
-  /* This method uses a CallStatement object to call an SQL stored procedure
+  /**
+   * This method uses a CallStatement object to call an SQL stored procedure
   * Procedure team5.CUSTOMER_REGISTER_PROC  to  register a customer.**/
   public void registerCustomer() {
 	   
@@ -184,7 +186,15 @@ public class Customer implements Serializable {
        }
        return  result;
   	}
-  
+  /**
+
+   * This method uses a Statement object to query the CUSTOMER table
+   * for the customer whose id matches the provided id
+   * 
+   * @return a ResultSet object containing the record for the matching customer from 
+   * the CUSTOMER table
+   * 
+   * @throws IllegalStateException if then method is called when loggedIn = false**/
   public ResultSet getCustomerInfo2()  throws IllegalStateException{
 	   
       if(!isLoggedIn())
@@ -222,6 +232,16 @@ public class Customer implements Serializable {
       }       
   }
   
+  /**
+   * Method to edit profile and grab procedure from oracle sql -> edit customer
+   * @param username username to set
+   * @param fnameb firstname to set
+   * @param lname last name to set
+   * @param email email of to set
+   * @param phoneno phone number to set
+   * @param newpw new password to set
+   * @throws SQLException
+   */
   public void editProfile(String username, String fname, String lname, String email, String phoneno, String newpw) throws SQLException{
 	  if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");  
@@ -293,6 +313,13 @@ public ResultSet getItemListForSold()  throws IllegalStateException{
 	       }
 	        return result; 
 	     }
+/**
+ * Get the list of items the seller posted in the past which are on auction
+ * and show the profit every sales
+ * 
+ * @return a resultset that data retrieved from the database.
+ * @throw if the seller does not log in or query cannot run well
+ */
 
 public ResultSet getItemsOnAuction()  throws IllegalStateException{
 	  
@@ -397,7 +424,7 @@ public ResultSet getBidderList(int ino) throws IllegalStateException{
  * @throw if the seller does not log in or query cannot run well
  */
 
-public void addItem(String name, String desc, String cate, Date aucE,String priceS) throws SQLException{
+public void addItem(String name, String desc, String cate, java.sql.Date aucE,String priceS) throws SQLException{
 	 if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
 	 java.util.Date utilDate = new java.util.Date();
@@ -411,7 +438,7 @@ public void addItem(String name, String desc, String cate, Date aucE,String pric
     callStmt.setString(1,name);
     callStmt.setString(2,desc);
     callStmt.setString(3,cate);
-    callStmt.setDate(4,(java.sql.Date) aucE);
+    callStmt.setDate(4, aucE);
     callStmt.setInt(5,this.id);
     callStmt.setInt(6,Integer.parseInt(priceS));
     callStmt.execute();
@@ -439,11 +466,7 @@ public ResultSet getRelevantProducts(String cat, String inm) throws IllegalState
    		+ "FROM ITEM "
 			 + "WHERE  UPPER(CATEG)" + 
 			 " LIKE '%' || UPPER('"+sc+"') || '%' and UPPER(INAME) LIKE '%' || UPPER('"+si+"') || '%'"
-			 +" ORDER BY CASE WHEN STATUS = 'ON AUCTION' THEN 12" + 
-			 "            WHEN STATUS = 'SOLD' THEN 11" + 
-			 "            ELSE 0" + 
-			 "        END DESC" + 
-			 "        , CASE"
+			 +" ORDER BY CASE"
 			 +" 	WHEN UPPER(INAME) = UPPER('"+inm+"')     THEN 10 " + 
 			 "              WHEN UPPER(INAME) LIKE UPPER('"+inm+"') || '%' THEN 9" + 
 			 "              WHEN UPPER(INAME) LIKE '%'|| UPPER('"+inm+"') ||'%'     THEN 8" + 
@@ -513,6 +536,11 @@ public ResultSet getRelevantProductsByDate(String cat, String inm) throws Illega
 	 }
 	 return result;
 }
+/** 
+ * When this method rateSeller() is called, the customer can rate a seller and this info will be inserted in Rates.
+ * 
+ *  @throws IllegalStateException
+ */ 
 
 public ResultSet viewFeedback() throws IllegalStateException{
 
