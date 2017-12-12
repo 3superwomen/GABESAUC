@@ -27,7 +27,7 @@ div.container{
  <body bgcolor = "#99ff66">
  <div class ="container">
  <header>
- <h1> CREATE YOUR ACCOUNT</h1>
+ <h1> CREATE YOUR GABES ACCOUNT</h1>
  </header>
 <form style=""font-family: Times New Roman,Times,serif";" method="post"action="Register_Action.jsp" name="RegisterForm">
 <table align="center">
