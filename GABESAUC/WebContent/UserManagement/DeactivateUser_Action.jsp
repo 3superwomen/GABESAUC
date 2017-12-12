@@ -10,5 +10,5 @@ try{
  }catch(IllegalStateException ise){
     out.println(ise.getMessage());
 }
-response.sendRedirect("DeleteUser.jsp");
+response.sendRedirect("DeactivateUser.jsp");
 %>
