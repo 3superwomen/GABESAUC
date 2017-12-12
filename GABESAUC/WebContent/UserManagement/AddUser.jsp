@@ -13,6 +13,8 @@ http-equiv="content-type">
 <%  String value = request.getParameter("value");
 if(value!=null)
    out.println("PASSWORD DOES NOT MATCH RETYPE PASSWORD");%>
+   
+ <a href="../ExitAdmin.jsp" style="color:black">Logout</a></td></tr><br>
 <table style="text-align: left; width: 653px; height: 100px;" border="1"
     			cellpadding="2" cellspacing="2">			
 <br>
