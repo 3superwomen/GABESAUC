@@ -42,7 +42,7 @@ if((comments.equals("")))
 				    rates.setQuality(q);
 	                rates.setComments(comments);
 	                rates.rateSeller();
-	                response.sendRedirect("RateSeller.jsp");
+	                response.sendRedirect("LeaveFeedback.jsp");
      }
  
  

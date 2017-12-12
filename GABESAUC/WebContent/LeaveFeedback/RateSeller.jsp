@@ -48,7 +48,7 @@ if(value!=null)
 %>
 <br>
  <a href="../ExitCustomer.jsp" style="color:black">Logout</a><br>
-  <a href="LeaveFeedback.jsp" style="color:black"> Return To Menu</a><br>
+  <a href="LeaveFeedback.jsp" style="color:black"> Return To Items Won</a><br>
  <div class ="container">
  <header>
  <h1> LEAVE FEEDBACK FOR SELLER </h1> </header>
