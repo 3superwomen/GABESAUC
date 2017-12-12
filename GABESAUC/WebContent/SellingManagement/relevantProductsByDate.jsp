@@ -11,13 +11,7 @@
 	</style>
 </head>
 <body>
-<%try{
-                	String cat = request.getParameter("itemCat");
-                	String inm = request.getParameter("itemName");
-                	session.setAttribute("ct", cat );
-                	session.setAttribute("im", inm );%>
 <h1>Item List</h1>
-<a href="relevantProductsByDate.jsp">By Date</a>
 <table style="text-align: left; width: 100%;" border="1" cellpadding="2"
                cellspacing="2">
             <tbody>
@@ -32,8 +26,10 @@
                     <td style="vertical-align: top; text-align: center;">Start Price</td>
                     <td style="vertical-align: top; text-align: center;">Current/Final Bid</td>
                 </tr>
-                <%
-                	ResultSet rs= customer.getRelevantProducts(cat, inm);
+                <%try{
+                	String cat = (String)session.getAttribute("ct");
+                	String inm = (String)session.getAttribute("im");
+                	ResultSet rs= customer.getRelevantProductsByDate(cat, inm);
                 	while(rs.next()){ %>
                 	
                 	<tr>
