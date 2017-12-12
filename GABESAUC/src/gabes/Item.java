@@ -134,7 +134,10 @@ public class Item implements Serializable{
 		}
 		return result; 
 	  }
-	 
+	  /**
+	   * This method uses a Statement object to query the CUSTOMER table
+	   * for the seller information
+	   * @return a ResultSet object containing the record  that matches the id of the seller **/
 	  
 	  public ResultSet getSellerInfo() {
 		  try {
@@ -148,7 +151,10 @@ public class Item implements Serializable{
 				return result; 
 	  }
 	  
-
+	  /**
+	   * This method uses a Statement object to query the ITEM table
+	   * to get all customers with no bids that have passed their auction date
+	   * @return a ResultSet object containing the list of items with status = "NOT ON AUCTION" **/
 	  public ResultSet getItemWithNoBids() {
 		  con = openDBConnection();
 		    try{
@@ -176,7 +182,6 @@ public class Item implements Serializable{
 		}
 		  
 	  
-	 
 
 	  public ResultSet getSalesSubTotals() throws IllegalStateException
 	  {

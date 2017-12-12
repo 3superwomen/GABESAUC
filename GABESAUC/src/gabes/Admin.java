@@ -122,7 +122,10 @@ public class Admin implements Serializable {
        }
    }
       
-    
+  /**
+   * When called, this method uses a Preparestatement object to call the customer sequence to create a new unique customer id 
+   * 
+   * @return the unique int if **/ 
   public int seqcustId()  {
 	  int nextId =0;
 	  con = openDBConnection();
@@ -167,7 +170,12 @@ public class Admin implements Serializable {
 	    callStmt.setString(3,username);
 	    callStmt.execute();
 	    callStmt.close();
-	  }  
+	  } 
+  
+  /**
+   * This method uses a Statement object to retrieve all customers
+   * @return a ResultSet containing all customers 
+   * @throws IllegalStateException if then method is called when loggedIn = false**/
  
   public void reactivateUser(String username) throws SQLException{
 	  if(!isLoggedIn())
@@ -275,7 +283,6 @@ public class Admin implements Serializable {
 	 }
 	 return result;
  }
-	
 
    /**
    * sets loggedIn class field to false
