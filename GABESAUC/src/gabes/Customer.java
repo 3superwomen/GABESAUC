@@ -209,7 +209,6 @@ public class Customer implements Serializable {
       }       
   }
   
-
   public void editProfile(String username, String fname, String lname, String email, String phoneno, String newpw) throws SQLException{
 	  if(!isLoggedIn())
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");  

@@ -31,6 +31,7 @@ width: 266px;}
 <h2>Sales Summary Report </h2>
 <table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
 <tbody>
+
 	<tr>
 	<td style="vertical-align: top; text-align: center;">Category</td>
     <td style="vertical-align: top; text-align: center;">Item ID</td>

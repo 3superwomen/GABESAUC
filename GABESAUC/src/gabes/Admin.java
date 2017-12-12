@@ -169,7 +169,6 @@ public class Admin implements Serializable {
 	    callStmt.close();
 	  }  
  
-  
   public ResultSet getCustomers()  throws IllegalStateException{
 	   
       if(!isLoggedIn())

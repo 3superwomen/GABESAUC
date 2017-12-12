@@ -30,6 +30,7 @@ Username&nbsp;&nbsp; &nbsp; &nbsp;
 <input style="color: black;" name="Deactivate" value="Deactivate" type="submit">		
 </tbody>
 </table>
+
 </form>
 </body>
 </html>
