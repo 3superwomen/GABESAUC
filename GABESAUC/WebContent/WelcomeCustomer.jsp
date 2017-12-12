@@ -36,7 +36,7 @@ background-color:#f1f1c1;
  <%if(!customer.isLoggedIn())
      { response.sendRedirect("Login.jsp");} %>
  <div class ="container"></div>
-<h1>Welcome!</h1>
+<h1>Welcome Customer!</h1>
 <tr>
 <td align="right" width="690"><a href="ExitCustomer.jsp">Logout</a></td></tr><br>
 <jsp:include page="printdate.jsp" />  	
