@@ -73,6 +73,9 @@ public class Customer implements Serializable {
     return this.loggedIn;
   }
   
+  /* This method uses a CallStatement object to call an SQL stored procedure
+   * Procedure team5.CUSTOMER_REGISTER_PROC  to  add a customer.**/
+  
   public void addCustomer() {
 	   
 	   try{
@@ -91,7 +94,9 @@ public class Customer implements Serializable {
 	             E.printStackTrace();
 	   }
 }
-  
+ 
+  /* This method uses a CallStatement object to call an SQL stored procedure
+  * Procedure team5.CUSTOMER_REGISTER_PROC  to  register a customer.**/
   public void registerCustomer() {
 	   
 	   try{
@@ -115,13 +120,12 @@ public class Customer implements Serializable {
   
   /**
    * When called, this method uses a Statement object to query table CUSTOMER
-   * for the customer whose id is stored in class instance
-   * fields id.
+   * for the customer whose username and password exists in the database
    * If a match is found, the method sets loggedIn class field to true and 
    * returns true; otherwise, loggedIn class field is set to false and false is returned 
    * 
    * @return true or false based on whether the login information of the customer
-   * stored in class fields last and customerNumber exist in Table Customer
+   * stored in class fields  username and password exist in Table Customer
    */
   public boolean login() {
 
@@ -155,7 +159,16 @@ public class Customer implements Serializable {
     this.loggedIn = false;
   }
   
-  
+
+  /**
+
+   * This method uses a Statement object to query the CUSTOMER table
+   * for the customer whose id matches the provided id
+   * 
+   * @return a ResultSet object containing the record for the matching customer from 
+   * the CUSTOMER table
+   * 
+   * @throws IllegalStateException if then method is called when loggedIn = false**/
   public ResultSet getCustomerInfo()  throws IllegalStateException{
 	   
       if(!isLoggedIn())
@@ -163,7 +176,7 @@ public class Customer implements Serializable {
        try{
     	   stmt = con.createStatement();
           String queryString = "Select username,fname,lname,emailad,phoneno,sumofratings,noofratings,password FROM CUSTOMER where"
-          		+ " username='" + this.username +"'";
+          		+ " id='" + this.id +"'";
           result = stmt.executeQuery(queryString);
        }       
        catch (Exception E) {
@@ -518,82 +531,178 @@ public ResultSet viewFeedback() throws IllegalStateException{
 	    return result; 
 }
 
-  
-  public String getPhoneno() {
+/**
+ * A getter for class field phoneno
+ */ 
+ public String getPhoneno() {
 	return phoneno;
 }
+ /**
+  * A setter for class field phoneno
+  * @param phoneno the phoneno to set
+  */
+
 public void setPhoneno(String phoneno) {
 	this.phoneno = phoneno;
 }
+/**
+ * A getter for class field emailad
+ */
 public String getEmailad() {
 	return emailad;
 }
+/**
+ * A setter for class field emailad
+ * @param emailad the emailad to set
+ */
+
 public void setEmailad(String emailad) {
 	this.emailad = emailad;
 }
+/**
+ * A getter for class field fname
+ */
 public String getFname() {
 	return fname;
 }
+/**
+ * A setter for class field fname
+ * @param fname the first name to set
+ */
+
 public void setFname(String fname) {
 	this.fname = fname;
 }
+/**
+ * A getter for class field lname
+ */
 public String getLname() {
 	return lname;
 }
+/**
+ * A setter for class field lname
+ * @param plname the last name to set
+ */
+
 public void setLname(String lname) {
 	this.lname = lname;
 }
+/**
+ * A getter for class field isseller
+ */
 public char getIsSeller() {
 	return isSeller;
 }
+/**
+ * A setter for class field isseller
+ * @param isSeller the character to set
+ */
+
 public void setIsSeller(char isSeller) {
 	this.isSeller = isSeller;
 }
+/**
+ * A getter for class field isbidder
+ */
 public char getIsBidder() {
 	return isBidder;
 }
+/**
+ * A setter for class field isbidder
+ * @param isbidder the character to set 
+ */
+
 public void setIsBidder(char isBidder) {
 	this.isBidder = isBidder;
 }
+/**
+ * A getter for class field username
+ */
 public String getUsername() {
 	return username;
 }
+/**
+ * A setter for class field  username
+ * @param username the username to set
+ */
 public void setUsername(String username) {
 	this.username = username;
 }
+/**
+ * A getter for class field password
+ */
 public String getPassword() {
 	return password;
 }
+/**
+ * A setter for class field  password
+ * @param password the password to set
+ */
 public void setPassword(String password) {
 	this.password = password;
 }
+/**
+ * A getter for class field adminusername
+ */
 public String getAdminUsername() {
 	return adminUsername;
 }
+/**
+ * A setter for class field  adminusername
+ * @param adminusername the admin username to set
+ */
 public void setAdminUsername(String adminUsername) {
 	this.adminUsername = adminUsername;
 }
+/**
+ * A getter for class field id
+ */
 public int getId() {
 	return id;
 }
+/**
+ * A setter for class field  password
+ * @param id the id to set
+ */
 public void setId(int id) {
 	this.id = id;
 }
+/**
+ * A getter for class field commission
+ */
 public int getCommission() {
 	return commission;
 }
+/**
+ * A setter for class field  commission
+ * @param  commision the commision to set
+ */
 public void setCommission(int commission) {
 	this.commission = commission;
 }
+/**
+ * A getter for class field sum ratings
+ */
 public int getSumratings() {
 	return sumratings;
 }
+/**
+ * A setter for class field  sumratings
+ * @param  sumratings the sumratings to set
+ */
 public void setSumratings(int sumratings) {
 	this.sumratings = sumratings;
 }
+/**
+ * A getter for class field getNoOfRatings
+ */
 public int getNoOfratings() {
 	return noofratings;
 }
+/**
+ * A setter for class field  noratings
+ * @param  sumratings the noratings to set
+ */
 public void setNoofratings(int noofratings) {
 	this.noofratings = noofratings;
 }
