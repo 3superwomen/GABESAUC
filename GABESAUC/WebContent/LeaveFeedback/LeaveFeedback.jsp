@@ -6,14 +6,29 @@
 <head>
 <meta content="text/html; charset=ISO-8859-1"
 http-equiv="content-type">
-
+ <style>
+div.container{
+   width:100%
+   border: 1px solid gray
+ }
+ header,footer{
+ padding: lem;
+ color:white;
+ background-color: black;
+ clear:left;
+ text-align:center
+ }
+ </style>
+ <title> Items Won</title>
 </head>
-<body>
 
-    			
-    <br>
-<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-List of Items Bought</h1>
+<br>
+ <a href="../ExitCustomer.jsp" style="color:black">Logout</a><br>
+       <a href="../WelcomeCustomer.jsp" style="color:black">Return to Menu</a><br>
+
+ <div class ="container">
+ <header>
+ <h1> LIST OF ITEMS BOUGHT</h1> </header><br><br>
 	
 	<table style="text-align: left; width: 653px; height: 100px;" border="1"
     			cellpadding="2" cellspacing="2">
@@ -113,6 +128,7 @@ List of Items Bought</h1>
 %>
 
 </body>
+</div>
 
 </html>
 

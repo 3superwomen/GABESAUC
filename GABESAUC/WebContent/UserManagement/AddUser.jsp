@@ -2,7 +2,24 @@
 <head>
 <meta content="text/html; charset=ISO-8859-1"
 http-equiv="content-type">
-<title>User Management</title>
+ <style>
+div.container{
+   width:100%
+   border: 1px solid gray
+ }
+ header,footer{
+ padding: lem;
+ color:white;
+ background-color: black;
+ clear:left;
+ text-align:center
+ }
+ p{ text-align:center
+         font-family:"Arial Black"; font-size:15px;}
+ 
+ </style>
+ <title>User Management</title>
+</head>
 </head>
 <body>
 <%@ page language="java" import="java.sql.*" %>
@@ -15,11 +32,14 @@ if(value!=null)
    out.println("PASSWORD DOES NOT MATCH RETYPE PASSWORD");%>
    
  <a href="../ExitAdmin.jsp" style="color:black">Logout</a></td></tr><br>
+  <a href="../WelcomeAdmin.jsp" style="color:black"> Return To Menu</a></td></tr><br>
+  <div class ="container">
+ <header>
+ <h1> LIST OF USERS</h1> </header>	
 <table style="text-align: left; width: 653px; height: 100px;" border="1"
     			cellpadding="2" cellspacing="2">			
 <br>
-<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-User List</h1>			
+<br>		
 	<tbody>
     		<tr>
     			<td style="vertical-align: top;"><span
@@ -106,5 +126,6 @@ style="color: black;" name="Clear" value="Clear" type="reset"> </form>
        
 
 </body>
+</div>
 </html>
 
