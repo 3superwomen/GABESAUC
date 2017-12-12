@@ -20,7 +20,6 @@ div.container{
  } </style>
  <Title> Delete Items</Title>
 </head>
-<body>
 
  <%if(!admin.isLoggedIn())
      { response.sendRedirect("../Login.jsp");} %>

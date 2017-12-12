@@ -40,6 +40,10 @@ value="Deactivate/Reactivate Users" type="Submit"><br>
 style="font-family: Arial Black; color: black;" name="View Reports"
 value="View Reports" type="Submit"><br>
 </form>
+<form method="post" action="ItemManagement/DeleteItem.jsp"> <input
+style="font-family: Arial Black; color: black;" name="Delete Item"
+value="Delete Item" type="Submit"><br>
+</form>
 </body>
 </html>
 
