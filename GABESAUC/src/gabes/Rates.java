@@ -29,50 +29,83 @@ public class Rates implements Serializable{
 		  
 	}
 	
-	
+	/**
+	 * A setter for class field  delivery
+	 * @param delivery set delivery
+	 */
 	public void setDelivery(int delivery) {
 		this.delivery = delivery;
 	}
-	
+	/**
+	 * A getter for class field delivery
+	 */
 	public int getDelivery() {
 		return this.delivery;
 	}
-	
-	public void setRating(int delivery) {
-		this.delivery = delivery;
+	/**
+	 * A setter for class field  rating
+	 * @param rating the rating to set
+	 */
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
-	
+	/**
+	 * A getter for class field rating
+	 */
 	public int getRating() {
 		return this.delivery;
 	}
-	
+	/**
+	 * A setter for class field comments
+	 * @param comments the comments to set
+	 */
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
-	
+	/**
+	 * A getter for class field comments
+	 */
 	public String getComments() {
 		return this.comments;
 	}
 	
+	/**
+	 * A setter for class field quality
+	 * @param quality the quality to set
+	 */
 	public void setQuality(int quality) {
 		this.quality = quality;
 	}
+	/**
+	 * A getter for class field quality
+	 */
 	
 	public int getQuality() {
 		return this.quality;
 	}
-	
+	/**
+	 * A setter for class field itemno
+	 * @param itemno the itemno to set
+	 */
 	public void setItemNo(int itemNo) {
 		this.itemNo = itemNo;
 	}
-	
+	/**
+	 * A getter for class field itemno
+	 */
 	public int getItemNo() {
 		return this.itemNo;
 	}
-	
+	/**
+	 * A setter for class field bidderno
+	 * @param bidderno the bidderno to set
+	 */
 	public void setBidderNo(int bidderNo) {
 		this.bidderNo = bidderNo;
 	}
+	/**
+	 * A getter for class field bidderno
+	 */
 	
 	public int getBidderNo() {
 		return this.bidderNo;
