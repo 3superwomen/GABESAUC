@@ -19,8 +19,6 @@ div.container{
  
  </style>
 <body>
-<form style="font-family: Arial Black;" method="post"
-action="DeactivateUser_Action.jsp" name="Deactivate">
 <%@ page language="java" import="java.sql.*" %>
 <jsp:useBean id="admin" class="gabes.Admin" scope="session"/>
 <h1>Deactivate User<br>

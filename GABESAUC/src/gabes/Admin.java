@@ -19,7 +19,7 @@ public class Admin implements Serializable {
   private Statement stmt;
   private ResultSet result;
   private Connection con;
-  
+  private CallableStatement callStmt;
   /**
    * The following stores whether or not the admin has successfully logged
    * to the System
@@ -140,23 +140,34 @@ public class Admin implements Serializable {
 	       return nextId;
 	   }
   
-
-public void deactivateUser(String username) {
-	 if(!isLoggedIn())
-	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
-	 try {
-		 con = openDBConnection();
-		 String queryString = "update customer set isSeller=? and isBidder=? where username =?";
-		 pstmt = con.prepareStatement(queryString);
-		 pstmt.clearParameters();
-		 pstmt.setString(1, String.valueOf('N'));
-		 pstmt.setString(2, String.valueOf('N'));
-		 pstmt.setString(3, username);
-		 pstmt.executeUpdate();
-		 } catch (Exception e) {
-			 e.printStackTrace();
-		 }
-	 }      
+//  ADMIN_DEACTIVATE_USER(isell char, ibid char, usern varchar2)
+//  public void deactivateUser(String username) {
+//	 if(!isLoggedIn())
+//	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
+//	 try {
+//		 con = openDBConnection();
+//		 String queryString = "update customer set isSeller=?, isBidder=? where username = ?";
+//		 pstmt = con.prepareStatement(queryString);
+//		 pstmt.clearParameters();
+//		 pstmt.setString(1, String.valueOf('N'));
+//		 pstmt.setString(2, String.valueOf('N'));
+//		 pstmt.setString(3, username);
+//		 pstmt.executeUpdate();
+//		 } catch (Exception e) {
+//			 e.printStackTrace();
+//		 }
+//	 }      
+  
+  public void deactivateUser(String username) throws SQLException{
+	  if(!isLoggedIn())
+	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");  
+	    callStmt = con.prepareCall(" {call team5.ADMIN_DEACTIVATE_USER(?,?,?)}");
+	    callStmt.setString(1,String.valueOf('N'));
+	    callStmt.setString(2,String.valueOf('N'));
+	    callStmt.setString(3,username);
+	    callStmt.execute();
+	    callStmt.close();
+	  }  
   
   public ResultSet getCustomers()  throws IllegalStateException{
 	   
