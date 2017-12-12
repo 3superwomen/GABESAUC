@@ -142,24 +142,7 @@ public class Admin implements Serializable {
 			}
 	       return nextId;
 	   }
-  
-//  ADMIN_DEACTIVATE_USER(isell char, ibid char, usern varchar2)
-//  public void deactivateUser(String username) {
-//	 if(!isLoggedIn())
-//	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
-//	 try {
-//		 con = openDBConnection();
-//		 String queryString = "update customer set isSeller=?, isBidder=? where username = ?";
-//		 pstmt = con.prepareStatement(queryString);
-//		 pstmt.clearParameters();
-//		 pstmt.setString(1, String.valueOf('N'));
-//		 pstmt.setString(2, String.valueOf('N'));
-//		 pstmt.setString(3, username);
-//		 pstmt.executeUpdate();
-//		 } catch (Exception e) {
-//			 e.printStackTrace();
-//		 }
-//	 }      
+       
   
   public void deactivateUser(String username) throws SQLException{
 	  if(!isLoggedIn())

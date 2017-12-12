@@ -31,71 +31,167 @@ public class Item implements Serializable{
 	 * Getters and setters of variables
 	 * 
 	 */
+	
+	/**
+	   * A getter for class field iname
+	   * @param iname the iname to set
+	   */
 	public String getIname() {
 		return iname;
 	}
+	/**
+	   * A setter for class field iname
+	   * @param iname the iname to set
+	   */
 	public void setIname(String iname) {
 		this.iname = iname;
 	}
+	/**
+	   * A getter for class field inumber
+	   * @param inumber the inumber to set
+	   */
 	public int getInumber() {
 		return inumber;
 	}
+	/**
+	   * A setter for class field inumber
+	   * @param inumber the inumber to set
+	   */
 	public void setInumber(int inumber) {
 		this.inumber = inumber;
 	}
+	/**
+	   * A getter for class field idescription
+	   * @param idescription the idescription to set
+	   */
 	public String getIdescription() {
 		return idescription;
 	}
+	/**
+	   * A setter for class field idescription
+	   * @param idescription the idescription to set
+	   */
 	public void setIdescription(String idescription) {
 		this.idescription = idescription;
 	}
+	/**
+	   * A getter for class field category
+	   * @param category the category to set
+	   */
 	public String getCategory() {
 		return category;
 	}
+	/**
+	   * A setter for class field category
+	   * @param category the category to set
+	   */
 	public void setCategory(String category) {
 		this.category = category;
 	}
+	/**
+	   * A getter for class field auctionStartDate
+	   * @param auctionStartDate the auctionStartDate to set
+	   */
 	public Date getAuctionStartDate() {
 		return auctionStartDate;
 	}
+	/**
+	   * A setter for class field auctionStartDate
+	   * @param auctionStartDate the auctionStartDate to set
+	   */
 	public void setAuctionStartDate(Date auctionStartDate) {
 		this.auctionStartDate = auctionStartDate;
 	}
+	/**
+	   * A getter for class field auctionEndDate
+	   * @param auctionEndDate the auctionEndDate to set
+	   */
 	public Date getAuctionEndDate() {
 		return auctionEndDate;
 	}
+	/**
+	   * A setter for class field auctionEndDate
+	   * @param auctionEndDate the auctionEndDate to set
+	   */
 	public void setAuctionEndDate(Date auctionEndDate) {
 		this.auctionEndDate = auctionEndDate;
 	}
+	/**
+	   * A getter for class field sellerNo
+	   * @param sellerNo the sellerNo to set
+	   */
 	public int getSellerNo() {
 		return sellerNo;
 	}
-	
+	/**
+	   * A setter for class field winId
+	   * @param winId the winId to set
+	   */
 	public void setWinner(int winId)
 	{
 		this.winner = winId;
 	}
+	/**
+	   * A getter for class field winId
+	   * @param winId the winId to set
+	   */
 	public int getWinner() {
 		return winner;
 	}
+	/**
+	   * A setter for class field sellerNo
+	   * @param sellerNo the sellerNo to set
+	   */
 	public void setSellerNo(int sellerNo) {
 		this.sellerNo = sellerNo;
 	}
+	/**
+	   * A getter for class field sellerNo
+	   * @param sellerNo the sellerNo to set
+	 * @return 
+	   */
+	public int getSellerNo(int sellerNo) {
+		return sellerNo;
+	}
+	/**
+	   * A setter for class field startBid
+	   * @param startBid the startBid to set
+	   */
 	public int getStartBid() {
 		return startBid;
 	}
+	/**
+	   * A getter for class field startBid
+	   * @param startBid the startBid to set
+	   */
 	public void setStartBid(int startBid) {
 		this.startBid = startBid;
 	}
+	/**
+	   * A getter for class field wistatusnId
+	   * @param status the status to set
+	   */
 	public String getStatus() {
 		return status;
 	}
+	/**
+	   * A setter for class field status
+	   * @param status the status to set
+	   */
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	/**
+	   * A getter for class field currentBid
+	   * @param currentBid the currentBid to set
+	   */
 	public int getCurrentBid() {
 		return currentBid;
 	}
+	/**
+	   * A setter for class field currentBid
+	   * @param currentBid the currentBid to set
+	   */
 	public void setCurrentBid(int currentBid) {
 		this.currentBid = currentBid;
 	}
@@ -182,7 +278,11 @@ public class Item implements Serializable{
 		}
 		  
 	  
-
+		/**
+		 * This function returns resultset with sales sub totals onto the view reports page
+		 * @return resultset 
+		 * @throws IllegalStateException
+		 */
 	  public ResultSet getSalesSubTotals() throws IllegalStateException
 	  {
 	 	 try {
@@ -198,9 +298,6 @@ public class Item implements Serializable{
 	 	 }
 	 	 return result; 
 	  }
-
-	
-	 
 	
 }
 
