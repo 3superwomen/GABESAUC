@@ -35,6 +35,7 @@ background-color:#f1f1c1;
 }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<td align="right" width="690"><a href="ExitCustomer.jsp">Logout</a></td><br>
 <title>Bidding Homepage</title>
 </head>
 <%@ page language="java" import="java.sql.*" %>

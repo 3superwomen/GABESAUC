@@ -169,6 +169,16 @@ public class Admin implements Serializable {
 	    callStmt.close();
 	  }  
  
+  public void reactivateUser(String username) throws SQLException{
+	  if(!isLoggedIn())
+	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");  
+	    callStmt = con.prepareCall(" {call team5.ADMIN_DEACTIVATE_USER(?,?,?)}");
+	    callStmt.setString(1,String.valueOf('Y'));
+	    callStmt.setString(2,String.valueOf('Y'));
+	    callStmt.setString(3,username);
+	    callStmt.execute();
+	    callStmt.close();
+	  } 
   public ResultSet getCustomers()  throws IllegalStateException{
 	   
       if(!isLoggedIn())
@@ -234,12 +244,9 @@ public class Admin implements Serializable {
 	 try {
 		 con = openDBConnection();
 		 stmt = con.createStatement();
-		 String queryString = "SELECT sum(currentbid*0.05) as totalcommission" +
-				 " from Customer, RATES, BIDS b, Item" + 
-			 		" where isseller = 'Y' and sellerno = id and AUC_END_DATE <= Current_date and bidderid = bidderno and status='SOLD'" + 
-			 		" and itemid = inumber and itemno = inumber and maximumbidlimit = (select max(maximumbidlimit)" + 
-			 		" from BIDS b2" + 
-			 		" where b.bidderid = b2.bidderid and b.itemid = b2.itemid)";
+		 String queryString = "SELECT sum(currentbid*0.05) as finalcommission" +
+				 " FROM ITEM" + 
+				 " where status = 'SOLD'";
         result = stmt.executeQuery(queryString);
 	 } catch (Exception e) {
 		 e.printStackTrace();
@@ -257,14 +264,10 @@ public class Admin implements Serializable {
 	      throw new IllegalStateException("MUST BE LOGGED IN FIRST!");
 	 try {
 		 con = openDBConnection();
-	 String queryString = "select id,username,fname,lname,emailad, avg(rating) as sellerrating, (currentBid*0.05) as commissions" + 
-	 		" from Customer, RATES, BIDS b, Item" + 
-	 		" where isseller = 'Y' and sellerno = id and AUC_END_DATE <= Current_date and bidderid = bidderno and status='SOLD'" + 
-	 		" and itemid = inumber and itemno = inumber and maximumbidlimit = (select max(maximumbidlimit)" + 
-	 		" from BIDS b2" + 
-	 		" where b.bidderid = b2.bidderid and b.itemid = b2.itemid)" + 
-	 		" group by ID, username, fname, lname, emailad, (currentBid*0.05)" + 
-	 		" ORDER BY ID";
+	 String queryString = "SELECT id,username,fname,lname,emailad, avg(rating) as sellerrating,sum(currentbid*0.05)/2 as finalcommission" + 
+	 		" FROM ITEM ,customer, rates" + 
+	 		" where status = 'SOLD' and isSeller = 'Y' and sellerno = id" + 
+	 		" group by fname, id, username, lname, emailad order by id";
 	 stmt = con.createStatement();
 	 result = stmt.executeQuery(queryString);
 	 } catch (Exception e) {

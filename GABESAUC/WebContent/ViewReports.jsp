@@ -24,10 +24,10 @@ float: left;
 width: 266px;}
  </style>
  </head>
- <body bgcolor = "#99ff66">
- <div class ="container"></div>
+ <body>
 </head>
 <body>
+ <a href="ExitAdmin.jsp" style="color:black">Logout</a></td></tr><br>
 <h2>Sales Summary Report </h2>
 <table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
 <tbody>
